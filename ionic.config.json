@@ -1,0 +1,7 @@
+{
+  "name": "Patsy Project",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
