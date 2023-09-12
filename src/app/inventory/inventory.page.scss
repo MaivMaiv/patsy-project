@@ -1,0 +1,136 @@
+.sub-view {
+    width: 100%;
+  }
+  
+  .main-view {
+    width: 100%;
+  }
+  
+  @media (min-width: 768px) {
+    .sub-view {
+      width: 20%;
+    }
+  
+    .main-view {
+      width: 60%;
+    }
+  }
+  
+  .filter-button {
+    width: fit-content;
+    font-size: xx-small;
+  }
+  
+  ion-card {
+    width: fit-content;
+    height: fit-content;
+    text-align: justify;
+    margin: auto;
+    ion-button {
+      width: fit-content;
+      height: fit-content;
+    }
+  }
+  
+  .item-list {
+    font-size: small;
+  }
+  
+  #total-card {
+    text-align: center;
+    margin-top: 5%;
+  }
+
+  .custom-row {
+    height: 350px; /* Change this value to make the row taller */
+    /* You can also use other properties like  padding or margin to adjust the row size */
+  }
+
+  ion-card {
+    width: fit-content;
+    height: fit-content;
+    text-align: justify;
+    margin: auto;
+    ion-button {
+      width: fit-content;
+      height: fit-content;
+    }
+  }
+
+  .card-condition-1 {
+    background-color:var(--ion-color-primary);
+    color: black;
+    .delBtn{
+      color: black;
+    }
+    .edtBtn{
+      color: black;
+    }
+  }
+  
+  .card-condition-2 {
+    background-color:var(--ion-color-secondary);
+    color: black;
+    .delBtn{
+      color: black;
+    }
+    .edtBtn{
+      color: black;
+    }
+  }
+  
+  .card-condition-3 {
+    background-color:var(--ion-color-success);
+    color: black;
+    .delBtn{
+      color: black;
+    }
+    .edtBtn{
+      color: black;
+    }
+  }
+  
+  .card-condition-4 {
+    background-color:var(--ion-color-warning);
+    color: black;
+    .delBtn{
+      color: black;
+    }
+    .edtBtn{
+      color: black;
+    }
+  }
+  
+  .card-condition-5 {
+    background-color:var(--ion-color-danger);
+    color: black;
+    .delBtn{
+      color: black;
+    }
+    .edtBtn{
+      color: black;
+    }
+  }
+  
+  .card-condition-6 {
+    background-color:var(--ion-color-dark);
+    color: black;
+    .delBtn{
+      color: black;
+    }
+    .edtBtn{
+      color: black;
+    }
+  }
+  
+  .card-condition-7 {
+    background-color:var(--ion-color-tertiary);
+    color: black;
+    .delBtn{
+      color: black;
+    }
+    .edtBtn{
+      color: black;
+    }
+  }
+  

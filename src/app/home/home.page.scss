@@ -1,27 +1,132 @@
-#container {
+.sub-view {
+  width: 100%;
+}
+
+.main-view {
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  .sub-view {
+    width: 20%;
+  }
+
+  .main-view {
+    width: 60%;
+  }
+}
+
+.filter-button {
+  width: fit-content;
+  font-size: xx-small;
+}
+
+ion-card {
+  width: fit-content;
+  height: fit-content;
+  text-align: justify;
+  margin: auto;
+  ion-button {
+    width: fit-content;
+    height: fit-content;
+  }
+}
+
+.item-list {
+  font-size: small;
+}
+
+#total-card {
   text-align: center;
-
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
+  margin-top: 5%;
 }
 
-#container strong {
-  font-size: 20px;
-  line-height: 26px;
+.card-condition-1 {
+  background-color:var(--ion-color-primary);
+  color: white;
+  .delBtn{
+    color: white;
+    --background: black;
+  }
+  .edtBtn{
+    color: white;
+    --background: black;
+  }
 }
 
-#container p {
-  font-size: 16px;
-  line-height: 22px;
-
-  color: #8c8c8c;
-
-  margin: 0;
+.card-condition-2 {
+  background-color:var(--ion-color-secondary);
+  color: white;
+  .delBtn{
+    color: white;
+    --background: black;
+  }
+  .edtBtn{
+    color: white;
+    --background: black;
+  }
 }
 
-#container a {
-  text-decoration: none;
+.card-condition-3 {
+  background-color:var(--ion-color-success);
+  color: white;
+  .delBtn{
+    color: white;
+    --background: black;
+  }
+  .edtBtn{
+    color: white;
+    --background: black;
+  }
+}
+
+.card-condition-4 {
+  background-color:var(--ion-color-warning);
+  .delBtn{
+    color: white;
+    --background: black;
+  }
+  .edtBtn{
+    color: white;
+    --background: black;
+  }
+}
+
+.card-condition-5 {
+  background-color:var(--ion-color-danger);
+  color: white;
+  .delBtn{
+    color: white;
+    --background: black;
+  }
+  .edtBtn{
+    color: white;
+    --background: black;
+  }
+}
+
+.card-condition-6 {
+  background-color:var(--ion-color-dark);
+  color: white;
+  .delBtn{
+    color: white;
+    --background: black;
+  }
+  .edtBtn{
+    color: white;
+    --background: black;
+  }
+}
+
+.card-condition-7 {
+  background-color:var(--ion-color-tertiary);
+  color: white;
+  .delBtn{
+    color: white;
+    --background: black;
+  }
+  .edtBtn{
+    color: white;
+    --background: black;
+  }
 }
