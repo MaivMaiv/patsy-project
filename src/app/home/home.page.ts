@@ -12,6 +12,7 @@ export class HomePage {
   products: any[] = [];
   cartCounter: any[] = [];
   totalAmount: number = 0;
+  filteredProducts: any[] = [];
   public product: any = {
     productName: "",
     productCost: "",
@@ -22,6 +23,7 @@ export class HomePage {
     cartName: "",
     cartCost: ""
   }
+  isFiltered: boolean = false;
   constructor(private router: Router) {}
 
   ionViewDidEnter() {
@@ -47,20 +49,41 @@ export class HomePage {
       cartCost: cost
     };
     this.cartCounter.push(this.patsyCart);
+    localStorage.setItem("cart",this.cartCounter.toString());
+    localStorage.getItem("cart");
     console.log(this.patsyCart);
+    console.log("LocalStorage:",this.cartCounter);
     this.totalAmount += parseFloat(cost);
   }
 
   subAmount(name: string, cost: string) {
     console.log(cost);
+    let itemRemoved = false;
+    const criterion = {
+      "cartName": name,
+      "cartCost": cost
+  };
     if(this.totalAmount > 0){
-      this.totalAmount -= parseFloat(cost);
+      this.cartCounter = this.cartCounter.filter(item => {
+        if (!itemRemoved && item.cartName === criterion.cartName && item.cartCost === criterion.cartCost) {
+          itemRemoved = true;
+          this.totalAmount -= parseFloat(cost);
+          return false;
+        }
+        return true;
+      });
     }
-    const indexToRemove = this.patsyCart.indexOf(name)
-    if (indexToRemove !== -1) {
-      this.patsyCart.splice(indexToRemove, 1);
+    console.log(this.cartCounter)
+}
+
+  filterProducts(type: string) {
+    if(type == 'all'){
+      this.isFiltered = false
+    } else {
+      this.isFiltered = true;
     }
-    console.log(this.patsyCart)
+    this.filteredProducts = this.products.filter(product => product.productType === type);
+    console.log(this.filteredProducts);
   }
 
   colorToken() {

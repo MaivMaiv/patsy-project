@@ -17,7 +17,8 @@
           <ion-grid>
             <ion-row class="ion-justify-content-center">
               <h1 *ngIf="products.length === 0">No products has been added yet.</h1>
-              <ion-card (click)="editButton(i)" [ngClass]="'card-condition-' + prod.productCondition" *ngFor="let prod of products; let i = index">
+              <ion-col size="4" *ngFor="let prod of products; let i = index">
+              <ion-card (click)="editButton(i)" [ngClass]="'card-condition-' + prod.productCondition" >
                 <ion-card-header>
                   <ion-card-title>{{ prod.productName }}</ion-card-title>
                 </ion-card-header>
@@ -26,6 +27,8 @@
                   <p>Type: {{ prod.productType }}</p>
                 </ion-card-content>
               </ion-card>
+            </ion-col>
+              <br>
             </ion-row>              
           </ion-grid>
       </ion-content>

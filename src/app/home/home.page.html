@@ -36,23 +36,39 @@
       <ion-col size="6">
         <ion-toolbar>
           <div class="ion-text-center">
-            <ion-button class="filter-button" color="light"><ion-icon name="cafe"></ion-icon>Brewed</ion-button>
-            <ion-button class="filter-button" color="light"><ion-icon name="cafe"></ion-icon>Espresso</ion-button>
-            <ion-button class="filter-button" color="light"><ion-icon name="cafe"></ion-icon>Dine-In</ion-button>
-            <ion-button class="filter-button" color="light"><ion-icon name="cafe"></ion-icon>Non-Coffee</ion-button>
-            <ion-button class="filter-button" color="light"><ion-icon name="cafe"></ion-icon>Mocktails</ion-button>
-            <ion-button class="filter-button" color="light"><ion-icon name="cafe"></ion-icon>Toasties</ion-button>
-            <ion-button class="filter-button" color="light"><ion-icon name="cafe"></ion-icon>Specials</ion-button>
+            <ion-button (click)="filterProducts('brewed')" class="filter-button" color="light"><ion-icon name="cafe"></ion-icon>Brewed</ion-button>
+            <ion-button (click)="filterProducts('espresso')" class="filter-button" color="light"><ion-icon name="water"></ion-icon>Espresso</ion-button>
+            <ion-button (click)="filterProducts('dine-in')" class="filter-button" color="light"><ion-icon name="nutrition"></ion-icon>Dine-In</ion-button>
+            <ion-button (click)="filterProducts('non-Coffee')" class="filter-button" color="light"><ion-icon name="ice-cream"></ion-icon>Non-Coffee</ion-button>
+            <ion-button (click)="filterProducts('mocktails')" class="filter-button" color="light"><ion-icon name="beer"></ion-icon>Mocktails</ion-button>
+            <ion-button (click)="filterProducts('toasties')" class="filter-button" color="light"><ion-icon name="pizza"></ion-icon>>Toasties</ion-button>
+            <ion-button (click)="filterProducts('specials')" class="filter-button" color="light"><ion-icon name="heart"></ion-icon>Specials</ion-button>
+            <ion-button (click)="filterProducts('all')" class="filter-button" color="light"><ion-icon name="star"></ion-icon>All</ion-button>
           </div>
         </ion-toolbar>
         <!-- Content for the center pane goes here -->
         <ion-content>
-            <ion-grid>
+          <ion-grid *ngIf="isFiltered === true " class="ion-align-items-center">
+            <ion-row class="ion-justify-content-center">
+              <ion-col size="4" *ngFor="let prod of filteredProducts; let i = index">
+                <ion-card [ngClass]="'card-condition-' + prod.productCondition">
+                  <ion-card-content class="ion-align-items-center">
+                    <h4 class="ion-text-center">{{ prod.productName }}</h4>
+                    <h2 class="ion-text-center">{{ prod.productCost }}</h2>
+                    <ion-button class="delBtn" (click)="addAmount(prod.productName ,prod.productCost)">+</ion-button>
+                    <ion-button class="edtBtn" (click)="subAmount(prod.productName ,prod.productCost)">-</ion-button>
+                  </ion-card-content>
+                </ion-card>
+              </ion-col>
+            </ion-row>          
+          </ion-grid>
+            <ion-grid *ngIf="isFiltered === false " class="ion-align-items-center">
               <ion-row class="ion-justify-content-center">
-                <ion-col *ngFor="let prod of products; let i = index">
+                <ion-col size="4" *ngFor="let prod of products; let i = index">
                   <ion-card [ngClass]="'card-condition-' + prod.productCondition">
-                    <ion-card-content>
-                      <h2>{{ prod.productName }} - {{ prod.productCost }}</h2>
+                    <ion-card-content class="ion-align-items-center">
+                      <h4 style="font-weight: bold;" class="ion-text-center">{{ prod.productName }}</h4>
+                      <h1 class="ion-text-center">P {{ prod.productCost }}</h1>
                       <ion-button class="delBtn" (click)="addAmount(prod.productName ,prod.productCost)">+</ion-button>
                       <ion-button class="edtBtn" (click)="subAmount(prod.productName ,prod.productCost)">-</ion-button>
                     </ion-card-content>
@@ -65,12 +81,13 @@
 
       <!-- Right Pane -->
       <ion-col size="3">
+        <ion-content>
         <ion-grid>
           <ion-row>
             <ion-col>
               <ion-list>
                 <ion-list-header>
-                  <ion-label>Checkout</ion-label>
+                  <h1>Order:</h1  >
                 </ion-list-header>
                 <ion-item *ngFor="let cart of cartCounter; let i = index">
                   <ion-label class="item-list">{{cart.cartName}}</ion-label>
@@ -87,7 +104,7 @@
             </ion-card>
           </ion-row>
         </ion-grid>
-        
+      </ion-content>
       </ion-col>
     </ion-row>
   </ion-grid>
