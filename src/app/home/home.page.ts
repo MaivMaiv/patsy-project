@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 export class HomePage {
   products: any[] = [];
   cartCounter: any[] = [];
-  totalAmount: number = 0;
+  totalAmount: any = 0;
   filteredProducts: any[] = [];
   public product: any = {
     productName: "",
@@ -107,5 +107,14 @@ export class HomePage {
     else if (this.product.productType == "specials"){
       this.product.productCondition = 7;
     }
+  }
+
+  checkout() {
+    const jsonString = JSON.stringify(this.cartCounter);
+    localStorage.setItem('checkoutCart', jsonString);
+    console.log(jsonString);
+    
+    localStorage.setItem("checkoutTotal", this.totalAmount);
+    this.router.navigate(["checkout"]);
   }
 }

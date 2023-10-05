@@ -26,9 +26,14 @@ ion-card {
   height: fit-content;
   text-align: justify;
   margin: auto;
+  font-weight: bolder;
+  p {
+    font-size: larger;
+  }
   ion-button {
     width: fit-content;
     height: fit-content;
+    font-size: small;
   }
 }
 

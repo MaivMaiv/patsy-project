@@ -1,0 +1,86 @@
+.sub-view {
+    width: 100%;
+  }
+  
+  .main-view {
+    width: 100%;
+  }
+  
+  @media (min-width: 768px) {
+    .sub-view {
+      width: 20%;
+    }
+  
+    .main-view {
+      width: 60%;
+    }
+  }
+  
+  .filter-button {
+    width: fit-content;
+    font-size: xx-small;
+  }
+  
+  ion-card {
+    width: 800px;
+    height: fit-content;
+    text-align: justify;
+    margin: auto;
+  }
+
+  .sub-card1 {
+    ion-card {
+      width: 350px;
+      height: fit-content;
+      text-align: justify;
+      margin: auto;
+    }
+  }
+
+  .sub-card2 {
+    ion-card {
+      width: 400px;
+      height: fit-content;
+      text-align: justify;
+      margin: auto;
+    }
+  }
+  
+  .item-list {
+    font-size: small;
+  }
+  
+  #total-card {
+    text-align: center;
+    margin-top: 5%;
+  }
+
+  .custom-row {
+    height: 350px;
+  }
+
+  .card-checkout {
+    padding-top: 50px;
+  }
+
+  .checkout-img {
+    width: 75px;
+    height: 75px;
+  }
+
+  h3 {
+    width: 100%; 
+    text-align: center; 
+    border-bottom: 1px solid #000; 
+    line-height: 0.1em;
+    margin: 10px 0 20px; 
+ } 
+ 
+ h3 span { 
+     background: black; 
+     padding:0 10px; 
+ }
+
+ .divider {
+  margin-top: 20px;
+ }

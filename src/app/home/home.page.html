@@ -3,7 +3,7 @@
     <ion-title>
       <img src="assets\logo_patsy.png">
     </ion-title>
-    <ion-button slot="end" color="danger">Checkout</ion-button>
+    <ion-button (click)="checkout()" slot="end" color="danger">Checkout</ion-button>
   </ion-toolbar>
 </ion-header>
 
@@ -53,8 +53,8 @@
               <ion-col size="4" *ngFor="let prod of filteredProducts; let i = index">
                 <ion-card [ngClass]="'card-condition-' + prod.productCondition">
                   <ion-card-content class="ion-align-items-center">
-                    <h4 class="ion-text-center">{{ prod.productName }}</h4>
-                    <h2 class="ion-text-center">{{ prod.productCost }}</h2>
+                    <h1 class="ion-text-center">{{ prod.productName }}</h1>
+                    <p class="ion-text-center">{{ prod.productCost }}</p>
                     <ion-button class="delBtn" (click)="addAmount(prod.productName ,prod.productCost)">+</ion-button>
                     <ion-button class="edtBtn" (click)="subAmount(prod.productName ,prod.productCost)">-</ion-button>
                   </ion-card-content>
@@ -67,8 +67,8 @@
                 <ion-col size="4" *ngFor="let prod of products; let i = index">
                   <ion-card [ngClass]="'card-condition-' + prod.productCondition">
                     <ion-card-content class="ion-align-items-center">
-                      <h4 style="font-weight: bold;" class="ion-text-center">{{ prod.productName }}</h4>
-                      <h1 class="ion-text-center">P {{ prod.productCost }}</h1>
+                      <h1 class="ion-text-center">{{ prod.productName }}</h1>
+                      <p class="ion-text-center">{{ prod.productCost }}</p>
                       <ion-button class="delBtn" (click)="addAmount(prod.productName ,prod.productCost)">+</ion-button>
                       <ion-button class="edtBtn" (click)="subAmount(prod.productName ,prod.productCost)">-</ion-button>
                     </ion-card-content>
