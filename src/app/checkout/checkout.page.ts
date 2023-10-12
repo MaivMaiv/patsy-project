@@ -9,6 +9,11 @@ import { Router } from '@angular/router';
 export class CheckoutPage implements OnInit {
   checkoutProducts: any[] = [];
   checkoutAmount: any = 0;
+  public checkoutDetails: any = {
+    checkoutCustomer: "",
+    checkoutDiscount: "",
+    transactionType: ""
+  }
   constructor(private router: Router) { }
 
   ngOnInit() {
@@ -33,6 +38,12 @@ export class CheckoutPage implements OnInit {
       this.checkoutProducts = JSON.parse(savedProducts);
       console.log(this.checkoutProducts)
     }
+  }
+
+  placeOrder() {
+    console.log(this.checkoutDetails);
+    localStorage.setItem("checkoutDetails", JSON.stringify(this.checkoutDetails));
+    this.router.navigate(["receipt"]);
   }
 
 }

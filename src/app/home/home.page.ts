@@ -49,8 +49,6 @@ export class HomePage {
       cartCost: cost
     };
     this.cartCounter.push(this.patsyCart);
-    localStorage.setItem("cart",this.cartCounter.toString());
-    localStorage.getItem("cart");
     console.log(this.patsyCart);
     console.log("LocalStorage:",this.cartCounter);
     this.totalAmount += parseFloat(cost);

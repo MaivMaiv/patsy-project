@@ -3,7 +3,7 @@
     <ion-title>
       <img src="assets\logo_patsy.png">
     </ion-title>
-    <ion-button (click)="checkout()" slot="end" color="danger">Checkout</ion-button>
+    <ion-button [disabled]="cartCounter.length === 0" (click)="checkout()" slot="end" color="danger">Checkout</ion-button>
   </ion-toolbar>
 </ion-header>
 
@@ -97,14 +97,16 @@
             </ion-col>
           </ion-row>
           <ion-row>
-            <ion-card id="total-card" color="success">
-              <ion-card-header>
-                <ion-card-title>TOTAL: {{totalAmount}}</ion-card-title>
-              </ion-card-header>
-            </ion-card>
           </ion-row>
         </ion-grid>
       </ion-content>
+      <div class="total">            
+        <ion-card id="total-card" color="success">
+          <ion-card-header>
+            <ion-card-title>TOTAL: {{totalAmount}}</ion-card-title>
+          </ion-card-header>
+        </ion-card>
+      </div>
       </ion-col>
     </ion-row>
   </ion-grid>

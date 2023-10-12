@@ -41,28 +41,36 @@
                 <ion-card-content>
                   <div class="payment-block">
                   <h3><span>Payment Mode</span></h3>
-                  <ion-segment color="success" value="default">
-                    <ion-segment-button value="default">
+                  <ion-segment color="success" [(ngModel)]="checkoutDetails.transactionType">
+                    <ion-segment-button value="Cash">
                       <ion-label>Cash</ion-label>
                     </ion-segment-button>
-                    <ion-segment-button value="segment">
+                    <ion-segment-button value="Gcash">
                       <ion-label>Gcash</ion-label>
                     </ion-segment-button>
                   </ion-segment>
                   </div>
                   <div classs="payment-details">
                   <h3 class="divider"><span>Buyer Details</span></h3>
-                  <ion-input
+                  <ion-input [(ngModel)]="checkoutDetails.checkoutCustomer"
                   aria-label="Custom input"
                   placeholder="Enter Nickname"
                   class="custom"
                   [counter]="true"
                   [maxlength]="20"
                 ></ion-input>
+                <h3 class="divider"><span>Discount</span></h3>
+                <ion-input [(ngModel)]="checkoutDetails.checkoutDiscount" type="number"
+                aria-label="Custom input"
+                placeholder="Enter Discount Amount"
+                class="custom"
+                [counter]="true"
+                [maxlength]="10"
+              ></ion-input>
                   </div>
                   <ion-card-subtitle>TOTAL:</ion-card-subtitle>
                   <ion-card-title> P {{checkoutAmount}}.00</ion-card-title>
-                  <ion-button color="success" expand="block">Place Order</ion-button>
+                  <ion-button [disabled]="!checkoutDetails.checkoutDiscount || !checkoutDetails.checkoutCustomer || !checkoutDetails.transactionType" (click)="placeOrder()" color="success" expand="block">Place Order</ion-button>
                 </ion-card-content>
               </ion-card>
             </ion-col>

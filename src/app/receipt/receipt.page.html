@@ -1,0 +1,62 @@
+<ion-content>
+  <ion-card #cardContent color="light" id="receipt-card">
+  <p class="ion-text-center">
+    <img src="assets\logo_patsy.png">
+    <br>
+    <strong>Patsy's Coffee and Pastries Shop</strong>
+    <br>
+    017 Manuel G. Santos St. Poblacion, Pandi, 3014 Bulacan
+    <br>
+    facebook.com/patsyscoffeeandpastries/
+    <br>
+    0906 590 0138
+  </p>
+  <table class="table">
+    <tr>
+      <td class="table-cell">Name</td>
+      <td class="table-cell">{{ receiptDetails.checkoutCustomer }}</td>
+    </tr>
+    <tr>
+      <td class="table-cell">Date</td>
+      <td class="table-cell">{{ currentDate }}</td>
+    </tr>
+    <tr>
+      <td class="table-cell"><strong>Total Amount</strong></td>
+      <td class="table-cell">₱ {{ checkoutAmount }}.00</td>
+    </tr>
+  </table>
+  <div class="horizontal-line"></div>
+  <table class="table">
+    <tr>
+      <td class="receipt-item-cell"><strong>Item</strong></td>
+      <td class="receipt-cost-cell"><strong>Cost</strong></td>
+    </tr>
+    <tr *ngFor="let check of checkoutProducts; let i = index">
+      <td class="receipt-item-cell">{{check.cartName}}</td>
+      <td class="receipt-cost-cell">{{check.cartCost}}.00</td>
+    </tr>
+    <tr>
+      <td class="receipt-payment-cell">Payment Type:</td>
+      <td class="receipt-type-cell">{{ receiptDetails.transactionType }}</td>
+    </tr>
+    <tr>
+      <td class="receipt-total-cell">Discount:</td>
+      <td class="receipt-amount-cell">₱ {{ receiptDetails.checkoutDiscount }}.00</td>
+    </tr>
+    <tr>
+      <td class="receipt-total-cell">Subtotal:</td>
+      <td class="receipt-amount-cell">₱ {{ checkoutAmount }}.00</td>
+    </tr>
+    <tr>
+      <td class="receipt-total-cell">Total:</td>
+      <td class="receipt-amount-cell">₱ {{ finalAmount }}.00</td>
+    </tr>
+  </table>
+  </ion-card>
+  <div class="ion-text-center">
+  <ion-button (click)="captureCard()" color="warning">Save as Image</ion-button>
+  <ion-button (click)="shareImage()" color="tertiary">Share to Messenger</ion-button>
+  <ion-button (click)="reset()" color="success">Done</ion-button>
+  </div>
+</ion-content>
+ 
