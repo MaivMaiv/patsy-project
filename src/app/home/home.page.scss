@@ -1,142 +1,95 @@
-.sub-view {
-  width: 100%;
-}
 
-.main-view {
-  width: 100%;
-}
 
-@media (min-width: 768px) {
-  .sub-view {
-    width: 20%;
-  }
-
-  .main-view {
-    width: 60%;
-  }
+#checkout-container {
+  height: 100%;
 }
 
 .filter-button {
   width: fit-content;
-  font-size: xx-small;
-}
-
-ion-card {
-  width: fit-content;
-  height: fit-content;
-  text-align: justify;
-  margin: auto;
-  font-weight: bolder;
-  p {
-    font-size: larger;
-  }
-  ion-button {
-    width: fit-content;
-    height: fit-content;
-    font-size: small;
-  }
+  font-size: 1.3rem;
 }
 
 .item-list {
-  font-size: small;
+  font-size: 1.3rem;
 }
 
-#total-card {
+.menu-text {
+  font-size: 1.3rem;
+}
+
+.menu-icon {
+  font-size: 1.3rem;
+}
+
+.checkout-button {
+height: 100%;
+width: 100%;
+font-size: 2rem;
+}
+
+h1 {
+  font-size: 2vw;
+  font-weight: bold;
+}
+
+h2 {
+  font-size: 1.5vw;
+}
+
+.main-condition {
+  color: black;
+  width: 100%;
   text-align: center;
-  margin-top: 5%;
-}
-
-.total {
-  padding-bottom: 20px;
+  .delBtn{
+    color: white;
+    --background: black;
+    font-size: 2rem;
+  }
+  .edtBtn{
+    color: white;
+    --background: black;
+    font-size: 2rem;
+  }
 }
 
 .card-condition-1 {
   background-color:var(--ion-color-primary);
-  color: black;
-  .delBtn{
-    color: white;
-    --background: black;
-  }
-  .edtBtn{
-    color: white;
-    --background: black;
-  }
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  margin-bottom: 25px;
 }
 
 .card-condition-2 {
   background-color:var(--ion-color-secondary);
-  color: black;
-  .delBtn{
-    color: white;
-    --background: black;
-  }
-  .edtBtn{
-    color: white;
-    --background: black;
-  }
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  margin-bottom: 25px;
 }
 
 .card-condition-3 {
-  background-color:var(--ion-color-success);
-  color: black;
-  .delBtn{
-    color: white;
-    --background: black;
-  }
-  .edtBtn{
-    color: white;
-    --background: black;
-  }
+  background-color:var(--ion-color-tertiary);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  margin-bottom: 25px;
 }
 
 .card-condition-4 {
-  background-color:var(--ion-color-warning);
-  color: black;
-  .delBtn{
-    color: white;
-    --background: black;
-  }
-  .edtBtn{
-    color: white;
-    --background: black;
-  }
+  background-color:var(--ion-color-success);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  margin-bottom: 25px;
 }
 
 .card-condition-5 {
-  background-color:var(--ion-color-danger);
-  color: black;
-  .delBtn{
-    color: white;
-    --background: black;
-  }
-  .edtBtn{
-    color: white;
-    --background: black;
-  }
+  background-color:var(--ion-color-warning);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  margin-bottom: 25px;
 }
 
 .card-condition-6 {
-  background-color:var(--ion-color-dark);
-  color: black;
-  .delBtn{
-    color: white;
-    --background: black;
-  }
-  .edtBtn{
-    color: white;
-    --background: black;
-  }
+  background-color:var(--ion-color-danger);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  margin-bottom: 25px;
 }
 
 .card-condition-7 {
-  background-color:var(--ion-color-tertiary);
-  color: black;
-  .delBtn{
-    color: white;
-    --background: black;
-  }
-  .edtBtn{
-    color: white;
-    --background: black;
-  }
+  background-color:var(--ion-color-dark);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  margin-bottom: 25px;
 }

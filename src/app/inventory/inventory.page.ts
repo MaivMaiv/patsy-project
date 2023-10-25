@@ -1,7 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core'; 
 import { Router } from '@angular/router';
-import { AlertController, IonModal, ModalController } from '@ionic/angular';
-import { OverlayEventDetail } from '@ionic/core/components';
+import { AlertController, IonContent, IonModal, ModalController } from '@ionic/angular';
 @Component({
   selector: 'app-inventory',
   templateUrl: './inventory.page.html',
@@ -10,14 +9,18 @@ import { OverlayEventDetail } from '@ionic/core/components';
 export class InventoryPage implements OnInit {
   products: any[] = [];
   editAction: boolean = false;
+  isUploaded: boolean = false;
+  isUpdated: boolean = false;
   currentIndex: any;
+  imageToBeUpdated: any;
   public product: any = {
     productName: "",
     productCost: "",
     productType: "",
-    productCondition: ""
+    productImage: []
   }
   
+  @ViewChild('mainElement', { static: true }) mainElement!: IonContent;
   @ViewChild(IonModal)
   modal!: IonModal;
   name: string = "";
@@ -61,8 +64,13 @@ export class InventoryPage implements OnInit {
       productName: "",
       productCost: "",
       productType: "",
-      productCondition: ""
+      productImage: []
     };
+    const imageInput = document.getElementById('imageInput') as HTMLInputElement;
+      if (imageInput) {
+        imageInput.value = '';
+      }
+
     localStorage.setItem('SavedProducts', JSON.stringify(this.products));
   }
 
@@ -82,7 +90,6 @@ export class InventoryPage implements OnInit {
           text: 'Yes',
           handler: () => {
             console.log('User clicked Yes');
-            // Add your logic to proceed here
             const index = this.products.findIndex((prod) => prod.productName === product.productName);
         if (index !== -1) {
           this.products.splice(index, 1);
@@ -103,6 +110,11 @@ export class InventoryPage implements OnInit {
     this.product.productName = "";
     this.product.productCost = "";
     this.product.productType = "";
+    this.product.productImage.length = 0;
+    const imageInput = document.getElementById('imageInput') as HTMLInputElement;
+    if (imageInput) {
+      imageInput.value = '';
+    }
   }
 
   cancel() {
@@ -119,19 +131,62 @@ export class InventoryPage implements OnInit {
     this.editAction = false;
   }
 
-  saveButton(){
+
+  saveButton() {
+    this.isUpdated = false;
     this.colorToken();
-    this.product[this.currentIndex] += this.product = {
+    this.products[this.currentIndex].productImage = this.product.productImage;
+    this.product = {
       productName: "",
       productCost: "",
       productType: "",
-      productCondition: ""
+      productImage: []
     };
+
     localStorage.setItem('SavedProducts', JSON.stringify(this.products));
     this.backButton();
   }
+  
 
   menu(){
     this.router.navigate(['home'])
   }
+
+  isButtonDisabled() {
+    return (
+      !this.product.productName ||
+      !this.product.productCost ||
+      !this.product.productType ||
+      !this.product.productImage
+    );
+  }
+
+  handleImageUpload(event: any) {
+    this.isUploaded = true;
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        const dataUrl = reader.result as string;
+        this.product.productImage.push(dataUrl);
+      };
+      reader.readAsDataURL(file);
+    }
+  }
+
+  handleImageUpdate(event: any) {
+    this.product.productImage.length = 0;
+    this.isUpdated = true;
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        const dataUrl = reader.result as string;
+        this.imageToBeUpdated = dataUrl;
+        this.product.productImage.push(this.imageToBeUpdated);
+      };
+      reader.readAsDataURL(file);
+    }
+  }
+
 }

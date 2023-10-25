@@ -1,5 +1,7 @@
 import { Component, NgModule } from '@angular/core';
 import { Router } from '@angular/router';
+import { App } from '@capacitor/app';
+import { MenuController } from '@ionic/angular';
 
 
 @Component({
@@ -23,8 +25,9 @@ export class HomePage {
     cartName: "",
     cartCost: ""
   }
-  isFiltered: boolean = false;
-  constructor(private router: Router) {}
+  searchedProducts = this.product;
+  isFiltered: string = 'false';
+  constructor(private router: Router, private menuCtrl: MenuController) {}
 
   ionViewDidEnter() {
     this.initializeProducts();
@@ -40,6 +43,23 @@ export class HomePage {
 
   inventory() {
     this.router.navigate(['inventory']);
+  }
+
+  home() {
+    this.router.navigate(['home']);
+  }
+
+  points() {
+    this.router.navigate(['points']);
+  }
+
+  report() {
+    this.router.navigate(['report']);
+  }
+
+  exit() {
+    console.log("The app has exited.");
+    App.exitApp();
   }
   
   addAmount(name: string, cost: string) {
@@ -76,9 +96,9 @@ export class HomePage {
 
   filterProducts(type: string) {
     if(type == 'all'){
-      this.isFiltered = false
+      this.isFiltered = 'false'
     } else {
-      this.isFiltered = true;
+      this.isFiltered = 'true';
     }
     this.filteredProducts = this.products.filter(product => product.productType === type);
     console.log(this.filteredProducts);
@@ -114,5 +134,20 @@ export class HomePage {
     
     localStorage.setItem("checkoutTotal", this.totalAmount);
     this.router.navigate(["checkout"]);
+  }
+
+  openMenu() {
+    this.menuCtrl.open('first-menu');
+  }
+
+  searchProduct(searchTerm: any) {
+    this.isFiltered = 'tralse';
+    if (searchTerm === '') {
+      this.searchedProducts = this.products;
+    } else if (/^[A-Z]$/.test(searchTerm)) {
+        this.searchedProducts = this.products.filter(product => product.productName.charAt(0) === searchTerm);
+    } else {
+      this.searchedProducts = this.products.filter(product => product.productName === searchTerm);
+    }
   }
 }
