@@ -4,51 +4,20 @@
   height: 100%;
 }
 
-.filter-button {
-  width: fit-content;
-  font-size: 1.3rem;
-}
-
-.item-list {
-  font-size: 1.3rem;
-}
-
-.menu-text {
-  font-size: 1.3rem;
-}
-
-.menu-icon {
-  font-size: 1.3rem;
-}
-
-.checkout-button {
-height: 100%;
-width: 100%;
-font-size: 2rem;
-}
-
-h1 {
-  font-size: 2vw;
-  font-weight: bold;
-}
-
-h2 {
-  font-size: 1.5vw;
-}
-
 .main-condition {
   color: black;
-  width: 100%;
   text-align: center;
   .delBtn{
     color: white;
     --background: black;
-    font-size: 2rem;
+    width: fit-content;
+    height: fit-content;
   }
   .edtBtn{
     color: white;
     --background: black;
-    font-size: 2rem;
+    width: fit-content;
+    height: fit-content;
   }
 }
 
@@ -92,4 +61,160 @@ h2 {
   background-color:var(--ion-color-dark);
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   margin-bottom: 25px;
+}
+
+@media only screen and (max-width: 767px) and (orientation: landscape) {
+  .home-icons {
+    font-size: 2vh;
+  }
+  .filter-button {
+    width: fit-content;
+    font-size: 1.8vw;
+  }
+  
+  .item-list {
+    font-size: 1.8vw;
+  }
+
+  .cart-name-list {
+    font-size: 2vw;
+  }
+
+  .cart-cost-list {
+    font-size: 1.5vw;
+  }
+  
+  .menu-text {
+    font-size: 2.5vw;
+  }
+  
+  .menu-icon {
+    font-size: 2.5vw;
+  }
+  
+  .checkout-button {
+  height: 100%;
+  width: 100%;
+  font-size: 3vw;
+  }
+  
+  h1 {
+    font-size: 2.8vw;
+    font-weight: bold;
+  }
+  
+  h2 {
+    font-size: 2.5vw;
+  }
+
+  .delBtn {
+    font-size: 3vw;
+  }
+
+  .edtBtn {
+    font-size: 3vw;
+  }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+  .filter-button {
+    width: fit-content;
+    font-size: 1.8vw;
+  }
+  
+  .item-list {
+    font-size: 1.8vw;
+  }
+
+  .cart-name-list {
+    font-size: 2vw;
+  }
+
+  .cart-cost-list {
+    font-size: 1.5vw;
+  }
+  
+  .menu-text {
+    font-size: 2.5vw;
+  }
+  
+  .menu-icon {
+    font-size: 2.5vw;
+  }
+  
+  .checkout-button {
+  height: 100%;
+  width: 100%;
+  font-size: 3vw;
+  }
+  
+  h1 {
+    font-size: 2.8vw;
+    font-weight: bold;
+  }
+  
+  h2 {
+    font-size: 2.5vw;
+  }
+
+  .delBtn {
+    font-size: 3vw;
+  }
+
+  .edtBtn {
+    font-size: 3vw;
+  }
+}
+
+@media only screen and (min-width: 1025px) and (max-width: 1366px) and (orientation: landscape) {
+  .filter-button {
+    width: fit-content;
+    font-size: 1.8vw;
+  }
+  
+  .item-list {
+    font-size: 1.8vw;
+  }
+
+  .cart-name-list {
+    font-size: 2vw;
+  }
+
+  .cart-cost-list {
+    font-size: 1.5vw;
+  }
+  
+  .menu-text {
+    font-size: 2.5vw;
+  }
+  
+  .menu-icon {
+    font-size: 2.5vw;
+  }
+  
+  .checkout-button {
+  height: 100%;
+  width: 100%;
+  font-size: 3vw;
+  }
+  
+  h1 {
+    font-size: 2.8vw;
+    font-weight: bold;
+  }
+  
+  h2 {
+    font-size: 2.5vw;
+  }
+
+  .delBtn {
+    font-size: 3vw;
+  }
+
+  .edtBtn {
+    font-size: 3vw;
+  }
+}
+
+@media only screen and (min-width: 1367px) and (orientation: landscape) {
 }

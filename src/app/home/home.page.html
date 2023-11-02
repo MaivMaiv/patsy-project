@@ -36,7 +36,7 @@
         <ion-header>
           <ion-toolbar>
             <ion-buttons slot="start">
-              <ion-icon (click)="openMenu()" size="large" name="menu"></ion-icon>
+              <ion-icon (click)="openMenu()" class="home-icons" name="menu"></ion-icon>
             </ion-buttons>
           <ion-searchbar #searchBar (ionInput)="searchProduct(searchBar.value)"></ion-searchbar>
           </ion-toolbar>
@@ -140,18 +140,14 @@
                   </ion-grid>
       </ion-col>
       <ion-col size="3">
-        <ion-grid>
-          <ion-row>
-            <ion-col>
-              <ion-list>
-                <ion-item *ngFor="let cart of cartCounter">
-                  <ion-label class="item-list">{{cart.cartName}}</ion-label>
-                  <ion-label slot="end" class="item-list">P {{cart.cartCost}}.00</ion-label>
-                </ion-item>
-              </ion-list>
-            </ion-col>
-          </ion-row>
-        </ion-grid>
+        <ion-list *ngFor="let cart of cartCounter" >
+        <ion-item>
+          <div>
+          <ion-label slot="start" class="cart-name-list">{{cart.cartName}}</ion-label>
+          <ion-label slot="end" class="cart-cost-list">P {{cart.cartCost}}.00</ion-label>
+        </div>
+        </ion-item>
+        </ion-list>
       </ion-col>
     </ion-row>
     
