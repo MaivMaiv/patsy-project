@@ -1,0 +1,83 @@
+<ion-header>
+  <ion-toolbar  class="ion-text-center">
+    <ion-buttons slot="start">
+      <ion-button (click)="cancel()">CANCEL</ion-button>
+    </ion-buttons>
+    <h1 class="inventory-text">Product View</h1>
+    <ion-buttons slot="end">
+      <ion-button [disabled]="isButtonDisabled()" (click)="add()">ADD</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="ion-padding">
+  <div class="ion-text-center">
+    <ion-item  class="details-text">
+    <ion-input [(ngModel)]="product.productName" label="Name" labelPlacement="floating" placeholder="Type Product Name">
+    </ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-input
+      class="details-text"
+      [(ngModel)]="product.productCost"
+      label="Cost"
+      labelPlacement="floating"
+      placeholder="Type Product Cost"
+    ></ion-input>
+  </ion-item>
+<ion-item>
+    <ion-select
+      class="details-text"
+      [(ngModel)]="product.productType"
+      label="Product Type"
+      labelPlacement="floating"
+      placeholder="Choose Product Type"
+    >
+      <ion-select-option value="brewed">Brewed</ion-select-option>
+      <ion-select-option value="espresso">Espresso</ion-select-option>
+      <ion-select-option value="dine-In">Dine-In</ion-select-option>
+      <ion-select-option value="non-Coffee">Non-Coffee</ion-select-option>
+      <ion-select-option value="mocktails">Mocktails</ion-select-option>
+      <ion-select-option value="toasties">Toasties</ion-select-option>
+      <ion-select-option value="specials">Specials</ion-select-option>
+    </ion-select>
+  </ion-item>
+  <ion-item>
+    <div style="width: 40%">
+    <input
+      class="button-text"
+      type="file"
+      (change)="handleImageUpload($event)"
+      accept="image/*"
+    />
+  </div>
+    <div *ngIf="isUploaded">
+      <div style="width: 60%" *ngFor="let image of product.productImage">
+        <img
+          id="imageInput"
+          [src]="image"
+          style="width: 100%; padding: 5px; height: 100%"
+        />
+      </div>
+    </div>
+    <div *ngIf="!isUploaded">
+      <ion-card class="upload-card" color="dark" button>
+        <ion-card-header>
+          <ion-card-subtitle class="ion-text-center">
+            Click the choose file to upload an image
+          </ion-card-subtitle>
+        </ion-card-header>
+        <ion-card-content></ion-card-content>
+      </ion-card>
+    </div>
+  </ion-item>
+    <ion-row class="ion-justify-content-center">
+      <ion-button
+        class="button-text"
+        color="danger"
+        fill="clear"
+        (click)="clearButton()"
+        >CLEAR</ion-button
+      >
+    </ion-row>
+  </div>
+</ion-content>

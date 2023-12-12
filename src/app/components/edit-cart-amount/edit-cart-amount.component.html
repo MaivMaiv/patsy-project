@@ -1,0 +1,13 @@
+<ion-header>
+  <ion-toolbar  class="ion-text-center">
+    <ion-buttons slot="end">
+      <ion-button (click)="edit()">Edit</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="ion-padding">
+  <div class="ion-text-center">
+    <h2>Amount</h2>
+    <ion-button (click)="add()"><ion-icon name="add-outline"></ion-icon></ion-button><h1>{{modalAmount}}</h1><ion-button (click)="sub()"><ion-icon name="remove-outline"></ion-icon></ion-button>
+  </div>
+</ion-content>

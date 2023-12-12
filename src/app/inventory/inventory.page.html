@@ -1,112 +1,38 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-icon (click)="menu()" slot="start" size="large" name="arrow-back-outline"></ion-icon>
-    <ion-title>
-      <img src="assets\logo_patsy.png">
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content>
   <ion-grid>
-    <ion-row class="custom-row">
-      <!-- Inventory List -->
-      <ion-col class="custom-column" size="8">
-        <!--Menu-->
-        <ion-content>
-          <ion-grid>
-            <ion-row>
-              <h1 *ngIf="products.length === 0">No products has been added yet.</h1>
-              <ion-col class="centered-column" size="3" *ngFor="let prod of products; let i = index">
-                <div (click)="editButton(i)" [ngClass]="'card-condition-' + prod.productCondition">
-                  <div>
-                    <img [src]="prod.productImage" style="width:100%; padding: 5px;"/>
-                  </div>
-                  <div class="main-condition">
-                      <div class="ion-text-center">
-                        <ion-label>
-                        <h1>{{ prod.productName }}</h1>
-                        <h2>Cost: {{ prod.productCost }}</h2>
-                        <h2>Type: {{ prod.productType }}</h2>
-                      </ion-label>
-                      </div>
-                  </div>
-                </div>
-              </ion-col>
-              <br>
-            </ion-row>              
-          </ion-grid>
-        </ion-content>
+    <ion-row>
+      <ion-col>
+        <div class="ion-text-center menu-buttons">
+          <p (click)="home()" class="menu-button">Home</p>
+          <p (click)="inventory()" class="menu-button text-pop">Inventory</p>
+          <p (click)="report()" class="menu-button">Report</p>
+          <p (click)="points()" class="menu-button">Points</p>
+          <p (click)="exit()" class="menu-button">Exit</p>
+        </div>
       </ion-col>
-
-      <!-- CRUDE Form -->
-      <ion-col class="custom-column" size="4">
-        <!--Edit Content-->
-        <ion-content *ngIf="editAction === true" scrollY="false" scrollX="false">
-            <h1>Edit {{products[currentIndex]?.productName}}</h1>
-              <ion-input class="details-text" [(ngModel)]="products[currentIndex].productName" label="Name" labelPlacement="floating" placeholder="Type Product Name"></ion-input>
-              <ion-input class="details-text" [(ngModel)]="products[currentIndex].productCost" label="Cost" labelPlacement="floating" placeholder="Type Product Cost"></ion-input>
-              <ion-select class="details-text" [(ngModel)]="products[currentIndex].productType" label="Product Type" label-placement="floating" placeholder="Choose Product Type">
-                <ion-select-option value="brewed">Brewed</ion-select-option>
-                <ion-select-option value="espresso">Espresso</ion-select-option>
-                <ion-select-option value="dine-In">Dine-In</ion-select-option>
-                <ion-select-option value="non-Coffee">Non-Coffee</ion-select-option>
-                <ion-select-option value="mocktails">Mocktails</ion-select-option>
-                <ion-select-option value="toasties">Toasties</ion-select-option>
-                <ion-select-option value="specials">Specials</ion-select-option>
-              </ion-select>
-            <input class="button-text" type="file" (change)="handleImageUpdate($event)" accept="image/*" />
-            <div *ngIf="!isUpdated">
-              <img [src]="products[currentIndex].productImage" style="width:50%; padding: 5px;"/>
+    </ion-row>
+    <ion-row>
+      <ion-col *ngFor="let prod of products; let i = index" size="2">
+        <h1 *ngIf="products.length === 0">
+          No products has been added yet.
+        </h1>
+          <div (click)="openEditProductModal(i, prod)" id="card-products">
+            <img [src]="prod.productImage" class="image-prod" />
+            <div class="ion-text-center">
+              <ion-label>
+                <h1>{{ prod.productName }}</h1>
+                <h2>Cost: {{ prod.productCost }}</h2>
+              </ion-label>
             </div>
-            <div *ngIf="isUpdated">
-              <div *ngFor="let image of product.productImage">
-                <img id="imageInput" [src]="image" style="width:50%; padding: 5px;"/>
-              </div>
-            </div>
-            <ion-row>
-              <ion-button class="button-text" (click)="saveButton()" color="success" fill="clear">SAVE</ion-button>
-              <ion-button class="button-text" fill="clear" (click)="deleteButton(products[currentIndex])">DELETE</ion-button>
-              <ion-button class="button-text" color="danger" fill="clear" (click)="backButton()">BACK</ion-button>
-            </ion-row>
-        </ion-content>
-        <!--Default Content-->
-        <ion-content *ngIf="editAction === false" scrollY="false" scrollX="false">
-            <h1 class="inventory-text">Product View</h1>
-              <ion-input class="details-text" [(ngModel)]="product.productName" label="Name" labelPlacement="floating" placeholder="Type Product Name"></ion-input>
-              <ion-input class="details-text" [(ngModel)]="product.productCost" label="Cost" labelPlacement="floating" placeholder="Type Product Cost"></ion-input>
-              <ion-select class="details-text" [(ngModel)]="product.productType" label="Product Type" labelPlacement="floating" placeholder="Choose Product Type">
-                <ion-select-option value="brewed">Brewed</ion-select-option>
-                <ion-select-option value="espresso">Espresso</ion-select-option>
-                <ion-select-option value="dine-In">Dine-In</ion-select-option>
-                <ion-select-option value="non-Coffee">Non-Coffee</ion-select-option>
-                <ion-select-option value="mocktails">Mocktails</ion-select-option>
-                <ion-select-option value="toasties">Toasties</ion-select-option>
-                <ion-select-option value="specials">Specials</ion-select-option>
-              </ion-select>
-              <input class="button-text" type="file" (change)="handleImageUpload($event)" accept="image/*" />
-              <div *ngIf="isUploaded">
-                <div *ngFor="let image of product.productImage">
-                  <img id="imageInput" [src]="image" style="width:50%; padding: 5px;"/>
-                </div>
-              </div>
-              <div *ngIf="!isUploaded">
-                <ion-card class="upload-card" color="dark" button>
-                  <ion-card-header>
-                    <ion-card-subtitle class="ion-text-center">
-                      Click the choose file to upload an image
-                    </ion-card-subtitle>
-                  </ion-card-header>
-                  <ion-card-content></ion-card-content>
-                </ion-card>
-                
-              </div>
-            <ion-row class="ion-justify-content-center">
-              <ion-button class="button-text" [disabled]="isButtonDisabled()" (click)="addButton()" color="success" fill="clear">ADD</ion-button>
-              <ion-button class="button-text" color="danger" fill="clear" (click)="clearButton()">CLEAR</ion-button>
-            </ion-row>
-        </ion-content>
+        </div>
       </ion-col>
     </ion-row>
   </ion-grid>
-</ion-content>
+    <ion-fab slot="fixed" vertical="bottom" horizontal="end">
+      <ion-fab-button (click)="openAddProductModal()">
+        <ion-icon name="add"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
+
+          
+

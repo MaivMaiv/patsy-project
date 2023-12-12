@@ -1,156 +1,198 @@
-<ion-menu menuId="first-menu" contentId="main-content">
-  <ion-header>
-    <ion-toolbar>
-      <ion-title><img src="/assets/logo_patsy.png"></ion-title>
-    </ion-toolbar>
-  </ion-header>
-  <ion-content>
-    <ion-item (click)="home()" button>
-      <ion-icon class="menu-icon" size="large" slot="end" name="cash-outline"></ion-icon>
-      <ion-label class="menu-text">Cashier</ion-label>
-    </ion-item>
-      <ion-item (click)="points()" button>
-        <ion-icon class="menu-icon" size="large" slot="end" name="wallet-outline"></ion-icon>
-        <ion-label class="menu-text">Points</ion-label>
-      </ion-item>
-      <ion-item (click)="inventory()" button>
-        <ion-icon class="menu-icon" size="large" slot="end" name="file-tray-stacked-outline"></ion-icon>
-        <ion-label class="menu-text">Inventory</ion-label>
-      </ion-item>
-      <ion-item (click)="report()" button>
-        <ion-icon class="menu-icon" size="large" slot="end" name="clipboard-outline"></ion-icon>
-        <ion-label class="menu-text">Report</ion-label>
-      </ion-item>
-      <ion-item (click)="exit()" button>
-        <ion-icon class="menu-icon" size="large" slot="end" name="exit-outline"></ion-icon>
-        <ion-label class="menu-text">Exit</ion-label>
-      </ion-item>
-  </ion-content>
-</ion-menu>
-
 <div class="ion-page" id="main-content">
   <ion-content>
-  <ion-grid>
-    <ion-row>
-      <ion-col size="9">
-        <ion-header>
-          <ion-toolbar>
-            <ion-buttons slot="start">
-              <ion-icon (click)="openMenu()" class="home-icons" name="menu"></ion-icon>
-            </ion-buttons>
-          <ion-searchbar #searchBar (ionInput)="searchProduct(searchBar.value)"></ion-searchbar>
-          </ion-toolbar>
-        </ion-header>
-      </ion-col>
-      <ion-col size="3">
-        <ion-header>
-          <ion-item-divider>
-            <ion-label class="item-list">TOTAL: </ion-label>
-            <h1 slot="end">P {{totalAmount}}.00</h1>
-          </ion-item-divider> 
-        </ion-header>
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col size="9">
-          <div class="ion-text-center">
-            <ion-button (click)="filterProducts('brewed')" class="filter-button" color="light"><ion-icon name="cafe"></ion-icon>Brewed</ion-button>
-            <ion-button (click)="filterProducts('espresso')" class="filter-button" color="light"><ion-icon name="water"></ion-icon>Espresso</ion-button>
-            <ion-button (click)="filterProducts('dine-In')" class="filter-button" color="light"><ion-icon name="nutrition"></ion-icon>Dine-In</ion-button>
-            <ion-button (click)="filterProducts('non-Coffee')" class="filter-button" color="light"><ion-icon name="ice-cream"></ion-icon>Non-Coffee</ion-button>
-            <ion-button (click)="filterProducts('mocktails')" class="filter-button" color="light"><ion-icon name="beer"></ion-icon>Mocktails</ion-button>
-            <ion-button (click)="filterProducts('toasties')" class="filter-button" color="light"><ion-icon name="pizza"></ion-icon>Toasties</ion-button>
-            <ion-button (click)="filterProducts('specials')" class="filter-button" color="light"><ion-icon name="heart"></ion-icon>Specials</ion-button>
-            <ion-button (click)="filterProducts('all')" class="filter-button" color="light"><ion-icon name="star"></ion-icon>All</ion-button>
+    <ion-grid>
+      <!-- Menu -->
+      <ion-row>
+        <ion-col>
+          <div class="ion-text-center menu-buttons">
+            <p class="menu-button text-pop">Home</p>
+            <p (click)="inventory()" class="menu-button">Inventory</p>
+            <p (click)="report()" class="menu-button">Report</p>
+            <p (click)="points()" class="menu-button">Points</p>
+            <p (click)="exit()" class="menu-button">Exit</p>
           </div>
-      </ion-col>
-      <ion-col size="3">
-        <div id="checkout-container">
-          <ion-button class="checkout-button" expand="block" [disabled]="cartCounter.length === 0" (click)="checkout()" slot="end" color="danger">Checkout</ion-button>
-        </div>
-      </ion-col>
+        </ion-col>
       </ion-row>
-    <ion-row>
-      <ion-col size="9">
-                  <!-- Button filter is on -->
-                  <ion-grid *ngIf="isFiltered === 'true' " class="ion-align-items-center">
-                    <ion-row>
-                      <ion-col class="centered-column" size="3" *ngFor="let prod of filteredProducts">
-                        <div [ngClass]="'card-condition-' + prod.productCondition">
-                          <div>
-                            <img [src]="prod.productImage" style="width:100%; padding: 5px;"/>
-                          </div>
-                          <div class="main-condition">
-                            <ion-label>
-                              <h1>{{ prod.productName }}</h1>
-                              <h2>P {{ prod.productCost }}.00</h2>
-                            </ion-label>
-                              <div class="ion-text-center">
-                                <ion-button class="delBtn" (click)="addAmount(prod.productName ,prod.productCost)">+</ion-button>
-                                <ion-button class="edtBtn" (click)="subAmount(prod.productName ,prod.productCost)">-</ion-button>
-                              </div>
-                          </div>
-                        </div>
-                      </ion-col>
-                    </ion-row>          
-                  </ion-grid>
-                <!-- Filters are off -->
-                  <ion-grid *ngIf="isFiltered === 'false' " class="ion-align-items-center">
-                    <ion-row>
-                      <ion-col class="centered-column" size="3" *ngFor="let prod of products">
-                        <div [ngClass]="'card-condition-' + prod.productCondition">
-                          <div>
-                            <img [src]="prod.productImage" style="width:100%; padding: 5px;"/>
-                          </div>
-                          <div class="main-condition">
-                            <ion-label>
-                              <h1>{{ prod.productName }}</h1>
-                              <h2>P {{ prod.productCost }}.00</h2>
-                            </ion-label>
-                              <div class="ion-text-center">
-                                <ion-button class="delBtn" (click)="addAmount(prod.productName ,prod.productCost)">+</ion-button>
-                                <ion-button class="edtBtn" (click)="subAmount(prod.productName ,prod.productCost)">-</ion-button>
-                              </div>
-                          </div>
-                        </div>
-                      </ion-col>
-                    </ion-row>          
-                  </ion-grid>
-                <!-- Search filter is on -->
-                  <ion-grid *ngIf="isFiltered === 'tralse' " class="ion-align-items-center">
-                    <ion-row>
-                      <ion-col class="centered-column" size="3" *ngFor="let prod of searchedProducts">
-                        <div [ngClass]="'card-condition-' + prod.productCondition">
-                          <div>
-                            <img [src]="prod.productImage" style="width:100%; padding: 5px;"/>
-                          </div>
-                          <div class="main-condition">
-                            <ion-label>
-                              <h1>{{ prod.productName }}</h1>
-                              <h2>P {{ prod.productCost }}.00</h2>
-                            </ion-label>
-                              <div class="ion-text-center">
-                                <ion-button class="delBtn" (click)="addAmount(prod.productName ,prod.productCost)">+</ion-button>
-                                <ion-button class="edtBtn" (click)="subAmount(prod.productName ,prod.productCost)">-</ion-button>
-                              </div>
-                          </div>
-                        </div>
-                      </ion-col>
-                    </ion-row>          
-                  </ion-grid>
-      </ion-col>
-      <ion-col size="3">
-        <ion-list *ngFor="let cart of cartCounter" >
-        <ion-item>
+      <!-- Transactions -->
+      <ion-row>
+        <ion-col size="9">
+            <div class="top-col">
+              <!-- <ion-buttons slot="start">
+                <ion-icon
+                  (click)="openMenu()"
+                  class="home-icons"
+                  name="menu"
+                ></ion-icon>
+              </ion-buttons> -->
+              <ion-searchbar
+                class="patsy_search"
+                #searchBar
+                (ionInput)="searchProduct(searchBar.value)"
+              ></ion-searchbar>
+            </div>
+          <div class="ion-text-center top-col">
+            <ion-button
+              (click)="filterProducts('brewed')"
+              class="filter-button"
+              ><ion-icon name="cafe-outline"></ion-icon></ion-button
+            >
+            <ion-button
+              (click)="filterProducts('espresso')"
+              class="filter-button"
+              ><ion-icon name="water-outline"></ion-icon></ion-button
+            >
+            <ion-button
+              (click)="filterProducts('dine-In')"
+              class="filter-button"
+              ><ion-icon name="nutrition-outline"></ion-icon></ion-button
+            >
+            <ion-button
+              (click)="filterProducts('non-Coffee')"
+              class="filter-button"
+              ><ion-icon name="ice-cream-outline"></ion-icon></ion-button
+            >
+            <ion-button
+              (click)="filterProducts('mocktails')"
+              class="filter-button"
+              ><ion-icon name="beer-outline"></ion-icon></ion-button
+            >
+            <ion-button
+              (click)="filterProducts('toasties')"
+              class="filter-button"
+              ><ion-icon name="pizza-outline"></ion-icon></ion-button
+            >
+            <ion-button
+              (click)="filterProducts('specials')"
+              class="filter-button"
+              ><ion-icon name="heart-outline"></ion-icon></ion-button
+            >
+            <ion-button
+              (click)="filterProducts('all')"
+              class="filter-button"
+              ><ion-icon name="star-outline"></ion-icon></ion-button
+            >
+          </div>
+        </ion-col>
+        <ion-col size="3">
           <div>
-          <ion-label slot="start" class="cart-name-list">{{cart.cartName}}</ion-label>
-          <ion-label slot="end" class="cart-cost-list">P {{cart.cartCost}}.00</ion-label>
-        </div>
-        </ion-item>
-        </ion-list>
-      </ion-col>
-    </ion-row>
-    
-  </ion-grid>
-</ion-content>
+            <ion-card class="total-card">
+              <ion-card-header>
+                <h2 class="ion-text-center item-list">TOTAL: P {{totalAmount}}.00</h2>
+                
+              </ion-card-header>
+            </ion-card>
+            <ion-button
+              class="checkout-button"
+              expand="block"
+              [disabled]="cartCounter.length === 0"
+              (click)="checkout()"
+              >Checkout</ion-button
+            >
+          </div>
+        </ion-col>
+      </ion-row>
+      <!-- Products and Cart -->
+      <ion-row>
+        <ion-col size="9">
+          <!-- Button filter is on -->
+          <ion-grid
+            *ngIf="isFiltered === 'true' "
+            class="ion-align-items-center"
+          >
+            <ion-row>
+              <ion-col
+                class="centered-column"
+                size="3"
+                *ngFor="let prod of filteredProducts"
+              >
+              <div (click)="openProductModal(prod.productName, prod.productImage, prod.productCost)" id="card-products">
+                <div>
+                  <img class="image-prod" [src]="prod.productImage" />
+                </div>
+                <div class="main-condition">
+                  <ion-label>
+                    <h1>{{ prod.productName }}</h1>
+                    <h2>P {{ prod.productCost }}.00</h2>
+                  </ion-label>
+                </div>
+              </div>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+          <!-- Filters are off -->
+          <ion-grid
+            *ngIf="isFiltered === 'false' "
+            class="ion-align-items-center"
+          >
+            <ion-row>
+              <ion-col
+                class="centered-column"
+                size="3"
+                *ngFor="let prod of products"
+              >
+                <div (click)="openProductModal(prod.productName, prod.productImage, prod.productCost)" id="card-products">
+                  <div>
+                    <img class="image-prod" [src]="prod.productImage" />
+                  </div>
+                  <div class="main-condition">
+                    <ion-label>
+                      <h1>{{ prod.productName }}</h1>
+                      <h2>P {{ prod.productCost }}.00</h2>
+                    </ion-label>
+                  </div>
+                </div>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+          <!-- Search filter is on -->
+          <ion-grid
+            *ngIf="isFiltered === 'tralse' "
+            class="ion-align-items-center"
+          >
+            <ion-row>
+              <ion-col
+                class="centered-column"
+                size="3"
+                *ngFor="let prod of searchedProducts"
+              >
+              <div (click)="openProductModal(prod.productName, prod.productImage, prod.productCost)" id="card-products">
+                <div>
+                  <img class="image-prod" [src]="prod.productImage" />
+                </div>
+                <div class="main-condition">
+                  <ion-label>
+                    <h1>{{ prod.productName }}</h1>
+                    <h2>P {{ prod.productCost }}.00</h2>
+                  </ion-label>
+                </div>
+              </div>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-col>
+        <ion-col size="3">
+          <ion-list *ngFor="let cart of cartCounter">
+            <ion-item-sliding>
+              <ion-item-options side="start">
+                <ion-item-option (click)="editProductModal(cart.cartName, cart.cartNumber)" color="success">Edit</ion-item-option>
+              </ion-item-options>
+            <ion-item>
+              <div slot="start">
+                <h2 slot="start" class="cart-name-list">{{cart.cartName}}</h2>
+                <p slot="end" class="cart-cost-list">P {{cart.cartCost}}.00</p>
+              </div>
+              <div slot="end">
+                <ion-label class="cart-cost-amount" slot="end">x{{cart.cartNumber}}</ion-label>
+              </div>
+            </ion-item>
+            <ion-item-options>
+              <ion-item-option (click)="deleteProduct(cart.cartName)" color="danger">Delete</ion-item-option>
+            </ion-item-options>
+          </ion-item-sliding>
+          </ion-list>
 
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-content>
+</div>

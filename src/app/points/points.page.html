@@ -1,17 +1,78 @@
 <ion-header>
   <ion-toolbar>
+    <ion-icon
+      (click)="back()"
+      slot="start"
+      size="large"
+      name="arrow-back-outline"
+    ></ion-icon>
     <ion-title>
-      Product Search
+      <img src="assets\logo_patsy.png" />
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-searchbar #searchBar (ionInput)="filterProducts(searchBar.value)"></ion-searchbar>
+  <ion-grid>
+    <ion-row class="custom-row">
+      <!-- Scan QR Code -->
+      <ion-col class="custom-column" size="6">
+        <ion-card (click)="scanProfile()" class="qr-scan">
+          <ion-card-header>
+            <h1>SCAN QR CODE</h1>
+            <ion-icon size="large" name="qr-code"></ion-icon>
+          </ion-card-header>
+        </ion-card>
+      </ion-col>
 
-  <ion-list>
-    <ion-item *ngFor="let product of filteredProducts">
-      {{ product.name }}
-    </ion-item>
-  </ion-list>
+      <!-- Loyalty Form -->
+      <ion-col class="custom-column" size="6">
+        <!--Add Profile-->
+        <h1 class="inventory-text">Add Loyalty Profile</h1>
+        <ion-input
+          [(ngModel)]="p_name"
+          class="details-text"
+          label="Full Name"
+          labelPlacement="floating"
+          placeholder="Name"
+        ></ion-input>
+        <ion-input
+          [(ngModel)]="p_fave"
+          class="details-text"
+          label="Favourite Patsy Product"
+          labelPlacement="floating"
+          placeholder="Favourite"
+        ></ion-input>
+        <ion-input
+          id="open-picker"
+          [(ngModel)]="p_date"
+          class="details-text"
+          label="Birthdate"
+          labelPlacement="floating"
+          placeholder="Birthdate"
+        ></ion-input>
+        <ion-picker
+          trigger="open-picker"
+          [columns]="pickerColumns"
+          [buttons]="pickerButtons"
+        ></ion-picker>
+        <ion-row class="ion-justify-content-center">
+          <ion-button
+            (click)="createProfile()"
+            class="button-text"
+            color="success"
+            fill="clear"
+            >Create</ion-button
+          >
+          <ion-button
+            (click)="reset()"
+            class="button-text"
+            color="danger"
+            fill="clear"
+            >Reset</ion-button
+          >
+        </ion-row>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>

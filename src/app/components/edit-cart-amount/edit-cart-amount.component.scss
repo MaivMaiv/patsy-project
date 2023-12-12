@@ -1,0 +1,25 @@
+ion-toolbar {
+    --background: #B8621B;
+    --color:#E3CCAE;
+}
+
+ion-content {
+    --color: #E3CCAE;
+    --ion-grid-padding: 0; /* Optional: Remove default padding */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+  }
+  
+  ion-grid {
+    max-width: 100%;
+  }
+
+  .product-options {
+    color:#E3CCAE;
+  }
+
+  ion-button {
+    margin: 5px;
+  }

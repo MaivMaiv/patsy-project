@@ -1,0 +1,18 @@
+.points {
+  font-size: xx-large;
+}
+
+#receipt-card {
+  width: 500px;
+}
+
+ion-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.container {
+  max-width: 80%; /* Adjust the maximum width of the container */
+}

@@ -1,199 +1,105 @@
 .sub-view {
-    width: 100%;
+  width: 100%;
+}
+
+.main-view {
+  width: 100%;
+}
+.menu-buttons {
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  width: 100%;
+  height: 50px;
+  background:#C85108;
+  border-radius: 50px;
+}
+.menu-button {
+  width: 200px;
+  height: fit-content;
+  font-weight: light;
+  color: white;
+}
+.image-prod {
+  padding: 5px;
+  width: 100%;
+  height: 180px ;
+  border-radius: 10px;
+}
+
+h1 {
+  color: #A20E0E;
+  font-size: 30px;
+  font-weight: bold;
+}
+
+h2 {
+  color: #A20E0E;
+  font-size: 20px;
+  font-weight: lighter;
+}
+
+#total-card {
+  text-align: center;
+  margin-top: 5%;
+}
+
+#card-products {
+  width: 200px;
+  height: 260px;
+  background-color: #E29C68;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border-radius: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 5px;
+}
+.custom-column {
+  height: 50vh;
+}
+
+
+@media only screen and (max-width: 767px) and (orientation: landscape) {
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+
+}
+
+@media only screen and (min-width: 1025px) and (max-width: 1366px) and (orientation: landscape) {
+
+}
+
+@media only screen and (min-width: 1367px) and (orientation: landscape) {
+
+}
+
+//Animations
+
+.text-pop {
+	animation: jello-horizontal 0.9s linear infinite both;
+}
+
+@keyframes jello-horizontal {
+  0% {
+    transform: scale3d(1, 1, 1);
   }
-  
-  .main-view {
-    width: 100%;
+  30% {
+    transform: scale3d(1.25, 0.75, 1);
   }
-
-  #total-card {
-    text-align: center;
-    margin-top: 5%;
+  40% {
+    transform: scale3d(0.75, 1.25, 1);
   }
-
-  .custom-row {
-    height: 350px;
+  50% {
+    transform: scale3d(1.15, 0.85, 1);
   }
-
-  .main-condition {
-    color: black;
-    width: 100%;
-    text-align: center;
+  65% {
+    transform: scale3d(0.95, 1.05, 1);
   }
-  
-
-  .card-condition-1 {
-    background-color:var(--ion-color-primary);
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    margin-bottom: 25px;
+  75% {
+    transform: scale3d(1.05, 0.95, 1);
   }
-  
-  .card-condition-2 {
-    background-color:var(--ion-color-secondary);
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    margin-bottom: 25px;
+  100% {
+    transform: scale3d(1, 1, 1);
   }
-  
-  .card-condition-3 {
-    background-color:var(--ion-color-tertiary);
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    margin-bottom: 25px;
-  }
-  
-  .card-condition-4 {
-    background-color:var(--ion-color-success);
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    margin-bottom: 25px;
-  }
-  
-  .card-condition-5 {
-    background-color:var(--ion-color-warning);
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    margin-bottom: 25px;
-  }
-  
-  .card-condition-6 {
-    background-color:var(--ion-color-danger);
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    margin-bottom: 25px;
-  }
-  
-  .card-condition-7 {
-    background-color:var(--ion-color-dark);
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    margin-bottom: 25px;
-  }
-
-  @media only screen and (max-width: 767px) and (orientation: landscape) {
-    .custom-column {
-      height: 135vh;
-    }
-
-    h1 {
-      font-size: 2vw;
-      font-weight: bold;
-    }
-
-    h2 {
-      font-size: 1.8vw;
-    }
-
-    .inventory-text {
-      font-size: 2.5vw;
-      padding: 3vh;
-    }
-  
-    .details-text {
-      font-size: 1.5vw;
-      padding: 3vh;
-    }
-  
-    .button-text {
-      font-size: 1.8vw;
-    }
-
-    .upload-card {
-      padding: 4vh;
-    }
-  }
-
-  @media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
-    .custom-column {
-      height: 130vh;
-    }
-
-    h1 {
-      font-size: 2vw;
-      font-weight: bold;
-    }
-
-    h2 {
-      font-size: 1.8vw;
-    }
-
-    .inventory-text {
-      font-size: 2.5vw;
-      padding: 3vh;
-    }
-  
-    .details-text {
-      font-size: 1.5vw;
-      padding: 5vh;
-    }
-  
-    .button-text {
-      font-size: 1.8vw;
-    }
-
-    .upload-card {
-      padding: 8vh;
-    }
-  }
-
-  @media only screen and (min-width: 1025px) and (max-width: 1366px) and (orientation: landscape) {
-    .custom-column {
-      height: 90vh;
-    }
-
-    h1 {
-      font-size: 2vw;
-      font-weight: bold;
-    }
-
-    h2 {
-      font-size: 1.8vw;
-    }
-
-    .inventory-text {
-      font-size: 2.5vw;
-      padding: 3vh;
-    }
-  
-    .details-text {
-      font-size: 1.5vw;
-      padding: 5vh;
-    }
-  
-    .button-text {
-      font-size: 1.8vw;
-    }
-
-    .upload-card {
-      padding: 8vh;
-    }
-  }
-
-  @media only screen and (min-width: 1367px) and (orientation: landscape) {
-    .custom-column {
-      height: 90vh;
-    }
-
-    h1 {
-      font-size: 2vw;
-      font-weight: bold;
-    }
-
-    h2 {
-      font-size: 1.8vw;
-    }
-
-    .inventory-text {
-      font-size: 2.5vw;
-      padding: 3vh;
-    }
-  
-    .details-text {
-      font-size: 1.5vw;
-      padding: 5vh;
-    }
-  
-    .button-text {
-      font-size: 1.8vw;
-    }
-
-    .upload-card {
-      padding: 8vh;
-    }
-  }
-  
-
+}

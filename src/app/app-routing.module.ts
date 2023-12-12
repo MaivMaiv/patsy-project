@@ -39,6 +39,14 @@ const routes: Routes = [
     path: 'report',
     loadChildren: () => import('./report/report.module').then( m => m.ReportPageModule)
   },
+  {
+    path: 'qr-profile',
+    loadChildren: () => import('./qr-profile/qr-profile.module').then( m => m.QrProfilePageModule)
+  },
+  {
+    path: 'points-profile',
+    loadChildren: () => import('./points-profile/points-profile.module').then( m => m.PointsProfilePageModule)
+  },
 ];
 
 @NgModule({

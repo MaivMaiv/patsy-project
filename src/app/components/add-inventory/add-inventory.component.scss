@@ -1,0 +1,33 @@
+ion-toolbar {
+    --background: #B8621B;
+    --color:white;
+}
+
+ion-content {
+    --color: #A20E0E;
+    --ion-grid-padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+  }
+  
+  ion-grid {
+    max-width: 100%;
+  }
+
+  .product-options {
+    color:#E3CCAE;
+  }
+
+  ion-button {
+    margin: 5px;
+  }
+
+  .upload-card {
+    background: #C85108;
+  }
+
+  .details-text {
+    color: #A20E0E;
+  }

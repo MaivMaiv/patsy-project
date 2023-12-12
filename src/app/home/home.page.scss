@@ -1,119 +1,126 @@
 
+ion-searchbar.patsy_search {
+  --background: #E29C68;
+  --color: #A20E0E;
+  --placeholder-color: #A20E0E;
+  --icon-color: #A20E0E;
+  --clear-button-color: #A20E0E;
 
-#checkout-container {
-  height: 100%;
+  --border-radius: 4px;
+}
+
+ion-searchbar.ios.patsy_search {
+  --cancel-button-color: #19422d;
+}
+
+ion-searchbar.md.patsy_search {
+  --cancel-button-color: #A20E0E;
 }
 
 .main-condition {
   color: black;
   text-align: center;
-  .delBtn{
-    color: white;
-    --background: black;
-    width: fit-content;
-    height: fit-content;
-  }
-  .edtBtn{
-    color: white;
-    --background: black;
-    width: fit-content;
-    height: fit-content;
-  }
 }
 
-.card-condition-1 {
-  background-color:var(--ion-color-primary);
+ion-icon {
+  color: #A20E0E;
+}
+
+h1 {
+  color: #A20E0E;
+  font-size: 30px;
+  font-weight: bold;
+}
+
+h2 {
+  color: #A20E0E;
+  font-size: 20px;
+  font-weight: lighter;
+}
+
+.item-list {
+  color: #A20E0E;
+}
+
+.total-card {
+  background-color: #E29C68;
+  color: #A20E0E;
+  height: 50%;
+  width: 94%;
+}
+
+.checkout-button {
+  --background: #E29C68;
+  height: 50%;
+  padding: 10px;
+  color: #A20E0E;
+  font-weight: lighter;
+}
+
+#card-products {
+  margin: 10px;
+  background-color: #E29C68;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  margin-bottom: 25px;
+  border-radius: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 5px;
 }
 
-.card-condition-2 {
-  background-color:var(--ion-color-secondary);
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  margin-bottom: 25px;
+.cart-cost-list {
+  color: #A20E0E;
 }
 
-.card-condition-3 {
-  background-color:var(--ion-color-tertiary);
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  margin-bottom: 25px;
+.cart-name-list {
+  color: #A20E0E;
 }
 
-.card-condition-4 {
-  background-color:var(--ion-color-success);
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  margin-bottom: 25px;
+.cart-cost-amount {
+  color: #A20E0E;
 }
 
-.card-condition-5 {
-  background-color:var(--ion-color-warning);
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  margin-bottom: 25px;
+.image-prod {
+  padding: 5px;
+  width: 100%;
+  height: 180px ;
+  border-radius: 10px;
 }
 
-.card-condition-6 {
-  background-color:var(--ion-color-danger);
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  margin-bottom: 25px;
-}
 
-.card-condition-7 {
-  background-color:var(--ion-color-dark);
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  margin-bottom: 25px;
-}
-
-@media only screen and (max-width: 767px) and (orientation: landscape) {
-  .home-icons {
-    font-size: 2vh;
-  }
-  .filter-button {
-    width: fit-content;
-    font-size: 1.8vw;
-  }
-  
-  .item-list {
-    font-size: 1.8vw;
-  }
-
-  .cart-name-list {
-    font-size: 2vw;
-  }
-
-  .cart-cost-list {
-    font-size: 1.5vw;
-  }
-  
-  .menu-text {
-    font-size: 2.5vw;
-  }
-  
-  .menu-icon {
-    font-size: 2.5vw;
-  }
-  
-  .checkout-button {
+.checkout-button {
   height: 100%;
   width: 100%;
   font-size: 3vw;
-  }
-  
-  h1 {
-    font-size: 2.8vw;
-    font-weight: bold;
-  }
-  
-  h2 {
-    font-size: 2.5vw;
-  }
+  border-radius: 10px;
+}
 
-  .delBtn {
-    font-size: 3vw;
-  }
+.filter-button {
+  --background: #E29C68;
+  width: 12%;
+  height: 84px;
+  font-size: 30px;
+}
+.menu-buttons {
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  width: 100%;
+  height: 50px;
+  background:#C85108;
+  border-radius: 50px;
+}
+.menu-button {
+  width: 200px;
+  height: fit-content;
+  font-weight: light;
+  color: white;
+}
 
-  .edtBtn {
-    font-size: 3vw;
-  }
+ion-icon {
+  --ionicon-stroke-width: 15px;
+}
+
+@media only screen and (max-width: 767px) and (orientation: landscape) {
 }
 
 @media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
@@ -121,7 +128,7 @@
     width: fit-content;
     font-size: 1.8vw;
   }
-  
+
   .item-list {
     font-size: 1.8vw;
   }
@@ -133,26 +140,26 @@
   .cart-cost-list {
     font-size: 1.5vw;
   }
-  
+
   .menu-text {
     font-size: 2.5vw;
   }
-  
+
   .menu-icon {
     font-size: 2.5vw;
   }
-  
+
   .checkout-button {
-  height: 100%;
-  width: 100%;
-  font-size: 3vw;
+    height: 100%;
+    width: 100%;
+    font-size: 3vw;
   }
-  
+
   h1 {
     font-size: 2.8vw;
     font-weight: bold;
   }
-  
+
   h2 {
     font-size: 2.5vw;
   }
@@ -167,54 +174,40 @@
 }
 
 @media only screen and (min-width: 1025px) and (max-width: 1366px) and (orientation: landscape) {
-  .filter-button {
-    width: fit-content;
-    font-size: 1.8vw;
-  }
-  
-  .item-list {
-    font-size: 1.8vw;
-  }
 
-  .cart-name-list {
-    font-size: 2vw;
-  }
-
-  .cart-cost-list {
-    font-size: 1.5vw;
-  }
-  
-  .menu-text {
-    font-size: 2.5vw;
-  }
-  
-  .menu-icon {
-    font-size: 2.5vw;
-  }
-  
-  .checkout-button {
-  height: 100%;
-  width: 100%;
-  font-size: 3vw;
-  }
-  
-  h1 {
-    font-size: 2.8vw;
-    font-weight: bold;
-  }
-  
-  h2 {
-    font-size: 2.5vw;
-  }
-
-  .delBtn {
-    font-size: 3vw;
-  }
-
-  .edtBtn {
-    font-size: 3vw;
-  }
 }
 
 @media only screen and (min-width: 1367px) and (orientation: landscape) {
+
+}
+
+
+// Animations
+
+.text-pop {
+	animation: jello-horizontal 0.9s linear infinite both;
+}
+
+@keyframes jello-horizontal {
+  0% {
+    transform: scale3d(1, 1, 1);
+  }
+  30% {
+    transform: scale3d(1.25, 0.75, 1);
+  }
+  40% {
+    transform: scale3d(0.75, 1.25, 1);
+  }
+  50% {
+    transform: scale3d(1.15, 0.85, 1);
+  }
+  65% {
+    transform: scale3d(0.95, 1.05, 1);
+  }
+  75% {
+    transform: scale3d(1.05, 0.95, 1);
+  }
+  100% {
+    transform: scale3d(1, 1, 1);
+  }
 }

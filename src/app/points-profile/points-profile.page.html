@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-icon
+      (click)="back()"
+      slot="start"
+      size="large"
+      name="arrow-back-outline"
+    ></ion-icon>
+    <ion-title> QR PROFILE </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="container">
+    <ion-card #cardContent color="light" id="receipt-card">
+      <p class="ion-text-center">
+        <img src="assets\logo_patsy.png" />
+        <br />
+        <strong>Patsy's Coffee and Pastries Shop</strong>
+        <br />
+        017 Manuel G. Santos St. Poblacion, Pandi, 3014 Bulacan
+        <br />
+        facebook.com/patsyscoffeeandpastries/
+        <br />
+        0906 590 0138
+      </p>
+      <div class="ion-text-center">
+        <h1>Welcome to patsy's {{profileName}}</h1>
+        <p class="points">100 pts</p>
+      </div>
+    </ion-card>
+  </div>
+</ion-content>

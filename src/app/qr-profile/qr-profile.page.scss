@@ -1,0 +1,35 @@
+.qrcode {
+  max-width: 100%;
+  max-height: 200vh; /* Adjust the height as needed */
+  margin-top: 10px;
+}
+
+#receipt-card {
+  left: 23%;
+  width: 50%;
+  padding: 50px;
+}
+
+.margin {
+  margin-top: 50px;
+}
+
+ion-button {
+  margin: 20px;
+}
+
+.custom-qrcode {
+  width: 200px; /* Set the width as needed */
+  height: 200px; /* Set the height as needed */
+}
+
+ion-card-content {
+  text-align: center;
+}
+
+ion-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
