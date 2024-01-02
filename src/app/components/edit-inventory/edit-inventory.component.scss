@@ -1,33 +1,39 @@
 ion-toolbar {
-    --background: #B8621B;
-    --color:white;
+  --background: #352A28;
+  --color:white;
+  font-family: 'Rubik-Black', sans-serif;
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
 }
 
 ion-content {
-    --color: #A20E0E;
-    --ion-grid-padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-  }
-  
-  ion-grid {
-    max-width: 100%;
-  }
+  --color: #ECECE0;
+  --ion-grid-padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
 
-  .product-options {
-    color:#E3CCAE;
-  }
+ion-grid {
+  max-width: 100%;
+}
 
-  ion-button {
-    margin: 5px;
-  }
+.product-options {
+  color:#E3CCAE;
+}
 
-  .upload-card {
-    background: #C85108;
-  }
+ion-button {
+  margin: 5px;
+  --background: #352A28;
+  font-size: larger;
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+}
 
-  .details-text {
-    color: #A20E0E;
-  }
+.product-options-modal {
+  width: 30%;
+  height: 40%;
+}
+
+h1, h2 {
+  font-family: 'Rubik-Bold', sans-serif;
+}

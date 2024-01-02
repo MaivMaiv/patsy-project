@@ -17,13 +17,6 @@
       <ion-row>
         <ion-col size="9">
             <div class="top-col">
-              <!-- <ion-buttons slot="start">
-                <ion-icon
-                  (click)="openMenu()"
-                  class="home-icons"
-                  name="menu"
-                ></ion-icon>
-              </ion-buttons> -->
               <ion-searchbar
                 class="patsy_search"
                 #searchBar
@@ -105,7 +98,7 @@
                 size="3"
                 *ngFor="let prod of filteredProducts"
               >
-              <div (click)="openProductModal(prod.productName, prod.productImage, prod.productCost)" id="card-products">
+              <div (click)="openProductModal(prod.productName, prod.productImage, prod.productCost, prod.productType)" id="card-products">
                 <div>
                   <img class="image-prod" [src]="prod.productImage" />
                 </div>
@@ -130,7 +123,7 @@
                 size="3"
                 *ngFor="let prod of products"
               >
-                <div (click)="openProductModal(prod.productName, prod.productImage, prod.productCost)" id="card-products">
+                <div (click)="openProductModal(prod.productName, prod.productImage, prod.productCost, prod.productType)" id="card-products">
                   <div>
                     <img class="image-prod" [src]="prod.productImage" />
                   </div>
@@ -155,7 +148,7 @@
                 size="3"
                 *ngFor="let prod of searchedProducts"
               >
-              <div (click)="openProductModal(prod.productName, prod.productImage, prod.productCost)" id="card-products">
+              <div (click)="openProductModal(prod.productName, prod.productImage, prod.productCost, prod.productType)" id="card-products">
                 <div>
                   <img class="image-prod" [src]="prod.productImage" />
                 </div>
@@ -176,13 +169,13 @@
               <ion-item-options side="start">
                 <ion-item-option (click)="editProductModal(cart.cartName, cart.cartNumber)" color="success">Edit</ion-item-option>
               </ion-item-options>
-            <ion-item>
+            <ion-item class="item-cart">
               <div slot="start">
-                <h2 slot="start" class="cart-name-list">{{cart.cartName}}</h2>
-                <p slot="end" class="cart-cost-list">P {{cart.cartCost}}.00</p>
+                <h1 slot="start" class="cart-name-list">{{cart.cartName}}</h1>
+                <h1 slot="end" class="cart-cost-list">P {{cart.cartCost}}.00</h1>
               </div>
               <div slot="end">
-                <ion-label class="cart-cost-amount" slot="end">x{{cart.cartNumber}}</ion-label>
+                <h1 class="cart-cost-amount" slot="end">x{{cart.cartNumber}}</h1>
               </div>
             </ion-item>
             <ion-item-options>

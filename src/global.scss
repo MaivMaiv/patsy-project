@@ -43,5 +43,118 @@ ion-modal {
   }
 
   :root {
-    --ion-background-color:#F3F0D1;
+    --ion-background-color:#FF733A;
   }
+
+/* Import Rubik-Regular font */
+@font-face {
+  font-family: 'Rubik-Regular';
+  src: url('/assets/fonts/Rubik-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* Import Rubik-Black font */
+@font-face {
+  font-family: 'Rubik-Black';
+  src: url('/assets/fonts/Rubik-Black.ttf') format('truetype');
+  font-weight: 900; /* Black */
+  font-style: normal;
+}
+
+/* Import Rubik-BlackItalic font */
+@font-face {
+  font-family: 'Rubik-BlackItalic';
+  src: url('/assets/fonts/Rubik-BlackItalic.ttf') format('truetype');
+  font-weight: 900;
+  font-style: italic;
+}
+
+/* Import Rubik-Bold font */
+@font-face {
+  font-family: 'Rubik-Bold';
+  src: url('/assets/fonts/Rubik-Bold.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+}
+
+/* Import Rubik-BoldItalic font */
+@font-face {
+  font-family: 'Rubik-BoldItalic';
+  src: url('/assets/fonts/Rubik-BoldItalic.ttf') format('truetype');
+  font-weight: bold;
+  font-style: italic;
+}
+
+/* Import Rubik-ExtraBold font */
+@font-face {
+  font-family: 'Rubik-ExtraBold';
+  src: url('/assets/fonts/Rubik-ExtraBold.ttf') format('truetype');
+  font-weight: 800; /* Extra Bold */
+  font-style: normal;
+}
+
+/* Import Rubik-ExtraBoldItalic font */
+@font-face {
+  font-family: 'Rubik-ExtraBoldItalic';
+  src: url('/assets/fonts/Rubik-ExtraBoldItalic.ttf') format('truetype');
+  font-weight: 800;
+  font-style: italic;
+}
+
+/* Import Rubik-Italic font */
+@font-face {
+  font-family: 'Rubik-Italic';
+  src: url('/assets/fonts/Rubik-Italic.ttf') format('truetype');
+  font-weight: normal;
+  font-style: italic;
+}
+
+/* Import Rubik-Light font */
+@font-face {
+  font-family: 'Rubik-Light';
+  src: url('/assets/fonts/Rubik-Light.ttf') format('truetype');
+  font-weight: 300; /* Light */
+  font-style: normal;
+}
+
+/* Import Rubik-LightItalic font */
+@font-face {
+  font-family: 'Rubik-LightItalic';
+  src: url('/assets/fonts/Rubik-LightItalic.ttf') format('truetype');
+  font-weight: 300;
+  font-style: italic;
+}
+
+/* Import Rubik-Medium font */
+@font-face {
+  font-family: 'Rubik-Medium';
+  src: url('/assets/fonts/Rubik-Medium.ttf') format('truetype');
+  font-weight: 500; /* Medium */
+  font-style: normal;
+}
+
+/* Import Rubik-MediumItalic font */
+@font-face {
+  font-family: 'Rubik-MediumItalic';
+  src: url('/assets/fonts/Rubik-MediumItalic.ttf') format('truetype');
+  font-weight: 500;
+  font-style: italic;
+}
+
+/* Import Rubik-SemiBold font */
+@font-face {
+  font-family: 'Rubik-SemiBold';
+  src: url('/assets/fonts/Rubik-SemiBold.ttf') format('truetype');
+  font-weight: 600; /* Semi Bold */
+  font-style: normal;
+}
+
+/* Import Rubik-SemiBoldItalic font */
+@font-face {
+  font-family: 'Rubik-SemiBoldItalic';
+  src: url('/assets/fonts/Rubik-SemiBoldItalic.ttf') format('truetype');
+  font-weight: 600;
+  font-style: italic;
+}
+

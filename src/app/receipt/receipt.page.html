@@ -1,53 +1,50 @@
 <ion-content>
   <ion-card #cardContent color="light" id="receipt-card">
-    <p class="ion-text-center">
-      <img src="assets\logo_patsy.png" />
-      <br />
-      <strong>Patsy's Coffee and Pastries Shop</strong>
-      <br />
-      017 Manuel G. Santos St. Poblacion, Pandi, 3014 Bulacan
-      <br />
-      facebook.com/patsyscoffeeandpastries/
-      <br />
-      0906 590 0138
-    </p>
+    <ion-card-header>
+        <img src="/assets/patsy_logo.png">
+    </ion-card-header>
+
     <table class="table">
       <tr>
-        <td class="table-cell">Name</td>
-        <td class="table-cell">{{ receiptDetails.checkoutCustomer }}</td>
+        <td class="table-cell receipt-text-header">Name</td>
+        <td class="table-cell receipt-text-subheader">{{ receiptDetails.checkoutCustomer }}</td>
       </tr>
       <tr>
-        <td class="table-cell">Date</td>
-        <td class="table-cell">{{ currentDate }}</td>
+        <td class="table-cell receipt-text-header">Date</td>
+        <td class="table-cell receipt-text-subheader">{{ currentDate }}</td>
       </tr>
       <tr>
-        <td class="table-cell"><strong>Total Amount</strong></td>
-        <td class="table-cell">₱ {{ checkoutAmount }}.00</td>
+        <td class="table-cell receipt-text-header"><strong>Total Amount</strong></td>
+        <td class="table-cell receipt-text-subheader">₱ {{ checkoutAmount }}.00</td>
       </tr>
     </table>
     <div class="horizontal-line"></div>
     <table class="table">
       <tr>
-        <td class="receipt-item-cell"><strong>Item</strong></td>
-        <td class="receipt-cost-cell"><strong>Cost</strong></td>
+        <td class="receipt-item-cell receipt-text-header"><strong>Item</strong></td>
+        <td class="receipt-cost-cell receipt-text-header"><strong>Cost</strong></td>
       </tr>
       <tr *ngFor="let check of checkoutProducts; let i = index">
-        <td class="receipt-item-cell">
+        <td class="receipt-item-cell receipt-text-subheader">
           {{check.cartName}} x {{check.cartNumber}}
         </td>
-        <td class="receipt-cost-cell">{{check.cartCost}}.00</td>
+        <td class="receipt-cost-cell receipt-text-subheader">{{check.cartCost}}.00</td>
       </tr>
       <tr>
-        <td class="receipt-payment-cell">Payment Type:</td>
-        <td class="receipt-type-cell">{{ receiptDetails.transactionType }}</td>
+        <td class="receipt-payment-cell receipt-text-header">Payment Type:</td>
+        <td class="receipt-type-cell receipt-text-subheader">{{ receiptDetails.transactionType }}</td>
       </tr>
       <tr>
-        <td class="receipt-total-cell">Paid:</td>
-        <td class="receipt-amount-cell">₱ {{ checkoutDetails.checkoutPaid }}.00</td>
+        <td class="receipt-total-cell receipt-text-header">Paid:</td>
+        <td class="receipt-amount-cell receipt-text-subheader">₱ {{ receiptDetails.checkoutPaid }}.00</td>
       </tr>
       <tr>
-        <td class="receipt-total-cell">Total:</td>
-        <td class="receipt-amount-cell">₱ {{ finalAmount }}.00</td>
+        <td class="receipt-total-cell receipt-text-header">Change:</td>
+        <td class="receipt-amount-cell receipt-text-subheader">₱ {{ receiptDetails.checkoutPaid - checkoutAmount}}.00</td>
+      </tr>
+      <tr>
+        <td class="receipt-total-cell receipt-text-header">Total:</td>
+        <td class="receipt-amount-cell receipt-text-subheader">₱ {{ finalAmount }}.00</td>
       </tr>
     </table>
   </ion-card>

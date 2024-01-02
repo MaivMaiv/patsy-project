@@ -82,6 +82,8 @@ edit() {
 }
 
 cancel() {
-  
+  this.modalController.dismiss({
+
+  })
 }
 }

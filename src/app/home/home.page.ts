@@ -5,6 +5,7 @@ import { IonModal, MenuController, ModalController } from '@ionic/angular';
 import { ScreenOrientationService } from '../services/screen-orientation.service';
 import { ProductSettingsComponent } from '../components/product-settings/product-settings.component';
 import { EditCartAmountComponent } from '../components/edit-cart-amount/edit-cart-amount.component';
+import { ReportService } from '../services/report.service';
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
@@ -33,10 +34,10 @@ export class HomePage {
   isFiltered: string = 'false';
   constructor(
     private router: Router,
-    private menuCtrl: MenuController,
     private screenOrientationService: ScreenOrientationService,
     private route: ActivatedRoute,
-    private modalController: ModalController
+    private modalController: ModalController,
+    private reportService: ReportService
   ) {}
   ngOnInit() {
     this.screenOrientationService.lockLandscape();
@@ -61,6 +62,11 @@ export class HomePage {
     if (savedProducts) {
       this.products = JSON.parse(savedProducts);
     }
+    this.reportService.initializeReports();
+    this.reportService.detectIfDayEnded(0);
+    this.reportService.detectIfWeekEnded(0);
+    this.reportService.detectIfMonthEnded(0);
+    this.reportService.detectIfAllTime(0);
   }
   inventory() {
     this.router.navigate(['inventory']);
@@ -79,12 +85,13 @@ export class HomePage {
     App.exitApp();
   }
   
-  addProduct(name: string, cost: string, image: any, amount: any) {
+  addProduct(name: string, cost: string, image: any, amount: any, type: any) {
     const cart = {
       cartName: name,
       cartCost: cost,
       cartImage: image,
       cartNumber: amount,
+      cartType: type
     };
     const index = this.cartCounter.findIndex((obj) => obj.cartName === name);
     console.log('index', index);
@@ -155,7 +162,7 @@ export class HomePage {
     }
   }
 
-  async openProductModal(name: string, image: any, cost: any) {
+  async openProductModal(name: string, image: any, cost: any, type: any) {
     const message = name;
     const modal = await this.modalController.create({
       component: ProductSettingsComponent,
@@ -166,11 +173,10 @@ export class HomePage {
     });
 
     modal.onDidDismiss().then((data) => {
-      // Handle data passed from the modal
       if (data && data.data) {
         const amount = data.data.amount;
         console.log(amount);
-        this.addProduct(name, cost, image, amount);
+        this.addProduct(name, cost, image, amount, type);
       }
     });
     return await modal.present();

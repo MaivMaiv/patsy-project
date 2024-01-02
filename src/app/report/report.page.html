@@ -1,13 +1,130 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>report</ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-content>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">report</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <div class="ion-text-center menu-buttons">
+          <p (click)="home()" class="menu-button">Home</p>
+          <p (click)="inventory()" class="menu-button text-pop">Inventory</p>
+          <p (click)="report()" class="menu-button">Report</p>
+          <p (click)="points()" class="menu-button">Points</p>
+          <p (click)="exit()" class="menu-button">Exit</p>
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col class="overview-tab" size="6"> <!--Overview-->
+        <ion-card>
+          <ion-card-header>
+            <ion-card-subtitle class="report-header">OVERVIEW: </ion-card-subtitle>
+          </ion-card-header>
+          <ion-card-content>
+            <ion-grid>
+              <ion-row>
+                <ion-col>
+                  <div class="overview-cards">
+                    <p class="overview-header">All Time</p>
+                    <p class="overview-subheader">P {{allTimeAmount}}.00</p>
+                  </div>
+                </ion-col>
+                <ion-col>
+                  <div class="overview-cards">
+                    <p class="overview-header">Month</p>
+                    <p class="overview-subheader">P {{monthTimeAmount}}.00</p>
+                  </div>
+                </ion-col>
+            </ion-row>
+                <ion-row>
+                  <ion-col>
+                    <div class="overview-cards">
+                      <p class="overview-header">Week</p>
+                      <p class="overview-subheader">P {{weekTimeAmount}}.00</p>
+                    </div>
+                  </ion-col>
+                  <ion-col>
+                    <div class="overview-cards">
+                      <p class="overview-header">Day</p>
+                      <p class="overview-subheader">P {{dayTimeAmount}}.00</p>
+                    </div>
+                  </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+      <ion-col class="overview-tab" size="6"> <!--Order Graph-->
+        <ion-card>
+          <ion-card-header>
+            <ion-card-subtitle class="report-header">Customer Trend: </ion-card-subtitle>
+          </ion-card-header>
+          <ion-card-content>
+            <canvas width="800" height="175" id="customerChart"></canvas>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col class="overview-tab" size="6"> <!--Best Sellers-->
+        <ion-card>
+          <ion-card-header>
+            <ion-card-subtitle class="report-header">Sellers: </ion-card-subtitle>
+          </ion-card-header>
+          <ion-card-content>
+            <canvas height="133" id="typeChart"></canvas>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+      <ion-col class="overview-tab" size="6"> <!--Order Graph-->
+        <ion-card>
+          <ion-card-header>
+            <ion-card-subtitle class="report-header">Best Sellers: </ion-card-subtitle>
+          </ion-card-header>
+          <ion-card-content>
+            <ion-grid>
+              <ion-row>
+                <ion-col>
+                  <div class="overview-cards">
+                    <p class="overview-header-1">1.</p>
+                    <p class="overview-subheader-1">100%</p>
+                  </div>
+                </ion-col>
+            </ion-row>
+                <ion-row>
+                  <ion-col>
+                    <div class="overview-cards">
+                      <p class="overview-header">2.</p>
+                      <p class="overview-subheader">100%</p>
+                    </div>
+                  </ion-col>
+                  <ion-col>
+                    <div class="overview-cards">
+                      <p class="overview-header">3.</p>
+                      <p class="overview-subheader">100%</p>
+                    </div>
+                  </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col>
+                  <div class="overview-cards">
+                    <p class="overview-header">4.</p>
+                    <p class="overview-subheader">100%</p>
+                  </div>
+                </ion-col>
+                <ion-col>
+                  <div class="overview-cards">
+                    <p class="overview-header">5.</p>
+                    <p class="overview-subheader">100%</p>
+                  </div>
+                </ion-col>
+            </ion-row>
+            </ion-grid>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>
+
+
+          
+

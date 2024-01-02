@@ -11,7 +11,7 @@ import { EditCartAmountComponent } from './components/edit-cart-amount/edit-cart
 import { FormsModule } from '@angular/forms';
 @NgModule({
   declarations: [AppComponent,ProductSettingsComponent, EditCartAmountComponent],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule, FormsModule ],
+  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule, FormsModule],
   providers: [ScreenOrientationService, { provide: RouteReuseStrategy, useClass: IonicRouteStrategy,  }],
   bootstrap: [AppComponent],
 })

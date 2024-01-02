@@ -14,6 +14,7 @@ export class AddInventoryComponent  implements OnInit {
     productImage: [],
   };
   isUploaded: boolean = false;
+  bestSellerArray: any [] = [];
   constructor(private modalController: ModalController) { }
 
   ngOnInit() {}
@@ -25,12 +26,6 @@ export class AddInventoryComponent  implements OnInit {
       productType: '',
       productImage: [],
     };
-    // const imageInput = document.getElementById(
-    //   'imageInput'
-    // ) as HTMLInputElement;
-    // if (imageInput) {
-    //   imageInput.value = '';
-    // }
   }
 
   clearButton() {
@@ -68,10 +63,18 @@ export class AddInventoryComponent  implements OnInit {
   }
 
   add() {
+    let bestSellerLocalStorage = localStorage.getItem('BestSellers');
+    let bestSellerParsed: [string, number][] = JSON.parse(bestSellerLocalStorage || '[]');
+    let newBestSeller: any[] = bestSellerParsed;
+    newBestSeller =  [ this.product.productName, 0];
+    console.log(newBestSeller);
+    this.bestSellerArray.push(newBestSeller);
+    let bestSellerStorage = JSON.stringify(this.bestSellerArray);
+    localStorage.setItem('BestSellers', bestSellerStorage);
     this.modalController.dismiss({ modifiedProduct: this.product });
   }
 
   cancel() {
-
+    this.modalController.dismiss();
   }
 }

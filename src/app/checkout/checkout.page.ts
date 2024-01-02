@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BarcodeScanner } from '@capacitor-community/barcode-scanner';
+import { ReportService } from '../services/report.service';
 @Component({
   selector: 'app-checkout',
   templateUrl: './checkout.page.html',
@@ -15,10 +16,13 @@ export class CheckoutPage implements OnInit {
     customerType: '',
     transactionType: '',
     checkoutNumber: '',
-    checkoutPaid: ''
+    checkoutPaid: '',
   };
-  constructor(private router: Router, private route: ActivatedRoute) {}
-  ngOnInit() {}
+  constructor(private router: Router, private reportService: ReportService) {
+  }
+  ngOnInit() {
+    
+  }
   menu() {
     this.router.navigate(['home']);
   }
@@ -35,10 +39,19 @@ export class CheckoutPage implements OnInit {
     if (savedProducts) {
       this.checkoutProducts = JSON.parse(savedProducts);
       console.log(this.checkoutProducts);
+
     }
   }
-  placeOrder() {
-    console.log(this.checkoutDetails);
+  placeOrder(checkoutAmount: any) {
+    console.log("checkout",this.checkoutDetails);
+    sessionStorage.setItem('isRefreshed', 'false');
+    this.reportService.detectIfAllTime(checkoutAmount);
+    this.reportService.detectIfDayEnded(checkoutAmount);
+    this.reportService.detectIfMonthEnded(checkoutAmount);
+    this.reportService.detectIfWeekEnded(checkoutAmount);
+    this.reportService.checkBestSellerReport(this.checkoutProducts);
+    this.reportService.checkProductTypeCounter(this.checkoutProducts);  
+    this.reportService.detectDayReport();
     localStorage.setItem(
       'checkoutDetails',
       JSON.stringify(this.checkoutDetails)
