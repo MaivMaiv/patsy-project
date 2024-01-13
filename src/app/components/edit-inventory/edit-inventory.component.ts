@@ -22,7 +22,9 @@ export class EditInventoryComponent  implements OnInit {
   @Input() productIndex: any;
   constructor(private alertController: AlertController, private modalController: ModalController) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    console.log(this.product);  
+  }
 
   handleImageUpdate(event: any) {
     this.isEmpty = false;
@@ -44,7 +46,7 @@ async deleteButton(product: any) {
   const alert = await this.alertController.create({
     header: 'Confirmation',
     message:
-      'Are you sure you want to delete your product ' + product.productName,
+      'Are you sure you want to delete your product ' + this.productData.productName,
     buttons: [
       {
         text: 'No',

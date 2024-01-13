@@ -17,7 +17,8 @@ export class AddInventoryComponent  implements OnInit {
   bestSellerArray: any [] = [];
   constructor(private modalController: ModalController) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+  }
 
   addButton() {
     this.product = {

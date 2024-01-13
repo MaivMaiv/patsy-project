@@ -192,6 +192,7 @@ export class InventoryPage implements OnInit {
         this.productFromModal = data.data.modifiedProduct;
         this.products.push(this.productFromModal);
         localStorage.setItem('SavedProducts', JSON.stringify(this.products));
+        this.products.length = 0;
     });
     return await modal.present();
   }

@@ -2,8 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { BarcodeScanner } from '@capacitor-community/barcode-scanner';
 import { Plugins } from '@capacitor/core';
-import { IdGeneratorService } from '../services/id-generator.service';
 import { ScreenOrientationService } from '../services/screen-orientation.service';
+import { App } from '@capacitor/app';
+import { AddMemberComponent } from '../components/add-member/add-member.component';
+import { ModalController } from '@ionic/angular';
+import { IdGeneratorService } from '../services/id-generator.service';
+import { NgZone } from '@angular/core';
 const { DatePicker } = Plugins;
 @Component({
   selector: 'app-points',
@@ -11,173 +15,12 @@ const { DatePicker } = Plugins;
   styleUrls: ['./points.page.scss'],
 })
 export class PointsPage implements OnInit {
-  p_name = '';
-  p_date = '';
-  p_fave = '';
-  p_id = '';
-  public pickerColumns = [
-    {
-      name: 'month',
-      options: [
-        { text: 'January', value: 1 },
-        { text: 'February', value: 2 },
-        { text: 'March', value: 3 },
-        { text: 'April', value: 4 },
-        { text: 'May', value: 5 },
-        { text: 'June', value: 6 },
-        { text: 'July', value: 7 },
-        { text: 'August', value: 8 },
-        { text: 'September', value: 9 },
-        { text: 'October', value: 10 },
-        { text: 'November', value: 11 },
-        { text: 'December', value: 12 },
-      ],
-    },
-    {
-      name: 'day',
-      options: [
-        { text: '1', value: '1' },
-        { text: '2', value: '2' },
-        { text: '3', value: '3' },
-        { text: '4', value: '4' },
-        { text: '5', value: '5' },
-        { text: '6', value: '6' },
-        { text: '7', value: '7' },
-        { text: '8', value: '8' },
-        { text: '9', value: '9' },
-        { text: '10', value: '10' },
-        { text: '11', value: '11' },
-        { text: '12', value: '12' },
-        { text: '13', value: '13' },
-        { text: '14', value: '14' },
-        { text: '15', value: '15' },
-        { text: '16', value: '16' },
-        { text: '17', value: '17' },
-        { text: '18', value: '18' },
-        { text: '19', value: '19' },
-        { text: '20', value: '20' },
-        { text: '21', value: '21' },
-        { text: '22', value: '22' },
-        { text: '23', value: '23' },
-        { text: '24', value: '24' },
-        { text: '25', value: '25' },
-        { text: '26', value: '26' },
-        { text: '27', value: '27' },
-        { text: '28', value: '28' },
-        { text: '29', value: '29' },
-        { text: '30', value: '30' },
-        { text: '31', value: '31' },
-      ],
-    },
-    {
-      name: 'year',
-      options: [
-        { text: '1950', value: 1950 },
-        { text: '1951', value: 1951 },
-        { text: '1952', value: 1952 },
-        { text: '1953', value: 1953 },
-        { text: '1954', value: 1954 },
-        { text: '1955', value: 1955 },
-        { text: '1956', value: 1956 },
-        { text: '1957', value: 1957 },
-        { text: '1958', value: 1958 },
-        { text: '1959', value: 1959 },
-        { text: '1960', value: 1960 },
-        { text: '1961', value: 1961 },
-        { text: '1962', value: 1962 },
-        { text: '1963', value: 1963 },
-        { text: '1964', value: 1964 },
-        { text: '1965', value: 1965 },
-        { text: '1966', value: 1966 },
-        { text: '1967', value: 1967 },
-        { text: '1968', value: 1968 },
-        { text: '1969', value: 1969 },
-        { text: '1970', value: 1970 },
-        { text: '1971', value: 1971 },
-        { text: '1972', value: 1972 },
-        { text: '1973', value: 1973 },
-        { text: '1974', value: 1974 },
-        { text: '1975', value: 1975 },
-        { text: '1976', value: 1976 },
-        { text: '1977', value: 1977 },
-        { text: '1978', value: 1978 },
-        { text: '1979', value: 1979 },
-        { text: '1980', value: 1980 },
-        { text: '1981', value: 1981 },
-        { text: '1982', value: 1982 },
-        { text: '1983', value: 1983 },
-        { text: '1984', value: 1984 },
-        { text: '1985', value: 1985 },
-        { text: '1986', value: 1986 },
-        { text: '1987', value: 1987 },
-        { text: '1988', value: 1988 },
-        { text: '1989', value: 1989 },
-        { text: '1990', value: 1990 },
-        { text: '1991', value: 1991 },
-        { text: '1992', value: 1992 },
-        { text: '1993', value: 1993 },
-        { text: '1994', value: 1994 },
-        { text: '1995', value: 1995 },
-        { text: '1996', value: 1996 },
-        { text: '1997', value: 1997 },
-        { text: '1998', value: 1998 },
-        { text: '1999', value: 1999 },
-        { text: '2000', value: 2000 },
-        { text: '2001', value: 2001 },
-        { text: '2002', value: 2002 },
-        { text: '2003', value: 2003 },
-        { text: '2004', value: 2004 },
-        { text: '2005', value: 2005 },
-        { text: '2006', value: 2006 },
-        { text: '2007', value: 2007 },
-        { text: '2008', value: 2008 },
-        { text: '2009', value: 2009 },
-        { text: '2010', value: 2010 },
-        { text: '2011', value: 2011 },
-        { text: '2012', value: 2012 },
-        { text: '2013', value: 2013 },
-        { text: '2014', value: 2014 },
-        { text: '2015', value: 2015 },
-        { text: '2016', value: 2016 },
-        { text: '2017', value: 2017 },
-        { text: '2018', value: 2018 },
-        { text: '2019', value: 2019 },
-        { text: '2020', value: 2020 },
-        { text: '2021', value: 2021 },
-        { text: '2022', value: 2022 },
-        { text: '2023', value: 2023 },
-        { text: '2024', value: 2024 },
-        { text: '2025', value: 2025 },
-        { text: '2026', value: 2026 },
-        { text: '2027', value: 2027 },
-        { text: '2028', value: 2028 },
-        { text: '2029', value: 2029 },
-        { text: '2030', value: 2030 },
-      ],
-    },
-  ];
-  public pickerButtons = [
-    {
-      text: 'Cancel',
-      role: 'cancel',
-    },
-    {
-      text: 'Confirm',
-      handler: (value: {
-        month: { text: any };
-        day: { text: any };
-        year: { text: any };
-      }) => {
-        this.p_date =
-          value.month.text + ', ' + value.day.text + ' ' + value.year.text;
-        console.log(this.p_date);
-      },
-    },
-  ];
+  seconds: number = 0;
   constructor(
-    private idGenerator: IdGeneratorService,
     private router: Router,
-    private screenOrientationService: ScreenOrientationService
+    private screenOrientationService: ScreenOrientationService,
+    private modalController: ModalController,
+    private idGenerator: IdGeneratorService
   ) {}
   ngOnInit() {
     this.screenOrientationService.lockLandscape();
@@ -185,48 +28,93 @@ export class PointsPage implements OnInit {
   ngOnDestroy() {
     this.screenOrientationService.unlock();
   }
+  startTimer(durationInSeconds: number) {
+    console.log('Timer has begun');
+    const timer = setTimeout(() => {
+      this.onTimerEnd();
+    }, durationInSeconds * 1000);
+  }
+  onTimerEnd() {
+    console.log('Scan has stopped');
+    BarcodeScanner.stopScan();
+  }
   async scanProfile() {
+    console.log('Scan has begun');
     await BarcodeScanner.checkPermission({ force: true });
     BarcodeScanner.hideBackground();
+    this.startTimer(60);
     const result = await BarcodeScanner.startScan();
+    console.log(result);
     if (result.hasContent) {
       console.log(result.content);
       let profileString = localStorage.getItem(result.content);
+      console.log(profileString);
       if (profileString !== null) {
         let profileObject = JSON.parse(profileString);
-        let profileArray = [];
-        profileArray.push(profileObject);
-        const data = {
-          id: profileArray[0].id,
-          name: profileArray[0].name,
-          bday: profileArray[0].bday,
-          pref: profileArray[0].pref,
+        // let profileArray = [];
+        // profileArray.push(profileObject);
+        let data = {
+          id: profileObject.profileID,
+          name: profileObject.profileName,
+          bday: profileObject.profileBday,
+          pref: profileObject.profilePref,
+          points: profileObject.profilePoints
         };
+        console.log('Data: ', profileObject);
         this.router.navigate(['/points-profile'], { queryParams: data });
       } else {
         console.error('Profile data is null.');
       }
     }
   }
-  createProfile() {
-    this.p_id = this.idGenerator.generatePatsyID();
+
+  createProfile(id: any, name: any, fave: any, date: any) {
+    id = this.idGenerator.generatePatsyID();
     const patsy_Profile = {
-      patsyId: this.p_id,
-      patsyName: this.p_name,
-      patsyBirthdate: this.p_date,
-      patsyFavourite: this.p_fave,
+      patsyId: id,
+      patsyName: name,
+      patsyFavourite: fave,
+      patsyBirthdate: date,
     };
     console.log('Patsy Account: ', patsy_Profile);
     this.idGenerator.generateProfile(patsy_Profile);
-    let dataToSend = { key: this.p_id };
+    let dataToSend = { key1: id, key2: name };
     this.router.navigate(['/qr-profile'], { queryParams: dataToSend });
   }
-  reset() {
-    this.p_date = '';
-    this.p_fave = '';
-    this.p_name = '';
+
+  async openAddMemberModal() {
+    const modal = await this.modalController.create({
+      component: AddMemberComponent
+    });
+
+    modal.onDidDismiss().then((data) => {
+      if(sessionStorage.getItem('loyalty') == 'true') {
+        this.createProfile(data.data?.id, data.data?.name, data.data?.fave, data.data?.date)
+      }  else {
+        console.log('Cancelled');
+      }
+    });
+    return await modal.present();
   }
+
   back() {
     this.router.navigate(['home']);
+  }
+
+  inventory() {
+    this.router.navigate(['inventory']);
+  }
+  home() {
+    this.router.navigate(['home']);
+  }
+  points() {
+    this.router.navigate(['points']);
+  }
+  report() {
+    this.router.navigate(['report']);
+  }
+  exit() {
+    console.log('The app has exited.');
+    App.exitApp();
   }
 }

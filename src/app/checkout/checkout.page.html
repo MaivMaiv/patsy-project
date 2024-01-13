@@ -140,7 +140,16 @@
                       <span>Click to Scan Member</span>
                     </h3>
                     <h3 *ngIf="memberHasBeenScanned" class="divider">
-                      <span>WELCOME!</span>
+                      <ion-card color="success">
+                        <ion-card-header>
+                          <h2 class="loyalty-header">WELCOME!</h2>
+                          <h1 class="loyalty-subheader">{{memberName}}</h1>
+                        </ion-card-header>
+                        <ion-card-content>
+                          <h2 class="loyalty-header">Points</h2>
+                          <h1 class="loyalty-subheader">{{memberPoints}} + {{memberPointsToBeAdded}}</h1>
+                        </ion-card-content>
+                      </ion-card>
                     </h3>
                     <div *ngIf="!memberHasBeenScanned" class="ion-card-scan">
                       <ion-icon
@@ -148,9 +157,6 @@
                         class="qr-icon"
                         name="qr-code"
                       ></ion-icon>
-                    </div>
-                    <div *ngIf="memberHasBeenScanned" class="ion-card-scan">
-                      <h1>{{checkoutDetails.checkoutCustomer}}</h1>
                     </div>
                   </div>
                 </div>

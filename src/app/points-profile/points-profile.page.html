@@ -1,33 +1,92 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-icon
-      (click)="back()"
-      slot="start"
-      size="large"
-      name="arrow-back-outline"
-    ></ion-icon>
-    <ion-title> QR PROFILE </ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content>
-  <div class="container">
-    <ion-card #cardContent color="light" id="receipt-card">
-      <p class="ion-text-center">
-        <img src="assets\logo_patsy.png" />
-        <br />
-        <strong>Patsy's Coffee and Pastries Shop</strong>
-        <br />
-        017 Manuel G. Santos St. Poblacion, Pandi, 3014 Bulacan
-        <br />
-        facebook.com/patsyscoffeeandpastries/
-        <br />
-        0906 590 0138
-      </p>
-      <div class="ion-text-center">
-        <h1>Welcome to patsy's {{profileName}}</h1>
-        <p class="points">100 pts</p>
+  <ion-grid>
+    <ion-row>
+      <ion-col size="6">
+        <div class="ion-text-center">
+          <img src="assets\patsy_member.png" />
+          <div class="member-data">
+            <h1 class="ion-text-center">WELCOME</h1>
+            <p class="ion-text-center points-name">{{ this.patsyProfile.profileName }}</p>
+            <p class="ion-text-center points">{{ this.patsyProfile.profilePoints}} pts</p>
+          </div>
       </div>
-    </ion-card>
-  </div>
+      </ion-col>
+      <ion-col size="6">
+        <ion-card>
+          <ion-card-header>
+            <h1>REDEEM POINTS!</h1>
+          </ion-card-header>
+          <ion-card-content>
+          <ion-grid>
+            <ion-row>
+              <ion-col><h1 class="redeemables">FREE TEA</h1></ion-col>
+              <ion-col>
+                <ion-button [disabled]=" this.patsyProfile.profilePoints < 10" class="redeemables" size="small" (click)="redeem1()" color="success">10 Pts</ion-button>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col><h1 class="redeemables">FREE COFFEE</h1></ion-col>
+              <ion-col>
+                <ion-button [disabled]=" this.patsyProfile.profilePoints < 12" class="redeemables" size="small" (click)="redeem2()" color="success">12 Pts</ion-button>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col><h1 class="redeemables">FREE CLASSIC CHEESE</h1></ion-col>
+              <ion-col>
+                <ion-button [disabled]=" this.patsyProfile.profilePoints < 15" class="redeemables" size="small" (click)="redeem3()" color="success">15 Pts</ion-button>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col><h1 class="redeemables">FREE AMERICANO</h1></ion-col>
+              <ion-col>
+                <ion-button [disabled]=" this.patsyProfile.profilePoints < 17" class="redeemables" size="small" (click)="redeem4()" color="success">17 Pts</ion-button>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col><h1 class="redeemables">FREE CAFE LATTE (HOT)</h1></ion-col>
+              <ion-col>
+                <ion-button [disabled]=" this.patsyProfile.profilePoints < 20" class="redeemables" size="small" (click)="redeem5()" color="success">20 Pts</ion-button>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col><h1 class="redeemables">FREE BLUE HAWAII</h1></ion-col>
+              <ion-col>
+                <ion-button [disabled]=" this.patsyProfile.profilePoints < 22" class="redeemables" size="small" (click)="redeem6()" color="success">22 Pts</ion-button>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col><h1 class="redeemables">FREE CLASSIC MOCHA</h1></ion-col>
+              <ion-col>
+                <ion-button [disabled]=" this.patsyProfile.profilePoints < 25" class="redeemables" size="small" (click)="redeem7()" color="success">25 Pts</ion-button>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col><h1 class="redeemables">FREE BAG OF COFFEE</h1></ion-col>
+              <ion-col>
+                <ion-button [disabled]=" this.patsyProfile.profilePoints < 30" class="redeemables" size="small" (click)="redeem8()" color="success">30 Pts</ion-button>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col><h1 class="redeemables">FREE KISS ON THE CHEEKS</h1></ion-col>
+              <ion-col>
+                <ion-button [disabled]=" this.patsyProfile.profilePoints < 100" class="redeemables" size="small" (click)="redeem9()" color="success">100 Pts</ion-button>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col><h1 class="redeemables">1 DAY PATSY RESERVATION</h1></ion-col>
+              <ion-col>
+                <ion-button [disabled]=" this.patsyProfile.profilePoints < 250" size="small" (click)="redeem10()" color="success">250 Pts</ion-button>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+          <div class="ion-text-center">
+            <ion-button size="large" (click)="done()" color="success">Done</ion-button>
+          </div>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
 </ion-content>
+
