@@ -1,0 +1,66 @@
+#receipt-card {
+
+}
+
+.margin {
+  margin-top: 50px;
+}
+
+ion-button {
+  margin: 20px;
+}
+
+ion-card-content {
+  text-align: center;
+}
+
+ion-card {
+  background: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: #352A28;
+}
+
+.member-data {
+  position: absolute;
+  top: 250px;
+  left: 23%;
+  width: 50%;
+  padding: 50px;
+}
+
+p {
+  font-family: 'Rubik-Medium', sans-serif;
+  color: #352A28;
+  font-size: 20px;
+}
+
+.points {
+  font-family: 'Rubik-Bold', sans-serif;
+  color: #352A28;
+  font-size: 47px;
+}
+
+.points-name {
+  font-family: 'Rubik-Medium', sans-serif;
+  color: #352A28;
+  font-size: 35px;
+}
+
+h1 {
+  font-family: 'Rubik-Bold', sans-serif;
+  color: #352A28;
+  font-size: 20px;
+}
+
+ion-col {
+  justify-content: center;
+  display: flex;
+}
+
+.redeemables {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}

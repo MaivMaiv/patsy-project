@@ -4,48 +4,56 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   {
     path: 'home',
-    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
+    loadChildren: () => import('./pages/home/home.module').then( m => m.HomePageModule)
   },
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'landing',
     pathMatch: 'full'
   },
   {
-    path: 'login',
-    loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
-  },
-  {
-    path: 'register',
-    loadChildren: () => import('./register/register.module').then( m => m.RegisterPageModule)
-  },
-  {
     path: 'inventory',
-    loadChildren: () => import('./inventory/inventory.module').then( m => m.InventoryPageModule)
+    loadChildren: () => import('./pages/inventory/inventory.module').then( m => m.InventoryPageModule)
   },
   {
     path: 'checkout',
-    loadChildren: () => import('./checkout/checkout.module').then( m => m.CheckoutPageModule)
+    loadChildren: () => import('./pages/checkout/checkout.module').then( m => m.CheckoutPageModule)
   },
   {
     path: 'receipt',
-    loadChildren: () => import('./receipt/receipt.module').then( m => m.ReceiptPageModule)
+    loadChildren: () => import('./pages/receipt/receipt.module').then( m => m.ReceiptPageModule)
   },
   {
     path: 'points',
-    loadChildren: () => import('./points/points.module').then( m => m.PointsPageModule)
+    loadChildren: () => import('./pages/points/points.module').then( m => m.PointsPageModule)
   },
   {
     path: 'report',
-    loadChildren: () => import('./report/report.module').then( m => m.ReportPageModule)
+    loadChildren: () => import('./pages/report/report.module').then( m => m.ReportPageModule)
   },
   {
     path: 'qr-profile',
-    loadChildren: () => import('./qr-profile/qr-profile.module').then( m => m.QrProfilePageModule)
+    loadChildren: () => import('./pages/qr-profile/qr-profile.module').then( m => m.QrProfilePageModule)
   },
   {
     path: 'points-profile',
-    loadChildren: () => import('./points-profile/points-profile.module').then( m => m.PointsProfilePageModule)
+    loadChildren: () => import('./pages/points-profile/points-profile.module').then( m => m.PointsProfilePageModule)
+  },
+  {
+    path: 'employee',
+    loadChildren: () => import('./pages/employee/employee.module').then( m => m.EmployeePageModule)
+  },
+  {
+    path: 'employee-profile',
+    loadChildren: () => import('./pages/employee-profile/employee-profile.module').then( m => m.EmployeeProfilePageModule)
+  },
+  {
+    path: 'landing',
+    loadChildren: () => import('./pages/landing/landing.module').then( m => m.LandingPageModule)
+  },
+  {
+    path: 'employee-report',
+    loadChildren: () => import('./pages/employee-report/employee-report.module').then( m => m.EmployeeReportPageModule)
   },
 ];
 

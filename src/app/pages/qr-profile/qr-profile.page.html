@@ -1,0 +1,19 @@
+<ion-content>
+  <ion-card #cardContent color="light" id="receipt-card">
+    <div class="ion-text-center">
+      <img src="assets\patsy_member.png" />
+    </div>
+    <div class="member-data">
+    <ion-card>
+      <qrcode [width]="256" [qrdata]="memberID"></qrcode>
+    </ion-card>
+    <h1 class="ion-text-center">{{memberName}}</h1>
+  </div>
+  </ion-card>
+  <div class="ion-text-center">
+    <a id="downloadLink" style="display: none"></a>
+    <ion-button (click)="captureScreenshot()" color="warning"
+      >Save as Image</ion-button
+    >
+  </div>
+</ion-content>

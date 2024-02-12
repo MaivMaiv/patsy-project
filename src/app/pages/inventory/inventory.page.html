@@ -1,0 +1,39 @@
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <div class="ion-text-center menu-buttons">
+          <p (click)="home()" class="menu-button">Home</p>
+          <p (click)="points()" class="menu-button">Points</p>
+          <p (click)="inventory()" class="menu-button text-pop">Inventory</p>
+          <p (click)="report()" class="menu-button">Report</p>
+          <p (click)="employee()" class="menu-button">Employee</p>
+          <p (click)="exit()" class="menu-button">Exit</p>
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col *ngFor="let prod of products; let i = index" size="2">
+        <h1 *ngIf="products.length === 0">
+          No products has been added yet.
+        </h1>
+          <div (click)="openEditProductModal(i, prod)" id="card-products">
+            <img [src]="prod.productImage" class="image-prod" />
+            <div class="ion-text-center">
+              <ion-label>
+                <h2>{{ prod.productName }}</h2>
+                <h3>Cost: {{ prod.productCost }}</h3>
+              </ion-label>
+            </div>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+    <ion-fab slot="fixed" vertical="bottom" horizontal="end">
+      <ion-fab-button (click)="openAddProductModal()">
+        <ion-icon name="add"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
+
+          
+

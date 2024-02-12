@@ -1,0 +1,58 @@
+<ion-content>
+  <div class="card-checkout">
+    <ion-card class="card-checkout">
+      <ion-card-content>
+        <ion-grid>
+          <ion-row>
+            <ion-col class="sub-card1" size="6">
+              <ion-card>
+                <img src="assets/landing_pic.jpg">
+              </ion-card>
+            </ion-col>
+
+            <ion-col class="sub-card2" size="6">
+                    <ion-card>
+                      <ion-card-header>
+                        <img class="logo" src="assets/patsy_logo_transparent.png">
+                        <ion-segment color="primary" [(ngModel)]="loginType" value="employee">
+                          <ion-segment-button value="admin">
+                            <ion-label>Admin</ion-label>
+                          </ion-segment-button>
+                          <ion-segment-button value="employee">
+                            <ion-label>Barista</ion-label>
+                          </ion-segment-button>
+                        </ion-segment>
+                      </ion-card-header>
+                      <ion-card-content>
+                        <div *ngIf="loginType == 'admin'">
+                          <div class="adminInput">
+                            <div class="ion-text-center">
+                              <h3><span>USERNAME</span></h3>
+                            </div>
+                              <ion-input [(ngModel)]="adminUser" fill="outline" placeholder="Username"></ion-input>
+                          </div>
+                          <div class="adminInput">
+                            <div class="ion-text-center">
+                              <h3><span>PASSWORD</span></h3>
+                            </div>
+                              <ion-input [(ngModel)]="adminPass" type="password" fill="outline" placeholder="********"></ion-input>
+                          </div>
+                          <ion-button  [disabled]="adminUser == '' || adminPass == ''"  (click)="login()" expand="block">LOGIN</ion-button>
+                        </div>
+                        <div *ngIf="loginType == 'employee'">
+                          <div class="employeeInput">
+                            <div class="ion-text-center">
+                              <h3><span>SCAN ID TO CLOCK-IN</span></h3>
+                            <ion-icon (click)="clockIn()" class="qr-icon" name="qr-code"></ion-icon>
+                          </div>
+                          </div>
+                        </div>
+                      </ion-card-content>
+                    </ion-card>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>

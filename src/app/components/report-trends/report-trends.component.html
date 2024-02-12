@@ -1,0 +1,22 @@
+<ion-header>
+  <ion-toolbar  class="ion-text-center">
+    <ion-buttons slot="start">
+      <ion-button (click)="back()">BACK</ion-button>
+    </ion-buttons>
+      <h1 class="report-header">Product Trend </h1>
+    <ion-buttons slot="end">
+      <ion-button (click)="print()">PRINT</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-card>
+    <ion-card-header>Product Type</ion-card-header>
+    <ion-card-content>
+      <div class="ion-text-center charts">
+        <canvas width="800" height="175" id="typeChart"></canvas>
+      </div>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

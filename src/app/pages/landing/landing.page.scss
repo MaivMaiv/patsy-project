@@ -1,0 +1,40 @@
+.card-checkout {
+    margin: 20px;
+    ion-card {
+      background: #352A28;
+      box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+    }
+  }
+  
+  .total-text {
+    font-family: 'Rubik-Bold', sans-serif;
+    color: #ECECE0;
+  }
+  
+  .logo {
+    width: 37.3%;
+    align-self: center;
+  }
+
+  .adminInput, .employeeInput {
+    color: #ECECE0;
+    font-family: 'Rubik-Bold', sans-serif;
+    margin: 20px;
+  }
+
+  h3 {
+    margin: 10px;
+  }
+
+  ion-button {
+    --background: #FF733A;
+    --color: #ECECE0;
+  }
+
+  ion-segment {
+    --color: #ECECE0;
+  }
+
+  ion-icon {
+    font-size: 193px;
+  }

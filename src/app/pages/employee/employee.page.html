@@ -1,0 +1,32 @@
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <div class="ion-text-center menu-buttons">
+          <p (click)="home()" class="menu-button">Home</p>
+          <p (click)="points()" class="menu-button">Points</p>
+          <p (click)="inventory()" class="menu-button text-pop">Inventory</p>
+          <p (click)="report()" class="menu-button">Report</p>
+          <p class="menu-button">Employee</p>
+          <p (click)="exit()" class="menu-button">Exit</p>
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row class="custom-row">
+      <!-- Scan QR Code -->
+      <ion-col (click)="openEditAdminModal()" class="overview-tab ion-text-center" size="6">
+        <div class="loyalty-card">
+          <ion-card-header><h1>EDIT ADMIN</h1></ion-card-header>
+          <ion-card-content><ion-icon name="log-in"></ion-icon></ion-card-content>
+        </div>
+      </ion-col>
+      <ion-col (click)="openAddEmployeeModal()" class="overview-tab ion-text-center" size="6">
+        <div class="loyalty-card">
+          <ion-card-header><h1>REGISTER BARISTA</h1></ion-card-header>
+          <ion-card-content><ion-icon name="add"></ion-icon></ion-card-content>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+

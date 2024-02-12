@@ -4,27 +4,39 @@ import * as moment from 'moment';
   providedIn: 'root'
 })
 export class ReportService {
-
+  currentMonth: string = '';
   constructor() { }
 
   initializeReports() {
     const prodReport = localStorage.getItem('espressoCounter');
     const salesReport = localStorage.getItem('allTimeCounter');
     const trendReport = localStorage.getItem('mon');
+    const monthReport = localStorage.getItem('January');
+    const bestReport = localStorage.getItem('BestSellers');
     if(prodReport !== null){
       console.log("Item exists: ", prodReport);
     } else {
       this.initializeProdReports();
     }
     if(salesReport !== null) {
-      console.log("Item exists: ", prodReport);
+      console.log("Item exists: ", salesReport);
     } else {
       this.initializeSaleReports();
     }
     if(trendReport !== null){
-      console.log("Item exists: ", prodReport);
+      console.log("Item exists: ", trendReport);
     } else {
       this.initializeTrendReports();
+    }
+    if(monthReport !== null){
+      console.log("Item exists: ", monthReport);
+    } else {
+      this.initializeMonthlyReports();
+    }
+    if(bestReport !== null){
+      console.log("Item exists: ", bestReport);
+    } else {
+      this.initializeBestReports();
     }
   }
 
@@ -56,60 +68,167 @@ export class ReportService {
     localStorage.setItem('sun', JSON.stringify(0));
   }
 
-  detectIfDayEnded(checkoutAmount: any) {
-    setInterval(() => {
-      if (moment().isSameOrAfter(moment().endOf('day'))) {
-        console.log('The day has ended.');
-      localStorage.setItem('dayTimeCounter', JSON.stringify(0));
-      }
-    }, 1000);
-      console.log('The day is still ongoing.');
-      const dayTimeValue = localStorage.getItem('dayTimeCounter');
-      if(dayTimeValue !== null){
-        let counterHolder = parseInt(dayTimeValue, 10);
-        counterHolder = counterHolder + checkoutAmount;
-        localStorage.setItem('dayTimeCounter', counterHolder?.toString());
-      }
+  initializeMonthlyReports() {
+    localStorage.setItem('January', JSON.stringify(0));
+    localStorage.setItem('February', JSON.stringify(0));
+    localStorage.setItem('March', JSON.stringify(0));
+    localStorage.setItem('April', JSON.stringify(0));
+    localStorage.setItem('May', JSON.stringify(0));
+    localStorage.setItem('June', JSON.stringify(0));
+    localStorage.setItem('July', JSON.stringify(0));
+    localStorage.setItem('August', JSON.stringify(0));
+    localStorage.setItem('September', JSON.stringify(0));
+    localStorage.setItem('October', JSON.stringify(0));
+    localStorage.setItem('November', JSON.stringify(0));
+    localStorage.setItem('December', JSON.stringify(0));
   }
 
-  detectIfWeekEnded(checkoutAmount: any) {
-    setInterval(() => {
-      if (moment().isSameOrAfter(moment().endOf('isoWeek'))) {
-        console.log('The week has ended.');
-        localStorage.setItem('weekTimeCounter', JSON.stringify(0));
-      }
-    }, 1000);
-      console.log('The day is still ongoing.');
-      const weekTimeValue = localStorage.getItem('weekTimeCounter');
-      if(weekTimeValue !== null){
-        let counterHolder = parseInt(weekTimeValue, 10);
-        counterHolder = counterHolder + checkoutAmount;
-        localStorage.setItem('weekTimeCounter', counterHolder?.toString());
-      }
+  initializeBestReports() {
+    const emptyArrayOfProduct: any[][] = [];
+    const emptyArrayOfProductToLocalStorage = JSON.stringify(emptyArrayOfProduct);
+    localStorage.setItem('BestSellers', emptyArrayOfProductToLocalStorage);
   }
 
-  detectIfMonthEnded(checkoutAmount: any) {
-    setInterval(() => {
-      if (moment().isSameOrAfter(moment().endOf('month'))) {
-        console.log('The month has ended.');
-        localStorage.setItem('monthTimeCounter', JSON.stringify(0));
-      }
-    }, 1000);
-      console.log('The month is still ongoing.');
-      const monthTimeValue = localStorage.getItem('monthTimeCounter');
-      if(monthTimeValue !== null){
-        let counterHolder = parseInt(monthTimeValue, 10);
-        counterHolder = counterHolder + checkoutAmount;
-        localStorage.setItem('monthTimeCounter', counterHolder?.toString());
-      }
+  createBestReport(product: any) {
+    let retrievedArrayOfProducts: any[][] = [];
+    const bestSellerList = localStorage.getItem('BestSellers');
+    let newProduct: any[][] = [[product, 0]];
+    if(bestSellerList) {
+      retrievedArrayOfProducts = JSON.parse(bestSellerList);
+      retrievedArrayOfProducts.push(...newProduct);
+      localStorage.setItem('BestSellers', JSON.stringify(retrievedArrayOfProducts));
+      console.log(localStorage.getItem('BestSellers'));
+    } else {
+      console.log("No Data Found!");
+    }
   }
 
-  detectIfAllTime(checkoutAmount: any) {
-    const allTimeValue = localStorage.getItem('allTimeCounter');
-    if(allTimeValue !== null){
-      let counterHolder = parseInt(allTimeValue, 10);
-      counterHolder = counterHolder + checkoutAmount;
-      localStorage.setItem('allTimeCounter', counterHolder?.toString());
+  checkBestReports(checkoutProduct: any, checkoutProductAmount: any) {
+    let productOfArrays: any [][] = [];
+    const bestSellerList = localStorage.getItem('BestSellers');
+    if(bestSellerList){
+      productOfArrays = JSON.parse(bestSellerList);
+    }
+    const productIndex = productOfArrays.findIndex(subArrayProduct => subArrayProduct.includes(checkoutProduct));
+    if(productIndex !== -1) {
+      let total = productOfArrays[productIndex][1] + checkoutProductAmount;
+      console.log(total);
+      productOfArrays[productIndex][1] = total;
+    }
+    localStorage.setItem('BestSellers', JSON.stringify(productOfArrays));
+  }
+
+  checkMonth() {
+    const currentDate = new Date();
+    const monthIndex = currentDate.getMonth();
+
+    const monthNames = [
+      'January', 'February', 'March', 'April',
+      'May', 'June', 'July', 'August',
+      'September', 'October', 'November', 'December'
+    ];
+    sessionStorage.setItem('Month', monthNames[monthIndex]);
+    console.log(monthNames[monthIndex]);
+    return monthNames[monthIndex];
+  }
+
+  checkMonthlyCounter() {
+    const currentMonth = sessionStorage.getItem("Month");
+    if(currentMonth == 'January'){
+      const storedValue = localStorage.getItem('January');
+      if(storedValue !== null){
+        let counterHolder = parseInt(storedValue, 10);
+        counterHolder = counterHolder + 1;
+        localStorage.setItem('January', counterHolder?.toString());
+      }
+    }
+    if(currentMonth == 'February'){
+      const storedValue = localStorage.getItem('February');
+      if(storedValue !== null){
+        let counterHolder = parseInt(storedValue, 10);
+        counterHolder = counterHolder + 1;
+        localStorage.setItem('February', counterHolder?.toString());
+      }
+    }
+    if(currentMonth == 'March'){
+      const storedValue = localStorage.getItem('March');
+      if(storedValue !== null){
+        let counterHolder = parseInt(storedValue, 10);
+        counterHolder = counterHolder + 1;
+        localStorage.setItem('March', counterHolder?.toString());
+      }
+    }
+    if(currentMonth == 'April'){
+      const storedValue = localStorage.getItem('April');
+      if(storedValue !== null){
+        let counterHolder = parseInt(storedValue, 10);
+        counterHolder = counterHolder + 1;
+        localStorage.setItem('April', counterHolder?.toString());
+      }
+    }
+    if(currentMonth == 'May'){
+      const storedValue = localStorage.getItem('May');
+      if(storedValue !== null){
+        let counterHolder = parseInt(storedValue, 10);
+        counterHolder = counterHolder + 1;
+        localStorage.setItem('May', counterHolder?.toString());
+      }
+    }
+    if(currentMonth == 'June'){
+      const storedValue = localStorage.getItem('June');
+      if(storedValue !== null){
+        let counterHolder = parseInt(storedValue, 10);
+        counterHolder = counterHolder + 1;
+        localStorage.setItem('June', counterHolder?.toString());
+      }
+    }
+    if(currentMonth == 'July'){
+      const storedValue = localStorage.getItem('July');
+      if(storedValue !== null){
+        let counterHolder = parseInt(storedValue, 10);
+        counterHolder = counterHolder + 1;
+        localStorage.setItem('July', counterHolder?.toString());
+      }
+    }
+    if(currentMonth == 'August'){
+      const storedValue = localStorage.getItem('August');
+      if(storedValue !== null){
+        let counterHolder = parseInt(storedValue, 10);
+        counterHolder = counterHolder + 1;
+        localStorage.setItem('August', counterHolder?.toString());
+      }
+    }
+    if(currentMonth == 'September'){
+      const storedValue = localStorage.getItem('September');
+      if(storedValue !== null){
+        let counterHolder = parseInt(storedValue, 10);
+        counterHolder = counterHolder + 1;
+        localStorage.setItem('September', counterHolder?.toString());
+      }
+    }
+    if(currentMonth == 'October'){
+      const storedValue = localStorage.getItem('October');
+      if(storedValue !== null){
+        let counterHolder = parseInt(storedValue, 10);
+        counterHolder = counterHolder + 1;
+        localStorage.setItem('October', counterHolder?.toString());
+      }
+    }
+    if(currentMonth == 'November'){
+      const storedValue = localStorage.getItem('November');
+      if(storedValue !== null){
+        let counterHolder = parseInt(storedValue, 10);
+        counterHolder = counterHolder + 1;
+        localStorage.setItem('November', counterHolder?.toString());
+      }
+    }
+    if(currentMonth == 'December'){
+      const storedValue = localStorage.getItem('December');
+      if(storedValue !== null){
+        let counterHolder = parseInt(storedValue, 10);
+        counterHolder = counterHolder + 1;
+        localStorage.setItem('December', counterHolder?.toString());
+      }
     }
   }
 
@@ -230,23 +349,23 @@ export class ReportService {
     }
   }
 
-  checkBestSellerReport(checkoutArray: any[]): void {
-    for(let x = 0 ; x < checkoutArray.length ; x++){
-      let bestSellerLocalStorage = localStorage.getItem('BestSellers');
-      if(bestSellerLocalStorage !== null){
-        let bestSellerParsed: [string, number][] = JSON.parse(bestSellerLocalStorage || '[]');
-        let bestSellerSelected = bestSellerParsed.find((item: [string, number]) => item[0] === checkoutArray[x].cartName );
-        if (bestSellerSelected) {
-          bestSellerSelected[1]++;
-          console.log(`Updated item: ${bestSellerSelected}`);
-          console.log(bestSellerLocalStorage);
-        } else {
-          console.log(`Item not found: ${bestSellerSelected}`);
-        }
-        localStorage.setItem('BestSellers', JSON.stringify(bestSellerParsed));
-      }
-    }
-  }
+  // checkBestSellerReport(checkoutArray: any[]): void {
+  //   for(let x = 0 ; x < checkoutArray.length ; x++){
+  //     let bestSellerLocalStorage = localStorage.getItem('BestSellers');
+  //     if(bestSellerLocalStorage !== null){
+  //       let bestSellerParsed: [string, number][] = JSON.parse(bestSellerLocalStorage || '[]');
+  //       let bestSellerSelected = bestSellerParsed.find((item: [string, number]) => item[0] === checkoutArray[x].cartName );
+  //       if (bestSellerSelected) {
+  //         bestSellerSelected[1]++;
+  //         console.log(`Updated item: ${bestSellerSelected}`);
+  //         console.log(bestSellerLocalStorage);
+  //       } else {
+  //         console.log(`Item not found: ${bestSellerSelected}`);
+  //       }
+  //       localStorage.setItem('BestSellers', JSON.stringify(bestSellerParsed));
+  //     }
+  //   }
+  // }
 
   refreshPage() {
     const status = sessionStorage.getItem('isRefreshed');

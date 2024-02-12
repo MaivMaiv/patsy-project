@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
+import { ReportService } from 'src/app/services/report.service';
 
 @Component({
   selector: 'app-add-inventory',
@@ -15,7 +16,7 @@ export class AddInventoryComponent  implements OnInit {
   };
   isUploaded: boolean = false;
   bestSellerArray: any [] = [];
-  constructor(private modalController: ModalController) { }
+  constructor(private modalController: ModalController, private reportService: ReportService) { }
 
   ngOnInit() {
   }
@@ -64,14 +65,7 @@ export class AddInventoryComponent  implements OnInit {
   }
 
   add() {
-    let bestSellerLocalStorage = localStorage.getItem('BestSellers');
-    let bestSellerParsed: [string, number][] = JSON.parse(bestSellerLocalStorage || '[]');
-    let newBestSeller: any[] = bestSellerParsed;
-    newBestSeller =  [ this.product.productName, 0];
-    console.log(newBestSeller);
-    this.bestSellerArray.push(newBestSeller);
-    let bestSellerStorage = JSON.stringify(this.bestSellerArray);
-    localStorage.setItem('BestSellers', bestSellerStorage);
+    this.reportService.createBestReport(this.product.productName);
     this.modalController.dismiss({ modifiedProduct: this.product });
   }
 

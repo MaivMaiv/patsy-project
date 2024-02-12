@@ -1,0 +1,86 @@
+<ion-header>
+  <ion-toolbar  class="ion-text-center">
+    <ion-buttons slot="start">
+      <ion-button (click)="cancel()">CANCEL</ion-button>
+    </ion-buttons>
+    <h1 class="inventory-text">Patsy Loyalty Member</h1>
+    <ion-buttons slot="end">
+      <ion-button (click)="add()">Add</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div class="ion-text-center">
+    <ion-item>
+    <ion-input
+      [(ngModel)]="patsy_employee.e_name"
+      class="details-text"
+      label="Full Name"
+      labelPlacement="floating"
+      placeholder="Name"
+    ></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-input
+      id="open-picker"
+      [(ngModel)]="patsy_employee.e_date"
+      class="details-text"
+      label="Birthdate"
+      labelPlacement="floating"
+      placeholder="Birthdate"
+    ></ion-input>
+    <ion-picker
+      trigger="open-picker"
+      [columns]="pickerColumns"
+      [buttons]="pickerButtons"
+    ></ion-picker>
+  </ion-item>
+  <ion-item>
+    <div style="width: 40%">
+    <input
+      class="button-text"
+      type="file"
+      (change)="handleImageUpload($event)"
+      accept="image/*"
+    />
+  </div>
+    <div *ngIf="isUploaded">
+      <div style="width: 60%" *ngFor="let image of patsy_employee.e_img">
+        <img
+          id="imageInput"
+          [src]="image"
+          style="width: 100%; padding: 5px; height: 100%"
+        />
+      </div>
+    </div>
+    <div *ngIf="!isUploaded">
+      <ion-card class="upload-card" color="dark" button>
+        <ion-card-header>
+          <ion-card-subtitle class="ion-text-center">
+            Click the choose file to upload an image
+          </ion-card-subtitle>
+        </ion-card-header>
+        <ion-card-content></ion-card-content>
+      </ion-card>
+    </div>
+  </ion-item>
+    <ion-row class="ion-justify-content-center">
+      <ion-button
+        (click)="reset()"
+        class="button-text"
+        color="danger"
+        fill="clear"
+        >Reset</ion-button
+      >
+    </ion-row>
+  </div>
+</ion-content>
+
+
+          
+
+
+
+ 
+

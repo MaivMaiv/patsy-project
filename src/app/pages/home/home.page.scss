@@ -1,0 +1,239 @@
+
+ion-searchbar.patsy_search {
+  --background: #352A28;
+  --color: #ECECE0;
+  --placeholder-color: #ECECE0;
+  --icon-color: #ECECE0;
+  --clear-button-color: #ECECE0;
+  font-family: 'Rubik-Black', sans-serif;
+  --border-radius: 4px;
+}
+
+ion-searchbar {
+  --box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+}
+
+ion-searchbar.ios.patsy_search {
+  --cancel-button-color: #ECECE0;
+}
+
+ion-searchbar.md.patsy_search {
+  --cancel-button-color: #ECECE0;
+}
+
+ion-icon {
+  color: #ECECE0;
+}
+
+.item-list {
+  color: #ECECE0;
+}
+
+.menu-button {
+  font-weight: light;
+  color: #ECECE0;
+}
+
+ion-item {
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+}
+
+.main-condition {
+  color: black;
+  text-align: center;
+}
+
+.cart-cost-list {
+  color: #ECECE0;
+}
+
+.cart-name-list {
+  color: #ECECE0;
+}
+
+.cart-cost-amount {
+  color: #ECECE0;
+}
+
+h2 {
+  color: #ECECE0;
+  font-family: 'Rubik-Bold', sans-serif;
+  white-space: nowrap;
+  overflow: clip;
+  text-overflow: clip;
+}
+
+h3 {
+  color: #ECECE0;
+  font-family: 'Rubik-Medium', sans-serif;
+    white-space: nowrap;
+  overflow: clip;
+  text-overflow: clip;
+}
+
+.image-prod {
+  border-radius: 10px;
+}
+
+.checkout-button {
+  height: 100%;
+  width: 100%;
+  border-radius: 10px;
+  --box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+}
+
+.filter-button {
+  --background: #352A28;
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+}
+
+.menu-buttons {
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  background:#352A28;
+  border-radius: 50px;
+  font-family: 'Rubik-Black', sans-serif;
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+}
+
+ion-icon {
+  --ionicon-stroke-width: 35px;
+}
+
+.item-cart {
+  --background: #352A28;
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+  border-radius: 5px;
+}
+
+.total-card {
+  background-color: #352A28;
+  color: #ECECE0;
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+}
+
+.checkout-button {
+  --background: #352A28;
+  height: 50%;
+  padding: 10px;
+  color: #ECECE0;
+  font-family: 'Rubik-Black', sans-serif;
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+}
+
+#card-products {
+  border-radius: 10px;
+  background-color: #352A28;
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+}
+
+@media only screen and (max-width: 480px) and (orientation: landscape) {
+  /* CSS styles for Android phones with narrow landscape width */
+}
+
+@media only screen and (min-width: 481px) and (max-width: 800px) and (orientation: landscape) {
+
+}
+
+@media only screen and (min-width: 801px) and (max-width: 1024px) and (orientation: landscape) {
+  h1 {
+    font-size: 18px;
+  }
+  .total-card {
+    height: 40px;
+    width: 90%;
+  }
+
+  #card-products {
+    padding-bottom:2px;
+    padding-left:2px;
+    padding-right:2px;
+    padding-top: 2px;
+    margin: 4px;
+  }
+
+  .image-prod{
+    padding: 8px;
+    width: 100%;
+    height: 100px ;
+  }
+
+  .checkout-button {
+    font-size: 15px;
+  }
+
+  .filter-button {
+    width: 11.9%;
+    height: 50px;
+    font-size: 20px;
+  }
+  .menu-button {
+    width: 200px;
+    font-size: 15px;
+  }
+
+  .menu-buttons {
+    width: 100%;
+    height: 50px;
+  }
+  
+  h2 {
+    font-size: 15px;
+  }
+  
+  h3 {
+    font-size: 13px;
+  }
+}
+
+@media only screen and (min-width: 1025px) and (orientation: landscape) {
+  h1 {
+    font-size: 24px;
+  }
+  .total-card {
+    height: 60px;
+    width: 90%;
+  }
+
+  #card-products {
+    padding-bottom:4px;
+    padding-left:4px;
+    padding-right:4px;
+    padding-top: 4px;
+    margin: 8px;
+  }
+
+  .image-prod{
+    padding: 8px;
+    width: 100%;
+    height: 200px ;
+  }
+
+  .checkout-button {
+    font-size: 30px;
+  }
+
+  .filter-button {
+    width: 11.9%;
+    height: 50px;
+    font-size: 20px;
+  }
+  .menu-button {
+    width: 200px;
+    font-size: 15px;
+  }
+
+  .menu-buttons {
+    width: 100%;
+    height: 50px;
+  }
+  
+  h2 {
+    font-size: 20px;
+  }
+  
+  h3 {
+    font-size: 18px;
+  }
+}

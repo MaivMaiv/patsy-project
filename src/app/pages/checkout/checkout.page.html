@@ -1,0 +1,181 @@
+<ion-content>
+  <div class="card-checkout">
+    <ion-card class="card-checkout">
+      <ion-card-content>
+        <ion-grid>
+          <ion-row>
+            <ion-col class="sub-card1" size="6">
+              <ion-card class="card-checkout-details">
+                <ion-card-header>
+                  <ion-card-title>Checkout:</ion-card-title>
+                </ion-card-header>
+                <ion-card-content>
+                  <ion-grid>
+                    <ion-row
+                      *ngFor="let check of checkoutProducts; let i = index"
+                      size="8"
+                      size="3"
+                    >
+                      <ion-col size="4">
+                        <img
+                          class="checkout-img"
+                          alt="Silhouette of mountains"
+                          [src]="check.cartImage"
+                        />
+                      </ion-col>
+                      <ion-col size="6">
+                        <div class="product-details">
+                        <h2>Product Name:</h2>
+                        <h1>{{check.cartName}} x {{check.cartNumber}}</h1>
+                      </div>
+                      <div class="product-details">
+                        <h2>Product Cost:</h2>
+                        <h1>P {{check.cartCost}}.00</h1>
+                      </div>
+                      </ion-col>
+                    </ion-row>
+                  </ion-grid>
+                </ion-card-content>
+              </ion-card>
+            </ion-col>
+
+            <ion-col class="sub-card2" size="6">
+              <ion-card class="card-userDetails">
+                <ion-card-content>
+                  <div class="payment-block">
+                    <div class="ion-text-center">
+                      <h3><span>Customer Type</span></h3>
+                    </div>
+                    <ion-segment
+                      color="warning"
+                      [(ngModel)]="checkoutDetails.customerType"
+                    >
+                      <ion-segment-button value="Member">
+                        <ion-label>Member</ion-label>
+                      </ion-segment-button>
+                      <ion-segment-button value="Guest">
+                        <ion-label>Guest</ion-label>
+                      </ion-segment-button>
+                    </ion-segment>
+                    <br />
+                    <div
+                      *ngIf="checkoutDetails.customerType == 'Guest'"
+                      classs="payment-details"
+                    >
+                    <div class="ion-text-center">
+                      <h3><span>Buyer Details</span></h3>
+                    </div>
+                      <ion-input
+                        [(ngModel)]="checkoutDetails.checkoutCustomer"
+                        aria-label="Custom input"
+                        placeholder="Enter Nickname"
+                        class="custom"
+                        [counter]="true"
+                        [maxlength]="20"
+                      ></ion-input>
+                    </div>
+                    <div
+                      *ngIf="checkoutDetails.customerType == 'Member'"
+                      classs="payment-details"
+                    >
+                    <div class="ion-text-center">
+                      <h3 *ngIf="!memberHasBeenScanned" class="divider">
+                        <span>Click to Scan Member</span>
+                      </h3>
+                      <h3 *ngIf="memberHasBeenScanned" class="divider">
+                        <ion-card color="success">
+                          <ion-card-header>
+                            <h2 class="loyalty-header">WELCOME!</h2>
+                            <h1 class="loyalty-subheader">{{memberName}}</h1>
+                          </ion-card-header>
+                          <ion-card-content>
+                            <h2 class="loyalty-header">Points</h2>
+                            <h1 class="loyalty-subheader">{{memberPoints}} + {{memberPointsToBeAdded}}</h1>
+                          </ion-card-content>
+                        </ion-card>
+                      </h3>
+                      <div *ngIf="!memberHasBeenScanned" class="ion-card-scan">
+                        <ion-icon
+                          (click)="scanProfile()"
+                          class="qr-icon"
+                          name="qr-code"
+                        ></ion-icon>
+                      </div>
+                    </div>
+                  </div>
+                    <br />
+                    <div class="ion-text-center">
+                      <h3><span>Payment Mode</span></h3>
+                    </div>
+                    <ion-segment
+                      color="warning"
+                      [(ngModel)]="checkoutDetails.transactionType"
+                    >
+                      <ion-segment-button value="Cash">
+                        <ion-label>Cash</ion-label>
+                      </ion-segment-button>
+                      <ion-segment-button value="Gcash">
+                        <ion-label>Gcash</ion-label>
+                      </ion-segment-button>
+                    </ion-segment>
+                  </div>
+                  <div
+                    *ngIf="checkoutDetails.transactionType == 'Gcash'"
+                    classs="payment-details"
+                  >
+                  <div class="ion-text-center">
+                    <h3><span>Gcash Number</span></h3>
+                  </div>
+                    <ion-input
+                      [(ngModel)]="checkoutDetails.checkoutNumber"
+                      aria-label="Custom input"
+                      placeholder="Enter Gcash Number"
+                      [counter]="true"
+                      [maxlength]="11"
+                    ></ion-input>
+                  <div class="ion-text-center">
+                    <h3><span>Gcash Paid Amount</span></h3>
+                  </div>
+                  <ion-input
+                    [(ngModel)]="checkoutDetails.checkoutPaid"
+                    aria-label="Custom input"
+                    placeholder="Enter Paid Amount"
+                    [counter]="true"
+                    [maxlength]="4"
+                  ></ion-input>
+                </div>
+                <div
+                *ngIf="checkoutDetails.transactionType == 'Cash'"
+                classs="payment-details"
+              >
+              <div class="ion-text-center">
+              <h3><span>Paid Amount</span></h3>
+              </div>
+              <ion-input
+                [(ngModel)]="checkoutDetails.checkoutPaid"
+                aria-label="Custom input"
+                placeholder="Enter Paid Amount"
+                class="custom"
+                [counter]="true"
+                [maxlength]="4"
+              ></ion-input>
+            </div>
+                  <br />
+                  <ion-card-subtitle class="total-text">TOTAL:</ion-card-subtitle>
+                  <ion-card-title class="total-text"> P {{checkoutAmount}}.00</ion-card-title>
+                  <ion-button
+                    [disabled]="!checkoutDetails.customerType || !checkoutDetails.checkoutCustomer || !checkoutDetails.transactionType || checkoutDetails.checkoutPaid < checkoutAmount"
+                    (click)="placeOrder(checkoutAmount)"
+                    color="success"
+                    expand="block"
+                    >Place Order</ion-button
+                  >
+                </ion-card-content>
+              </ion-card>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>

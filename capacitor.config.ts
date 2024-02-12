@@ -8,7 +8,7 @@ const config: CapacitorConfig = {
   },
 
   appId: 'io.ionic.starter',
-  appName: 'Patsy Project',
+  appName: 'Patsy App',
   webDir: 'www',
   server: {
     androidScheme: 'https'

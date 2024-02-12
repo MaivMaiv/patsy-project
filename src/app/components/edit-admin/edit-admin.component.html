@@ -1,0 +1,54 @@
+<ion-header>
+  <ion-toolbar  class="ion-text-center">
+    <ion-buttons slot="start">
+      <ion-button (click)="cancel()">CANCEL</ion-button>
+    </ion-buttons>
+    <h1 class="inventory-text">Edit Admin Patsy</h1>
+    <ion-buttons slot="end">
+      <ion-button [disabled]="!patsy_admin.username || !patsy_admin.password || patsy_admin.password !== patsy_admin.confirm" (click)="update()">Update</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div class="ion-text-center">
+    <ion-item>
+    <ion-input
+      [(ngModel)]="patsy_admin.username"
+      class="details-text"
+      label="Username"
+      type="text"
+      labelPlacement="floating"
+      [placeholder]="currentUsername"
+    ></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-input
+      [(ngModel)]="patsy_admin.password"
+      class="details-text"
+      type="password"
+      label="Password"
+      labelPlacement="floating"
+      [placeholder]="currentPassword"
+    ></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-input
+      [(ngModel)]="patsy_admin.confirm"
+      class="details-text"
+      type="password"
+      label="Confirm Password"
+      labelPlacement="floating"
+      placeholder="******"
+    ></ion-input>
+  </ion-item>
+  </div>
+</ion-content>
+
+
+          
+
+
+
+ 
+

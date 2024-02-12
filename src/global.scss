@@ -42,6 +42,19 @@ ion-modal {
     --color: white;
   }
 
+.custom-alert-button {
+  color: #fff;
+  background-color: #007bff;
+}
+
+.custom-alert-button.no {
+  color: #fff;
+}
+
+.custom-alert-button.yes {
+  color: #fff;
+}
+
   :root {
     --ion-background-color:#FF733A;
   }

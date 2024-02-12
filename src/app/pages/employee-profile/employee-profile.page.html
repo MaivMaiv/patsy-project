@@ -1,0 +1,20 @@
+<ion-content>
+  <ion-card #cardContent color="light" id="receipt-card">
+    <div class="ion-text-center">
+      <img src="assets\patsy_employee.png" />
+    </div>
+    <div class="ion-text-center member-data">
+      <img class="employeeImage" [src]="employee_Image">
+      <h1>{{employee_Name}}</h1>
+      <p>BARISTA</p>
+      <qrcode [width]="150" [qrdata]="employee_ID"></qrcode>
+  </div>
+  </ion-card>
+  <div class="ion-text-center">
+    <a id="downloadLink" style="display: none"></a>
+    <ion-button (click)="captureScreenshot()" color="warning"
+      >Save as Image</ion-button
+    >
+    <ion-button (click)="done()" color="success">Done</ion-button>
+  </div>
+</ion-content>

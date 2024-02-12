@@ -1,0 +1,57 @@
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <div class="ion-text-center menu-buttons">
+          <p (click)="home()" class="menu-button">Home</p>
+          <p (click)="points()" class="menu-button">Points</p>
+          <p (click)="inventory()" class="menu-button text-pop">Inventory</p>
+          <p (click)="report()" class="menu-button">Report</p>
+          <p (click)="employee()" class="menu-button">Employee</p>
+          <p (click)="exit()" class="menu-button">Exit</p>
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row class="custom-row">
+      <!-- Scan QR Code -->
+      <ion-col class="overview-tab ion-text-center" size="4">
+        <div class="loyalty-card">
+          <ion-card-header><h1>SALES REPORT</h1></ion-card-header>
+          <ion-card-content><ion-icon name="cash"></ion-icon></ion-card-content>
+        </div>
+      </ion-col>
+      <ion-col class="overview-tab ion-text-center" size="4">
+        <div class="loyalty-card">
+          <ion-card-header><h1>EMPLOYEE REPORT</h1></ion-card-header>
+          <ion-card-content><ion-icon name="shirt"></ion-icon></ion-card-content>
+        </div>
+      </ion-col>
+      <ion-col (click)="reportTrends()" class="overview-tab ion-text-center" size="4">
+        <div class="loyalty-card">
+          <ion-card-header><h1>TRENDS INFOGRAPHIC</h1></ion-card-header>
+          <ion-card-content><ion-icon name="bar-chart"></ion-icon></ion-card-content>
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row class="custom-row">
+      <!-- Scan QR Code -->
+      <ion-col (click)="reportVisits()" class="overview-tab ion-text-center" size="4">
+        <div class="loyalty-card">
+          <ion-card-header><h1>CUSTOMER INFOGRAPHIC</h1></ion-card-header>
+          <ion-card-content><ion-icon name="trending-up"></ion-icon></ion-card-content>
+        </div>
+      </ion-col>
+      <ion-col (click)="reportBest()" class="overview-tab ion-text-center" size="4">
+        <div class="loyalty-card">
+          <ion-card-header><h1>BEST SELLER INFOGRAPHIC</h1></ion-card-header>
+          <ion-card-content><ion-icon name="trophy"></ion-icon></ion-card-content>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>
+
+
+          
+

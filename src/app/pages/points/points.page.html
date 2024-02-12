@@ -1,0 +1,36 @@
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <div *ngIf="userToken == 'admin'" class="ion-text-center menu-buttons">
+          <p class="menu-button">Home</p>
+          <p (click)="points()" class="menu-button">Points</p>
+          <p (click)="inventory()" class="menu-button">Inventory</p>
+          <p (click)="report()" class="menu-button">Report</p>
+          <p (click)="employee()" class="menu-button">Employee</p>
+          <p (click)="exit()" class="menu-button">Logout</p>
+        </div>
+        <div *ngIf="userToken == 'barista'" class="ion-text-center menu-buttons">
+          <p (click)="home()" class="menu-button">Home</p>
+          <p class="menu-button">Points</p>
+          <p (click)="exit()" class="menu-button">Clockout</p>
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row class="custom-row">
+      <!-- Scan QR Code -->
+      <ion-col (click)="scanProfile()" class="overview-tab ion-text-center" size="6">
+        <div class="loyalty-card">
+          <ion-card-header><h1>SCAN QR CODE</h1></ion-card-header>
+          <ion-card-content><ion-icon name="qr-code"></ion-icon></ion-card-content>
+        </div>
+      </ion-col>
+      <ion-col (click)="openAddMemberModal()" class="overview-tab ion-text-center" size="6">
+        <div class="loyalty-card">
+          <ion-card-header><h1>LOYALTY MEMBERS</h1></ion-card-header>
+          <ion-card-content><ion-icon name="people"></ion-icon></ion-card-content>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

@@ -1,0 +1,82 @@
+<ion-header>
+  <ion-toolbar  class="ion-text-center">
+    <ion-buttons slot="start">
+      <ion-button (click)="back()">BACK</ion-button>
+    </ion-buttons>
+      <h1 class="report-header">Product Trend </h1>
+    <ion-buttons slot="end">
+      <ion-button (click)="print()">PRINT</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-grid>
+    <ion-row>
+      <ion-col size="4">
+      </ion-col>
+      <ion-col size="4">
+        <ion-card>
+         <ion-card-header>1. {{ this.sortedBestSellerProduct.prod1}}</ion-card-header>
+         <ion-card-content>{{ this.sortedBestSellerAmount.num1}} Orders</ion-card-content>
+        </ion-card>
+      </ion-col>
+      <ion-col size="4">
+      </ion-col>
+      <ion-col size="4">
+        <ion-card>
+          <ion-card-header>2. {{ this.sortedBestSellerProduct.prod2}}</ion-card-header>
+          <ion-card-content>{{ this.sortedBestSellerAmount.num2}} Orders</ion-card-content>
+         </ion-card>
+      </ion-col>
+      <ion-col size="4">
+        <ion-card>
+          <ion-card-header>3. {{ this.sortedBestSellerProduct.prod3}}</ion-card-header>
+          <ion-card-content>{{ this.sortedBestSellerAmount.num3}} Orders</ion-card-content>
+         </ion-card>
+      </ion-col>
+      <ion-col size="4">
+        <ion-card>
+          <ion-card-header>4. {{ this.sortedBestSellerProduct.prod4}}</ion-card-header>
+          <ion-card-content>{{ this.sortedBestSellerAmount.num4}} Orders</ion-card-content>
+         </ion-card>
+      </ion-col>
+      <ion-col size="4">
+        <ion-card>
+          <ion-card-header>5. {{ this.sortedBestSellerProduct.prod5}}</ion-card-header>
+          <ion-card-content>{{ this.sortedBestSellerAmount.num5}} Orders</ion-card-content>
+         </ion-card>
+      </ion-col>
+      <ion-col size="4">
+        <ion-card>
+          <ion-card-header>6. {{ this.sortedBestSellerProduct.prod6}}</ion-card-header>
+          <ion-card-content>{{ this.sortedBestSellerAmount.num6}} Orders</ion-card-content>
+         </ion-card>
+      </ion-col>
+      <ion-col size="4">
+        <ion-card>
+          <ion-card-header>7. {{ this.sortedBestSellerProduct.prod7}}</ion-card-header>
+          <ion-card-content>{{ this.sortedBestSellerAmount.num7}} Orders</ion-card-content>
+         </ion-card>
+      </ion-col>
+      <ion-col size="4">
+        <ion-card>
+          <ion-card-header>8. {{ this.sortedBestSellerProduct.prod8}}</ion-card-header>
+          <ion-card-content>{{ this.sortedBestSellerAmount.num8}} Orders</ion-card-content>
+         </ion-card>
+      </ion-col>
+      <ion-col size="4">
+        <ion-card>
+          <ion-card-header>9. {{ this.sortedBestSellerProduct.prod9}}</ion-card-header>
+          <ion-card-content>{{ this.sortedBestSellerAmount.num9}} Orders</ion-card-content>
+         </ion-card>
+      </ion-col>
+      <ion-col size="4">
+        <ion-card>
+          <ion-card-header>10. {{ this.sortedBestSellerProduct.prod10}}</ion-card-header>
+          <ion-card-content>{{ this.sortedBestSellerAmount.num10}} Orders</ion-card-content>
+         </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
