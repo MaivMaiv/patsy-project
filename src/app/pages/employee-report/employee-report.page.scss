@@ -1,17 +1,61 @@
-.my-custom-datatable {
-    border: 1px solid #ccc;
-    border-radius: 5px;
+.card-checkout {
+  margin: 50px;
+  ion-card {
+    background: #352A28;
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
   }
-  
-  .my-custom-datatable .datatable-header {
-    background-color: #f2f2f2;
-    font-weight: bold;
-  }
-  
-  .my-custom-datatable .datatable-row {
-    background-color: #fff;
-  }
-  
-  .my-custom-datatable .datatable-row:hover {
-    background-color: #f9f9f9;
-  }
+}
+h1 {
+  font-family: 'Rubik-bold', sans-serif;
+  color: whitesmoke;
+  justify-content: center;
+  display: flex;
+  font-size: 100px;
+}
+.material {
+  font-size: large;
+  font-family: 'Rubik-Medium', sans-serif;
+  color: #ECECE0;
+}
+.employee-filter {
+  display: flex;
+  justify-content: center;
+}
+.menu-buttons {
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 80px;
+  background:#352A28;
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+  font-family: 'Rubik-Black', sans-serif;
+}
+.menu-button {
+  width: 200px;
+  height: fit-content;
+  font-weight: light;
+  color: white;
+}
+ion-select {
+  --placeholder-opacity: 1;
+  width: fit-content;
+  justify-content: center;
+}
+
+ion-select::part(placeholder),
+ion-select::part(text) {
+  color: white;
+  font-size: 20px;
+  width: max-content;
+  font-family: 'Rubik-medium', sans-serif;
+  opacity: 0.8;
+}
+
+ion-select::part(label) {
+  font-size: 24px;
+  color: white;
+  width: max-content;
+  font-family: 'Rubik-bold', sans-serif;
+}

@@ -88,8 +88,15 @@ export class HomePage {
   async exit() {
     const confirmation = await this.patsyData.confirmationAlertMessage('Are you sure you want to exit?')
     if(confirmation) {
-      this.router.navigate(['landing']);
-      sessionStorage.removeItem('sessionToken');
+      const currentEmployee = localStorage.getItem('CurrentBarista');
+      console.log(currentEmployee);
+      if(currentEmployee) {
+        this.reportService.clockOut(currentEmployee);
+        this.router.navigate(['landing']);
+        sessionStorage.removeItem('sessionToken');
+      } else {
+        this.router.navigate(['landing']);
+      }
     }
   }
   
@@ -170,10 +177,11 @@ export class HomePage {
     }
   }
 
-  async openProductModal(name: string, image: any, cost: any, type: any) {
+  async openProductModal(name: string, image: any, cost: any, type: any, index: any) {
     const message = name;
     const modal = await this.modalController.create({
       component: ProductSettingsComponent,
+      backdropDismiss: false,
       cssClass: 'product-options-modal',
       componentProps: {
         modalTitle: message,
@@ -194,6 +202,7 @@ export class HomePage {
   async editProductModal(name: any, number: any) {
     const modal = await this.modalController.create({
       component: EditCartAmountComponent,
+      backdropDismiss: false,
       componentProps: {
         modalAmount: number
       }

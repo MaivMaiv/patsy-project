@@ -34,7 +34,7 @@ export class AddEmployeeComponent  implements OnInit {
         { text: 'October', value: 10 },
         { text: 'November', value: 11 },
         { text: 'December', value: 12 },
-      ],
+      ], selectedIndex: 8
     },
     {
       name: 'day',
@@ -70,7 +70,7 @@ export class AddEmployeeComponent  implements OnInit {
         { text: '29', value: '29' },
         { text: '30', value: '30' },
         { text: '31', value: '31' },
-      ],
+      ], selectedIndex: 19
     },
     {
       name: 'year',
@@ -156,16 +156,18 @@ export class AddEmployeeComponent  implements OnInit {
         { text: '2028', value: 2028 },
         { text: '2029', value: 2029 },
         { text: '2030', value: 2030 },
-      ],
+      ], selectedIndex: 50
     },
   ];
   public pickerButtons = [
     {
       text: 'Cancel',
       role: 'cancel',
+      cssClass: 'picker-button'
     },
     {
       text: 'Confirm',
+      cssClass: 'picker-button',
       handler: (value: {
         month: { text: any };
         day: { text: any };
@@ -183,6 +185,9 @@ export class AddEmployeeComponent  implements OnInit {
   }
 
   handleImageUpload(event: any) {
+    if(this.isUploaded == true) {
+      this.patsy_employee.e_img.length = 0;
+    }
     const file = event.target.files[0];
     if (file) {
       const reader = new FileReader();
@@ -213,6 +218,7 @@ export class AddEmployeeComponent  implements OnInit {
     const id = this.idGeneratorService.generateEmployeeID();
     console.log(id);
     this.patsy_employee.e_id = id;
+    this.isUploaded = false;
     this.modalController.dismiss({
       addEmployee: this.patsy_employee
     })

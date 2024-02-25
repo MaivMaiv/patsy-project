@@ -20,6 +20,7 @@ export class PatsyDataService {
       subHeader: subheader,
       message: message,
       buttons: [button],
+      cssClass: 'alertMessage'
     });
 
     await alert.present();

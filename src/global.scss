@@ -11,7 +11,6 @@
 
 /* Core CSS required for Ionic components to work properly */
 @import "@ionic/angular/css/core.css";
-
 /* Basic CSS for apps built with Ionic */
 @import "@ionic/angular/css/normalize.css";
 @import "@ionic/angular/css/structure.css";
@@ -24,9 +23,30 @@
 @import "@ionic/angular/css/text-alignment.css";
 @import "@ionic/angular/css/text-transformation.css";
 @import "@ionic/angular/css/flex-utils.css";
-
+.datatable-header {
+  font-family: 'Rubik-bold', sans-serif;
+  font-size: xx-large;
+  text-align: center;
+  background: #1b1514;
+}
+.datatable-row-odd {
+ background: #5d5553;
+}
+.datatable-row-even {
+  background: #493f3e;
+ }
+.datatable-body-cell {
+  margin: 15px;
+  text-align: center;
+  font-size: large;
+  font-family: 'Rubik-medium', sans-serif;
+}
+.selected-option {
+  color: #000000;
+  font-family: 'Rubik-Medium', sans-serif;
+}
 ion-modal {
-    --height: 80%;
+    --height: 60%;
     --width: 50%;
     --border-radius: 16px;
     --box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
@@ -42,17 +62,28 @@ ion-modal {
     --color: white;
   }
 
-.custom-alert-button {
-  color: #fff;
-  background-color: #007bff;
+
+
+.alertMessage .alert-wrapper {
+  background-color: #352A28;
+  border-radius: 10px;
+  width: 600px;
 }
 
-.custom-alert-button.no {
-  color: #fff;
+.alertMessage .alert-title,
+.alertMessage .alert-sub-title,
+.alertMessage .alert-button-group,
+.alertMessage .alert-message{
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  color: #FF733A;
+  font-size: 23px;
 }
 
-.custom-alert-button.yes {
-  color: #fff;
+.alertMessage .alert-button-group .alert-button {
+  color: white;
+  font-size: 20px;
 }
 
   :root {

@@ -16,6 +16,7 @@ export class EmployeeProfilePage implements OnInit {
   employee_ID: string = '';
   employee_Name: string = '';
   employee_Image: any;
+  employeeMasterList : any[] = [];
   constructor(
     private route: ActivatedRoute,
     private router: Router,
@@ -35,6 +36,7 @@ export class EmployeeProfilePage implements OnInit {
         this.employee_Image = params['keyImg'];
       }
     });
+    this.initializeMasterList();
   }
   async captureScreenshot() {
     const element = this.cardContent.nativeElement;
@@ -42,7 +44,18 @@ export class EmployeeProfilePage implements OnInit {
       await this.saveCanvasImage(canvas);
     });
   }
-
+  initializeMasterList() {
+    const employeeData = localStorage.getItem('MasterList');
+    console.log(employeeData);
+    if (employeeData) {
+      this.employeeMasterList = JSON.parse(employeeData);
+      this.employeeMasterList.push(this.employee_Name);
+      localStorage.setItem('MasterList', JSON.stringify(this.employeeMasterList));
+    } else {
+      this.employeeMasterList.push(this.employee_Name);
+      localStorage.setItem('MasterList', JSON.stringify(this.employeeMasterList));
+    }
+  }
   async saveCanvasImage(canvas: any) {
     const dataUrl = canvas.toDataURL('image/png');
     const fileName = 'patsy-'+ this.employee_Name + '.png';

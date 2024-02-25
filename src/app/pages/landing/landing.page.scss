@@ -38,3 +38,9 @@
   ion-icon {
     font-size: 193px;
   }
+
+  .scanner-active {
+    background: transparent !important;
+    --background: transparent !important;
+    --ion-background-color: transparent !important;
+}

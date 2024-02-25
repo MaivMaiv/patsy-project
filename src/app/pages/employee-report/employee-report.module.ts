@@ -14,7 +14,8 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
     FormsModule,
     IonicModule,
     EmployeeReportPageRoutingModule,
-    NgxDatatableModule
+    NgxDatatableModule,
+   
   ],
   declarations: [EmployeeReportPage]
 })

@@ -13,10 +13,13 @@ export class AddInventoryComponent  implements OnInit {
     productCost: '',
     productType: '',
     productImage: [],
+    producStatus: 'true'
   };
   isUploaded: boolean = false;
   bestSellerArray: any [] = [];
-  constructor(private modalController: ModalController, private reportService: ReportService) { }
+  constructor(private modalController: ModalController, private reportService: ReportService) { 
+    
+  }
 
   ngOnInit() {
   }
@@ -27,6 +30,7 @@ export class AddInventoryComponent  implements OnInit {
       productCost: '',
       productType: '',
       productImage: [],
+      productStatus: 'true'
     };
   }
 
@@ -35,6 +39,7 @@ export class AddInventoryComponent  implements OnInit {
     this.product.productCost = '';
     this.product.productType = '';
     this.product.productImage.length = 0;
+    this.product.producStatus = 'true';
     const imageInput = document.getElementById(
       'imageInput'
     ) as HTMLInputElement;
@@ -52,6 +57,9 @@ export class AddInventoryComponent  implements OnInit {
     );
   }
   handleImageUpload(event: any) {
+    if(this.isUploaded == true) {
+      this.product.productImage.length = 0;
+    }
     const file = event.target.files[0];
     if (file) {
       const reader = new FileReader();
@@ -66,10 +74,12 @@ export class AddInventoryComponent  implements OnInit {
 
   add() {
     this.reportService.createBestReport(this.product.productName);
+    this.isUploaded = false;
     this.modalController.dismiss({ modifiedProduct: this.product });
   }
 
   cancel() {
+    this.clearButton();
     this.modalController.dismiss();
   }
 }

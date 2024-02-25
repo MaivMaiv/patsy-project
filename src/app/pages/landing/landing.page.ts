@@ -3,7 +3,7 @@ import { Route, Router } from '@angular/router';
 import { BarcodeScanner } from '@capacitor-community/barcode-scanner';
 import { DateService } from 'src/app/services/date.service';
 import { PatsyDataService } from 'src/app/services/patsy-data.service';
-
+import { ReportService } from 'src/app/services/report.service';
 @Component({
   selector: 'app-landing',
   templateUrl: './landing.page.html',
@@ -15,11 +15,15 @@ export class LandingPage implements OnInit {
   adminPass = '';
   employeeName: string = '';
   status: boolean = false;
+  isSuccessful: boolean = false;
+  currentTime: string = '';
+  currentDate: string = '';
   adminCredentials: any = {
     username: '',
     password: ''
   }
-  constructor(private dateService: DateService, private patsyData: PatsyDataService, private router: Router) {
+  timer: any;
+  constructor(private dateService: DateService, private patsyData: PatsyDataService, private router: Router, private reportService: ReportService) {
 
   }
 
@@ -29,7 +33,7 @@ export class LandingPage implements OnInit {
         username: 'patsyadmin',
         password: 'patsypassword'
       }
-      localStorage.setItem('admin', JSON.stringify(this.adminCredentials))
+      localStorage.setItem('admin', JSON.stringify(this.adminCredentials));
     }
   }
 
@@ -48,18 +52,19 @@ export class LandingPage implements OnInit {
 
   startTimer(durationInSeconds: number) {
     console.log('Timer has begun');
-    const timer = setTimeout(() => {
+     this.timer = setTimeout(() => {
       this.onTimerEnd();
     }, durationInSeconds * 1000);
   }
   onTimerEnd() {
-    console.log('Scan has stopped');
+    if(this.isSuccessful == false) {
+      this.patsyData.alertMessage('Warning!', 'The Scanner has not detected a QR Code ID', 'Try to move the camera away from the QR Code Image', 'Got It');
+    }
     BarcodeScanner.stopScan();
   }
 
-
   async clockIn() {
-    console.log('Scan has begun');
+    this.patsyData.toastMessageSuccess('Scan your barista qr id', 2000);
     await BarcodeScanner.checkPermission({ force: true });
     BarcodeScanner.hideBackground();
     this.startTimer(60);
@@ -75,19 +80,25 @@ export class LandingPage implements OnInit {
         localStorage.setItem('CurrentBarista', this.employeeName);
         console.log('Data: ', profileObject);
         sessionStorage.setItem('Clock', 'In')
-        this.dateService.getCurrentDate().subscribe((data) => {
-          const timeClocked = data;
-          console.log(timeClocked);
-        });
-        this.patsyData.toastMessageSuccess('Welcome! Barista ' + this.employeeName, 2000);
+        this.clockInRecords(this.employeeName)
+        this.patsyData.alertMessage('Welcome!','Barista ' + this.employeeName, 'Have a scrumptious day' , '~Splendid~');
+        this.isSuccessful = true;
         this.checkStatus();
         sessionStorage.setItem('sessionToken', 'barista');
         this.router.navigate(['home']);
       } else {
         console.error('Profile data is null.');
         this.patsyData.alertMessage('QR ERROR!', 'Profile data is null' ,'Employee profile does not exist.', 'OK');
+        clearInterval(this.timer);
       }
     }
+  }
+
+  clockInRecords(employee: any) {
+    if(localStorage.getItem(employee) == null) {
+      this.reportService.initializeEmployeeRecord(employee)
+    }
+    this.reportService.addEmployeeRecord(employee);
   }
 
   login() {
@@ -96,7 +107,7 @@ export class LandingPage implements OnInit {
       const parsedData = JSON.parse(adminCredentials);
       console.log(parsedData.username);
       if(parsedData.username == this.adminUser && parsedData.password == this.adminPass) {
-        this.patsyData.toastMessageSuccess('WELCOME! ATE PATSY', 2000);
+        this.patsyData.alertMessage('Welcome!','Ate Patsy! ', 'Have a scrumptious day' , '~Splendid~');
         sessionStorage.setItem('sessionToken', 'admin');
         this.router.navigate(['home']);
       } else {
@@ -104,5 +115,4 @@ export class LandingPage implements OnInit {
       }
     }
   }
-
 }

@@ -1,7 +1,33 @@
 <ion-content [fullscreen]="true">
-  <ngx-datatable class="my-custom-datatable"
-  [rows]="rows"
-  [columns]="columns">
-</ngx-datatable>
-
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <div class="ion-text-center menu-buttons">
+          <ion-select (ionChange)="handleChange($event)" fill="outline" *ngFor="let list of adminManifestList; let i = index" label="Barista" aria-label="Fruit" interface="action-sheet" placeholder="Select Barista">
+            <ion-select-option value="{{list}}">{{list}}</ion-select-option>
+          </ion-select> 
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <div *ngIf="baristaName" class="card-checkout">
+          <ion-card class="card-checkout">
+            <ion-card-header><h1>{{baristaName}}</h1></ion-card-header>
+            <ion-card-content>
+              <ngx-datatable
+              class="material"
+              [rows]="myData"
+              [columns]="columns"
+              [columnMode]="'force'"
+              [headerHeight]="50"
+              [footerHeight]="50"
+              [rowHeight]="'auto'"
+            ></ngx-datatable>
+            </ion-card-content>
+          </ion-card>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>

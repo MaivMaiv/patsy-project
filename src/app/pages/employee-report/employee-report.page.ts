@@ -1,3 +1,4 @@
+// employee-report.page.ts
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -6,20 +7,41 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./employee-report.page.scss'],
 })
 export class EmployeeReportPage implements OnInit {
-  rows = [
-    { Barista: 'Austin', in: 'Male', out: 'Swimlane' },
-    { Barista: 'Dany', in: 'Male', out: 'KFC' },
-    { Barista: 'Molly', in: 'Female', out: 'Burger King' },
-  ];
-
+  myData = [];
+  baristaName = '';
+  adminManifestList: any[] = [];
   columns = [
-    { prop: 'Barista' },
-    { name: 'in' },
-    { name: 'out' }
+    { prop: 'day' },
+    { prop: 'clockIn' },
+    { prop: 'serves' },
+    { prop: 'clockOut' },
+    { prop: 'sales' },
   ];
-  constructor() { }
 
-  ngOnInit() {
+  constructor() {
+    const storedList = localStorage.getItem('MasterList');
+    if(storedList) {
+      const parsedList = JSON.parse(storedList);
+      this.adminManifestList = parsedList;
+    }
   }
 
+  ngOnInit() {
+
+  }
+
+  handleChange(e: any) {
+    this.baristaName = e.target.value;
+    const storedData = localStorage.getItem(e.target.value);
+    if(storedData) {
+      const parsedData = JSON.parse(storedData);
+      this.myData.length = 0;
+      this.myData = parsedData.map((item: { sales: string; }) => {
+        return {
+          ...item,
+          sales: '₱ ' + item.sales + '.00'
+        };
+      });
+    }
+  }
 }

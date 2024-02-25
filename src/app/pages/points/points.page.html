@@ -3,7 +3,7 @@
     <ion-row>
       <ion-col>
         <div *ngIf="userToken == 'admin'" class="ion-text-center menu-buttons">
-          <p class="menu-button">Home</p>
+          <p (click)="home()"class="menu-button">Home</p>
           <p (click)="points()" class="menu-button">Points</p>
           <p (click)="inventory()" class="menu-button">Inventory</p>
           <p (click)="report()" class="menu-button">Report</p>

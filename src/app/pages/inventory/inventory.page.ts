@@ -19,10 +19,10 @@ import { PatsyDataService } from 'src/app/services/patsy-data.service';
 })
 export class InventoryPage implements OnInit {
   products: any[] = [];
-  editAction: boolean = false;
-  isUploaded: boolean = false;
-  isUpdated: boolean = false;
-  isEmpty: boolean = false;
+  // editAction: boolean = false;
+  // isUploaded: boolean = false;
+  // isUpdated: boolean = false;
+  // isEmpty: boolean = false;
   currentIndex: any;
   imageToBeNotUpdated: any;
   imageToBeUpdated: any;
@@ -31,12 +31,14 @@ export class InventoryPage implements OnInit {
     productCost: '',
     productType: '',
     productImage: [],
+    productStatus: 'true'
   };
   public productFromModal: any = {
     productName: '',
     productCost: '',
     productType: '',
     productImage: [],
+    productStatus: 'true'
   };
   @ViewChild('mainElement', { static: true }) mainElement!: IonContent;
   @ViewChild(IonModal)
@@ -67,6 +69,7 @@ export class InventoryPage implements OnInit {
       productCost: '',
       productType: '',
       productImage: [],
+      productStatus: 'true'
     };
     const imageInput = document.getElementById(
       'imageInput'
@@ -76,14 +79,10 @@ export class InventoryPage implements OnInit {
     }
     localStorage.setItem('SavedProducts', JSON.stringify(this.products));
   }
-  async deleteButton(index: any) {
+  deleteButton(index: any) {
     if (index !== -1) {
       this.products.splice(index, 1);
-      localStorage.setItem(
-        'SavedProducts',
-        JSON.stringify(this.products)
-      );
-      this.backButton();
+      localStorage.setItem('SavedProducts', JSON.stringify(this.products));
     }
   }
   clearButton() {
@@ -104,18 +103,18 @@ export class InventoryPage implements OnInit {
   editButton(index: number, image: any) {
     console.log(index);
     this.imageToBeNotUpdated = image;
-    this.editAction = true;
+    // this.editAction = true;
     this.currentIndex = index;
   }
   updateButton(index: any, updatedProducts: any) {
     this.products[index] = updatedProducts;
     localStorage.setItem('SavedProducts', JSON.stringify(this.products));
   }
-  backButton() {
-    this.editAction = false;
-  }
+  // backButton() {
+  //   this.editAction = false;
+  // }
   saveButton() {
-      this.isUpdated = false;
+      // this.isUpdated = false;
       this.products[this.currentIndex].productImage = this.product.productImage;
       this.product = {
         productName: '',
@@ -124,7 +123,7 @@ export class InventoryPage implements OnInit {
         productImage: [],
       };
       localStorage.setItem('SavedProducts', JSON.stringify(this.products));
-      this.backButton();
+      // this.backButton();
   }
   menu() {
     this.router.navigate(['home']);
@@ -150,6 +149,7 @@ export class InventoryPage implements OnInit {
     if(confirmation) {
       this.router.navigate(['landing']);
       sessionStorage.removeItem('sessionToken');
+      localStorage.removeItem('CurrentBarista');
     }
   }
 
@@ -163,11 +163,12 @@ export class InventoryPage implements OnInit {
     });
 
     modal.onDidDismiss().then((data) => {
+        console.log(data);
         this.productFromModal = data.data.modifiedProduct;
         this.products.push(this.productFromModal);
         localStorage.setItem('SavedProducts', JSON.stringify(this.products));
         this.products.length = 0;
-        this.patsyData.refreshPage();
+        window.location.reload();
     });
     return await modal.present();
   }
@@ -175,6 +176,7 @@ export class InventoryPage implements OnInit {
   async openEditProductModal(index: any, products: any) {
     const modal = await this.modalController.create({
       component: EditInventoryComponent,
+      backdropDismiss: false,
       componentProps: {
         productData: products,
         productIndex: index
@@ -184,7 +186,8 @@ export class InventoryPage implements OnInit {
 
     modal.onDidDismiss().then((data) => {
       console.log(data.data?.indexToBeDeleted);
-      if(data.data?.indexToBeDeleted) {
+      console.log(data.data?.action);
+      if(data.data?.action == true) {
         this.deleteButton(data.data?.indexToBeDeleted);
       } else if (data.data?.indexToBeUpdated) {
         console.log(data.data?.indexToBeUpdated);

@@ -110,6 +110,7 @@ export class ReportPage implements OnInit  {
   async reportTrends() {
     const modal = await this.modalController.create({
       component: ReportTrendsComponent,
+      backdropDismiss: false,
       componentProps: {
         reportTrendSeller: this.sellerReport,
       },
@@ -120,6 +121,7 @@ export class ReportPage implements OnInit  {
   async reportVisits() {
     const modal = await this.modalController.create({
       component: ReportVisitsComponent,
+      backdropDismiss: false,
       componentProps: {
         dayTrendReport: this.sellerReport, 
         monthTrendReport: this.monthReport
@@ -131,11 +133,16 @@ export class ReportPage implements OnInit  {
   async reportBest() {
     const modal = await this.modalController.create({
       component: ReportBestComponent,
+      backdropDismiss: false,
       componentProps: {
         reportTrendSeller: this.sellerReport,
       },
     });
     return await modal.present();
+  }
+
+  reportEmployee(){
+    this.router.navigate(['employee-report']);
   }
 
   inventory() {
@@ -158,6 +165,7 @@ export class ReportPage implements OnInit  {
     if(confirmation) {
       this.router.navigate(['landing']);
       sessionStorage.removeItem('sessionToken');
+      localStorage.removeItem('CurrentBarista');
     }
   }
 }

@@ -24,7 +24,7 @@ ion-grid {
 
 ion-button {
   margin: 5px;
-  --background: #352A28;
+  background: #352A28;
   font-size: larger;
   box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
 }
@@ -34,6 +34,7 @@ ion-button {
   height: 40%;
 }
 
-h1, h2 {
-  font-family: 'Rubik-Bold', sans-serif;
+h1, h2, .details-text {
+  font-family: 'Rubik-Medium', sans-serif;
+  font-size: larger;
 }

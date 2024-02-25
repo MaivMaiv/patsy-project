@@ -50,21 +50,25 @@ export class EmployeePage implements OnInit {
 
   async openEditAdminModal() {
     const modal = await this.modalController.create({
-      component: EditAdminComponent
+      component: EditAdminComponent,
+      backdropDismiss: true 
     });
     
     modal.onDidDismiss().then((data) => {
+      console.log(data.data);
       const adminData = localStorage.getItem('admin');
-      if (adminData) {
-        const adminObject = JSON.parse(adminData);
-        console.log(data.data?.addEmployee.username);
-        adminObject.username = data.data?.addEmployee.username;
-        adminObject.password = data.data?.addEmployee.password;
-        const updatedAdminData = JSON.stringify(adminObject);
-        localStorage.setItem('admin', updatedAdminData);
-        this.patsyData.toastMessageSuccess('Admin Updated Successfully', 2000);
-      } else {
-        this.patsyData.toastMessageError('Admin Error');
+      if(data.data !== undefined){
+        if (adminData) {
+          const adminObject = JSON.parse(adminData);
+          console.log(data.data?.addEmployee.username);
+          adminObject.username = data.data?.addEmployee.username;
+          adminObject.password = data.data?.addEmployee.password;
+          const updatedAdminData = JSON.stringify(adminObject);
+          localStorage.setItem('admin', updatedAdminData);
+          this.patsyData.toastMessageSuccess('Admin Updated Successfully', 2000);
+        } else {
+          this.patsyData.toastMessageError('Admin Error');
+        }
       }
     });
 
@@ -73,7 +77,8 @@ export class EmployeePage implements OnInit {
 
   async openAddEmployeeModal() {
     const modal = await this.modalController.create({
-      component: AddEmployeeComponent
+      component: AddEmployeeComponent,
+      backdropDismiss: true 
     });
 
     modal.onDidDismiss().then((data) => {
@@ -108,6 +113,7 @@ export class EmployeePage implements OnInit {
     if(confirmation) {
       this.router.navigate(['landing']);
       sessionStorage.removeItem('sessionToken');
+      localStorage.removeItem('CurrentBarista');
     }
   }
 }

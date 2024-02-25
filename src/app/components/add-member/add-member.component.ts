@@ -29,7 +29,7 @@ export class AddMemberComponent  implements OnInit {
         { text: 'October', value: 10 },
         { text: 'November', value: 11 },
         { text: 'December', value: 12 },
-      ],
+      ], selectedIndex: 8
     },
     {
       name: 'day',
@@ -65,7 +65,7 @@ export class AddMemberComponent  implements OnInit {
         { text: '29', value: '29' },
         { text: '30', value: '30' },
         { text: '31', value: '31' },
-      ],
+      ], selectedIndex: 19
     },
     {
       name: 'year',
@@ -151,7 +151,7 @@ export class AddMemberComponent  implements OnInit {
         { text: '2028', value: 2028 },
         { text: '2029', value: 2029 },
         { text: '2030', value: 2030 },
-      ],
+      ], selectedIndex: 50
     },
   ];
   public pickerButtons = [

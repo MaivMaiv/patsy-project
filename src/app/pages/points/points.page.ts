@@ -32,7 +32,7 @@ export class PointsPage implements OnInit {
     const sessionToken = sessionStorage.getItem('sessionToken');
     this.userToken = sessionToken;
     this.screenOrientationService.lockLandscape();
-    this.dateService.getCurrentDate().subscribe((data) => {
+    this.dateService.getCurrentDateTime().subscribe((data) => {
       const dateObj = new Date(data.utc_datetime);
       this.currentDate = this.formatDate(dateObj);
       console.log(this.currentDate);
@@ -114,7 +114,8 @@ export class PointsPage implements OnInit {
 
   async openAddMemberModal() {
     const modal = await this.modalController.create({
-      component: AddMemberComponent
+      component: AddMemberComponent,
+      backdropDismiss: false
     });
 
     modal.onDidDismiss().then((data) => {
@@ -151,6 +152,7 @@ export class PointsPage implements OnInit {
     if(confirmation) {
       this.router.navigate(['landing']);
       sessionStorage.removeItem('sessionToken');
+      localStorage.removeItem('CurrentBarista');
     }
   }
 }

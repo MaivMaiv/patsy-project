@@ -25,12 +25,12 @@
                       </ion-col>
                       <ion-col size="6">
                         <div class="product-details">
-                        <h2>Product Name:</h2>
-                        <h1>{{check.cartName}} x {{check.cartNumber}}</h1>
+                        <h1>Product Name:</h1>
+                        <h2>{{check.cartName}} x {{check.cartNumber}}</h2>
                       </div>
                       <div class="product-details">
-                        <h2>Product Cost:</h2>
-                        <h1>P {{check.cartCost}}.00</h1>
+                        <h1>Product Cost:</h1>
+                        <h2>P {{check.cartCost}}.00</h2>
                       </div>
                       </ion-col>
                     </ion-row>
@@ -89,8 +89,18 @@
                             <h1 class="loyalty-subheader">{{memberName}}</h1>
                           </ion-card-header>
                           <ion-card-content>
-                            <h2 class="loyalty-header">Points</h2>
-                            <h1 class="loyalty-subheader">{{memberPoints}} + {{memberPointsToBeAdded}}</h1>
+                            <ion-grid>
+                              <ion-row>
+                                <ion-col>
+                                  <h2 class="loyalty-header">Current Points</h2>
+                                  <h1 class="loyalty-subheader">{{memberPoints}}</h1>
+                                </ion-col>
+                                <ion-col>
+                                  <h2 class="loyalty-header">Points to be added</h2>
+                                  <h1 class="loyalty-subheader">{{memberPointsToBeAdded}}</h1>
+                                </ion-col>
+                              </ion-row>
+                            </ion-grid>
                           </ion-card-content>
                         </ion-card>
                       </h3>

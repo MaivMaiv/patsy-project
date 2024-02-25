@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BarcodeScanner } from '@capacitor-community/barcode-scanner';
+import { profile } from 'console';
 import { ReportService } from 'src/app/services/report.service';
 @Component({
   selector: 'app-checkout',
@@ -9,12 +10,14 @@ import { ReportService } from 'src/app/services/report.service';
 })
 export class CheckoutPage implements OnInit {
   profileId: any;
+  profileArray: any = [];
+  totalOrders: number = 0;
   patsyProfile = {
-    profileID: '',
-    profileName: '',
-    profileBday: '',
-    profilePref: '',
-    profilePoints: 0
+    id: '',
+    name: '',
+    bday: '',
+    pref: '',
+    points: 0
   };
   profileString: any;
   checkoutProducts: any[] = [];
@@ -58,25 +61,30 @@ export class CheckoutPage implements OnInit {
   placeOrder(checkoutAmount: any) {
     console.log("checkout",this.checkoutDetails);
     if(this.memberHasBeenScanned == true) {
+      this.patsyProfile.points = this.patsyProfile.points + this.memberPointsToBeAdded;
+      console.log(this.patsyProfile)
       const profileString = JSON.stringify(this.patsyProfile);
-      localStorage.removeItem(this.patsyProfile.profileID);
-      localStorage.setItem(this.patsyProfile.profileID, profileString);
-      // this.profileArray[0].points = this.memberPointsToBeAdded.toString();
-      // localStorage.setItem(this.profileId, this.profileArray[0]);
+      localStorage.removeItem(this.patsyProfile.id);
+      localStorage.setItem(this.patsyProfile.id, JSON.stringify(this.patsyProfile));
     }
     sessionStorage.setItem('isRefreshed', 'false');
     for(let x = 0 ; x < this.checkoutProducts.length ; x++) {
       this.reportService.checkBestReports(this.checkoutProducts[x].cartName, this.checkoutProducts[x].cartNumber);
+      this.totalOrders = this.totalOrders + this.checkoutProducts[x].cartNumber;
       console.log(this.checkoutProducts[x].cartNumber);
     }
     this.reportService.checkMonthlyCounter();
-    // this.reportService.checkBestSellerReport(this.checkoutProducts);
     this.reportService.checkProductTypeCounter(this.checkoutProducts);  
     this.reportService.detectDayReport();
     localStorage.setItem(
       'checkoutDetails',
       JSON.stringify(this.checkoutDetails)
     );
+    const currentEmployee = localStorage.getItem('CurrentBarista');
+      console.log(currentEmployee);
+      if(currentEmployee) {
+        this.reportService.addEmployeeOrderCount(currentEmployee, this.totalOrders, checkoutAmount);
+      }
     this.router.navigate(['receipt']);
   }
   async scanProfile() {
@@ -89,13 +97,13 @@ export class CheckoutPage implements OnInit {
       if (this.profileString !== null) {
         let profileObject = JSON.parse(this.profileString);
          console.log(profileObject);
-         this.patsyProfile.profileID = profileObject.profileID;
-         this.patsyProfile.profileName = profileObject.profileName;
-         this.patsyProfile.profilePoints = profileObject.profilePoints + this.memberPointsToBeAdded;
-         this.patsyProfile.profileBday = profileObject.profileBday;
-         this.patsyProfile.profilePref = profileObject.profilePref;
-         this.memberName = this.patsyProfile.profileName;
-         this.memberPoints = profileObject.profilePoints;
+         this.patsyProfile.id = profileObject.id;
+         this.patsyProfile.name = profileObject.name;
+         this.patsyProfile.points = profileObject.points;
+         this.patsyProfile.bday = profileObject.bday;
+         this.patsyProfile.pref = profileObject.pref;
+         this.memberName = profileObject.name;
+         this.memberPoints = profileObject.points;
          this.memberHasBeenScanned = true;
          this.checkoutDetails.checkoutCustomer = this.memberName;
       } else {

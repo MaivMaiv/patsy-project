@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { AlertController, ModalController } from '@ionic/angular';
+import { PatsyDataService } from 'src/app/services/patsy-data.service';
 
 @Component({
   selector: 'app-edit-inventory',
@@ -20,7 +21,7 @@ export class EditInventoryComponent  implements OnInit {
 
   @Input() productData: any;
   @Input() productIndex: any;
-  constructor(private alertController: AlertController, private modalController: ModalController) { }
+  constructor(private alertController: AlertController, private modalController: ModalController, private patsyData: PatsyDataService) { }
 
   ngOnInit() {
     console.log(this.product);  
@@ -72,6 +73,7 @@ edit() {
   if(this.isGonnaBeDeleted) {
     this.modalController.dismiss({
       dismissed: true,
+      action: this.isGonnaBeDeleted ,
       indexToBeDeleted: this.productIndex
     })
   } else {
@@ -84,6 +86,7 @@ edit() {
 }
 
 cancel() {
+  window.location.reload();
   this.modalController.dismiss({
 
   })

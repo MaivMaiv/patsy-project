@@ -9,11 +9,11 @@ import { PatsyDataService } from 'src/app/services/patsy-data.service';
 })
 export class PointsProfilePage implements OnInit {
   patsyProfile = {
-  profileID: '',
-  profileName: '',
-  profileBday: '',
-  profilePref: '',
-  profilePoints: 0,
+    id: '',
+    name: '',
+    bday: '',
+    pref: '',
+    points: 0
   };
   constructor(private route: ActivatedRoute, private router: Router, private alertController: AlertController, private toastController: ToastController, private patsyData: PatsyDataService) {}
   ngOnInit() {
@@ -24,11 +24,11 @@ export class PointsProfilePage implements OnInit {
       const pref = params['pref'];
       const points = params['points']
       console.log('Received data:', id, name, bday, pref, points);
-      this.patsyProfile.profileID = id;
-      this.patsyProfile.profileName = name;
-      this.patsyProfile.profileBday = bday;
-      this.patsyProfile.profilePref = pref;
-      this.patsyProfile.profilePoints = points
+      this.patsyProfile.id = id;
+      this.patsyProfile.name = name;
+      this.patsyProfile.bday = bday;
+      this.patsyProfile.pref = pref;
+      this.patsyProfile.points = points
     });
   }
   back() {
@@ -40,10 +40,10 @@ export class PointsProfilePage implements OnInit {
   }
 
   calculatePoints(pointsToDeduct: any) {
-    this.patsyProfile.profilePoints =  this.patsyProfile.profilePoints - pointsToDeduct;
+    this.patsyProfile.points =  this.patsyProfile.points - pointsToDeduct;
     const profileString = JSON.stringify(this.patsyProfile);
-    localStorage.removeItem(this.patsyProfile.profileID);
-    localStorage.setItem(this.patsyProfile.profileID, profileString);
+    localStorage.removeItem(this.patsyProfile.id);
+    localStorage.setItem(this.patsyProfile.id, profileString);
   }
 
   async rewardToast(redeemables: any) {

@@ -15,6 +15,7 @@ import { LandingPage } from './landing.page';
     IonicModule,
     LandingPageRoutingModule
   ],
-  declarations: [LandingPage]
+  declarations: [LandingPage],
+  
 })
 export class LandingPageModule {}

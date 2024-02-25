@@ -20,6 +20,7 @@ export class ReceiptPage implements OnInit {
   imgFileName: any;
   imgFilePath: any;
   checkoutDetails: any;
+  currentBarista: any;
   constructor(
     private dateService: DateService,
     private router: Router,
@@ -31,7 +32,14 @@ export class ReceiptPage implements OnInit {
   }
   ngOnInit() {
     this.screenOrientationService.lockLandscape();
-    this.dateService.getCurrentDate().subscribe((data) => {
+    let server = localStorage.getItem('CurrentBarista');
+    if(server) {
+      this.currentBarista = localStorage.getItem('CurrentBarista');
+    } else {
+      this.currentBarista = 'Ate Patsy';
+    }
+
+    this.dateService.getCurrentDateTime().subscribe((data) => {
       const dateObj = new Date(data.utc_datetime);
       this.currentDate = dateObj.toISOString().split('T')[0];
     });

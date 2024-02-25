@@ -1,11 +1,14 @@
 import { Injectable } from '@angular/core';
 import * as moment from 'moment';
+import { DateService } from './date.service';
 @Injectable({
   providedIn: 'root'
 })
 export class ReportService {
   currentMonth: string = '';
-  constructor() { }
+  employeeManifest: any[] = [];
+  index: any;
+  constructor(private dateService: DateService) { }
 
   initializeReports() {
     const prodReport = localStorage.getItem('espressoCounter');
@@ -88,6 +91,104 @@ export class ReportService {
     const emptyArrayOfProductToLocalStorage = JSON.stringify(emptyArrayOfProduct);
     localStorage.setItem('BestSellers', emptyArrayOfProductToLocalStorage);
   }
+
+  initializeEmployeeRecord2(employee: any) {
+    const emptyArrayOfProduct: any[][] = [];
+    const emptyArrayOfProductToLocalStorage = JSON.stringify(emptyArrayOfProduct);
+    localStorage.setItem( employee, emptyArrayOfProductToLocalStorage);
+  }
+
+  initializeEmployeeRecord(employee: any) {
+    const storedRecord = localStorage.getItem(employee);
+    if (storedRecord) {
+      this.employeeManifest = JSON.parse(storedRecord);
+    } else {
+      this.employeeManifest = [];
+      localStorage.setItem(employee, JSON.stringify(this.employeeManifest));
+    }
+  }
+
+  async addEmployeeRecord(employee: any) {
+    this.dateService.getCurrentDateTime().subscribe(data => {
+      let currentDate = this.dateService.formatDate(data.utc_datetime);
+      let currentTime = this.dateService.formatTime(data.datetime);
+      console.log(currentDate, currentTime);
+      const newCredentials = { day: currentDate, clockIn: currentTime, serves: 0, clockOut: '0', sales: 0 };
+      const employeeData = localStorage.getItem(employee);
+      if (employeeData) {
+        this.employeeManifest = JSON.parse(employeeData);
+        this.employeeManifest.push(newCredentials);
+        localStorage.setItem(employee, JSON.stringify(this.employeeManifest));
+      }
+    }, error => {
+      console.error('Error fetching date and time:', error);
+    });
+  }
+
+  async clockOut(employee: any) {
+    try {
+      const data = await this.dateService.getCurrentDateTime().toPromise();
+      const currentTime = this.dateService.formatTime(data.datetime);
+      
+      await this.fetchCurrentEmployeeIndex(employee);
+      
+      const employeeData = localStorage.getItem(employee);
+      if (employeeData) {
+        this.employeeManifest = JSON.parse(employeeData);
+      }
+  
+      if (this.employeeManifest && this.index !== undefined && this.index > -1) {
+        while(this.employeeManifest[this.index].clockOut !== '0') {
+          this.index++;
+        }
+        this.employeeManifest[this.index].clockOut = currentTime;
+        localStorage.setItem(employee, JSON.stringify(this.employeeManifest));
+      } else {
+        console.error('Employee or index not found.');
+      }
+    } catch (error) {
+      console.error('Error fetching date and time:', error);
+    }
+  }
+
+  async addEmployeeOrderCount(employee: any, numberOfOrderServed: any, salesRecorded: any) {
+    await this.fetchCurrentEmployeeIndex(employee);
+    
+    const employeeData = localStorage.getItem(employee);
+    if (employeeData) {
+      this.employeeManifest = JSON.parse(employeeData);
+    }
+    if (this.employeeManifest && this.index !== undefined && this.index > -1) {
+      while(this.employeeManifest[this.index].clockOut !== '0') {
+        this.index++;
+      }
+      this.employeeManifest[this.index].serves = this.employeeManifest[this.index].serves + numberOfOrderServed;
+      this.employeeManifest[this.index].sales = this.employeeManifest[this.index].sales + salesRecorded;
+      localStorage.setItem(employee, JSON.stringify(this.employeeManifest));
+    }
+  }
+  
+  async fetchCurrentEmployeeIndex(employee: any) {
+    try {
+      const data = await this.dateService.getCurrentDateTime().toPromise();
+      const currentDate = this.dateService.formatDate(data.utc_datetime);
+      
+      const employeeData = localStorage.getItem(employee);
+      if(employeeData) {
+        this.employeeManifest = JSON.parse(employeeData);
+      }
+      
+      if (this.employeeManifest) {
+        this.index = this.employeeManifest.findIndex(employee => employee.day === currentDate);
+        console.log('Employee Index: ', this.index);
+      } else {
+        console.error('Employee data not found.');
+      }
+    } catch (error) {
+      console.error('Error fetching date and time:', error);
+    }
+  }
+  
 
   createBestReport(product: any) {
     let retrievedArrayOfProducts: any[][] = [];

@@ -102,9 +102,9 @@
               <ion-col
                 class="centered-column"
                 size="3"
-                *ngFor="let prod of filteredProducts"
+                *ngFor="let prod of filteredProducts; let i = index"
               >
-              <div (click)="openProductModal(prod.productName, prod.productImage, prod.productCost, prod.productType)" id="card-products">
+              <div (click)="openProductModal(prod.productName, prod.productImage, prod.productCost, prod.productType, i)" id="card-products">
                 <div>
                   <img class="image-prod" [src]="prod.productImage" />
                 </div>
@@ -127,9 +127,9 @@
               <ion-col
                 class="centered-column"
                 size="3"
-                *ngFor="let prod of products"
+                *ngFor="let prod of products; let i = index"
               >
-                <div (click)="openProductModal(prod.productName, prod.productImage, prod.productCost, prod.productType)" id="card-products">
+                <div disabled="prod.productStatus == 'true'" (click)="openProductModal(prod.productName, prod.productImage, prod.productCost, prod.productType, i)" id="card-products">
                   <div>
                     <img class="image-prod" [src]="prod.productImage" />
                   </div>
@@ -152,9 +152,9 @@
               <ion-col
                 class="centered-column"
                 size="3"
-                *ngFor="let prod of searchedProducts"
+                *ngFor="let prod of searchedProducts; let i = index"
               >
-              <div (click)="openProductModal(prod.productName, prod.productImage, prod.productCost, prod.productType)" id="card-products">
+              <div (click)="openProductModal(prod.productName, prod.productImage, prod.productCost, prod.productType, i)" id="card-products">
                 <div>
                   <img class="image-prod" [src]="prod.productImage" />
                 </div>
