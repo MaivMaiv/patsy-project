@@ -23,9 +23,13 @@
 @import "@ionic/angular/css/text-alignment.css";
 @import "@ionic/angular/css/text-transformation.css";
 @import "@ionic/angular/css/flex-utils.css";
+.report-modal {
+  --width: 95%;
+  --height: 95%;
+}
 .datatable-header {
   font-family: 'Rubik-bold', sans-serif;
-  font-size: xx-large;
+  font-size: x-large;
   text-align: center;
   background: #1b1514;
 }
@@ -62,7 +66,9 @@ ion-modal {
     --color: white;
   }
 
-
+.product-options-modal {
+  --height: 40%;
+}
 
 .alertMessage .alert-wrapper {
   background-color: #352A28;

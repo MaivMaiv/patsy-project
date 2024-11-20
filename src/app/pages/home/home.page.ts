@@ -68,7 +68,10 @@ export class HomePage {
     if (savedProducts) {
       this.products = JSON.parse(savedProducts);
     }
-    this.reportService.initializeReports();
+    const savedSales = localStorage.getItem('salesRecord');
+    if (!savedSales) {
+      this.reportService.initializeReports();
+    }
   }
   inventory() {
     this.router.navigate(['inventory']);
@@ -203,6 +206,7 @@ export class HomePage {
     const modal = await this.modalController.create({
       component: EditCartAmountComponent,
       backdropDismiss: false,
+      cssClass: 'product-options-modal',
       componentProps: {
         modalAmount: number
       }

@@ -1,22 +1,13 @@
 <ion-header>
   <ion-toolbar>
-    <div class="menu-buttons1">
-      <p slot="start" (click)="back()">Return</p>
+    <div class="ion-text-center menu-buttons1">
+      <p (click)="back()">Return</p>
     </div>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
   <ion-grid>
-    <ion-row>
-      <ion-col>
-        <div class="ion-text-center menu-buttons2">
-          <ion-select (ionChange)="handleChange($event)" fill="solid"  label="Barista" aria-label="Fruit" interface="action-sheet" placeholder="Select Barista">
-            <ion-select-option *ngFor="let list of adminManifestList; let i = index" value="{{list}}">{{list}}</ion-select-option>
-          </ion-select> 
-        </div>
-      </ion-col>
-    </ion-row>
       <ion-row>
         <ion-col class="dashboard">
           <div >
@@ -50,11 +41,11 @@
         <ion-col>
           <div  class="card-checkout">
             <ion-card class="card-checkout">
-              <ion-card-header><h1>Patsy's Barista</h1></ion-card-header>
+              <ion-card-header><h1>{{baristaName}}</h1></ion-card-header>
               <ion-card-content>
                 <ngx-datatable
                 class="material"
-                [rows]="allRows"
+                [rows]="baristaRecordList"
                 [columns]="allColumns"
                 [columnMode]="'force'"
                 [headerHeight]="50"

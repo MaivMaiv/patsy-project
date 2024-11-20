@@ -1,13 +1,12 @@
 import { Router } from '@angular/router';
-import { App } from '@capacitor/app';
-import { Component, OnInit } from '@angular/core';
-import Chart from 'chart.js/auto';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { ReportBestComponent } from 'src/app/components/report-best/report-best.component';
-import { ReportTrendsComponent } from 'src/app/components/report-trends/report-trends.component';
 import { ReportVisitsComponent } from 'src/app/components/report-visits/report-visits.component';
 import { ReportService } from 'src/app/services/report.service';
 import { PatsyDataService } from 'src/app/services/patsy-data.service';
+
+import { IdGeneratorService } from 'src/app/services/id-generator.service';
 
 @Component({
   selector: 'app-report',
@@ -22,7 +21,7 @@ export class ReportPage implements OnInit  {
   sellerReport = {};
   dayReport =  {};
   monthReport = {};
-  constructor(private router: Router, private reportService: ReportService, private modalController: ModalController, private patsyData: PatsyDataService) {}
+  constructor(private router: Router, private reportService: ReportService, private modalController: ModalController, private patsyData: PatsyDataService, private idGeneratorService: IdGeneratorService) {}
   ngOnInit() {
     const allTime = localStorage.getItem('allTimeCounter');
     const monthTime = localStorage.getItem('monthTimeCounter');
@@ -107,21 +106,11 @@ export class ReportPage implements OnInit  {
     }
   }
 
-  async reportTrends() {
-    const modal = await this.modalController.create({
-      component: ReportTrendsComponent,
-      backdropDismiss: false,
-      componentProps: {
-        reportTrendSeller: this.sellerReport,
-      },
-    });
-    return await modal.present();
-  }
-
   async reportVisits() {
     const modal = await this.modalController.create({
       component: ReportVisitsComponent,
       backdropDismiss: false,
+      cssClass: 'report-modal',
       componentProps: {
         dayTrendReport: this.sellerReport, 
         monthTrendReport: this.monthReport
@@ -133,12 +122,21 @@ export class ReportPage implements OnInit  {
   async reportBest() {
     const modal = await this.modalController.create({
       component: ReportBestComponent,
+      cssClass: 'report-modal',
       backdropDismiss: false,
       componentProps: {
         reportTrendSeller: this.sellerReport,
       },
     });
     return await modal.present();
+  }
+
+  reportSales(){
+    this.router.navigate(['sales-report']);
+  }
+
+  reportPoints(){
+    this.router.navigate(['points-report']);
   }
 
   reportEmployee(){

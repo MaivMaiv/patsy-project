@@ -39,9 +39,19 @@ ion-content {
   }
 
   ion-card {
-    background: #fff;
+    background: #352A28;
+    ion-card-header {
+      font-size: xx-large;
+      font-family: 'Rubik-Bold', sans-serif;
+      color: white;
+      text-align: center;
+    }
   }
 
   .charts {
     padding-bottom: 10px;
+  }
+
+  .main-card {
+    background: white;
   }

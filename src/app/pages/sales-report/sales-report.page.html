@@ -8,21 +8,12 @@
 
 <ion-content [fullscreen]="true">
   <ion-grid>
-    <ion-row>
-      <ion-col>
-        <div class="ion-text-center menu-buttons2">
-          <ion-select (ionChange)="handleChange($event)" fill="solid"  label="Barista" aria-label="Fruit" interface="action-sheet" placeholder="Select Barista">
-            <ion-select-option *ngFor="let list of adminManifestList; let i = index" value="{{list}}">{{list}}</ion-select-option>
-          </ion-select> 
-        </div>
-      </ion-col>
-    </ion-row>
       <ion-row>
         <ion-col class="dashboard">
           <div >
             <ion-card class="employee-dashboard">
               <ion-card-header>
-                <ion-card-title><h2>Total Sales:</h2><h3>P {{allTotalSales}}.00</h3></ion-card-title>
+                <ion-card-title><h2>All Sales:</h2><h3>P {{allTotalSales}}.00</h3></ion-card-title>
               </ion-card-header>
             </ion-card>
           </div>
@@ -31,7 +22,7 @@
           <div >
             <ion-card class="employee-dashboard">
               <ion-card-header>
-                <ion-card-title><h2>Served:</h2><h3>{{allTotalServes}} Customers</h3></ion-card-title>
+                <ion-card-title><h2>All Serves:</h2><h3>{{allTotalServes}} Customers</h3></ion-card-title>
               </ion-card-header>
             </ion-card>
           </div>
@@ -40,7 +31,7 @@
           <div>
             <ion-card class="employee-dashboard">
               <ion-card-header>
-                <ion-card-title><h2>Total Hours:</h2><h3>{{allTotalHours}} hrs</h3></ion-card-title>
+                <ion-card-title><h2>All Cost:</h2><h3>{{allTotalHours}} hrs</h3></ion-card-title>
               </ion-card-header>
             </ion-card>
           </div>
@@ -50,7 +41,7 @@
         <ion-col>
           <div  class="card-checkout">
             <ion-card class="card-checkout">
-              <ion-card-header><h1>Patsy's Barista</h1></ion-card-header>
+              <ion-card-header><h1>Sales</h1></ion-card-header>
               <ion-card-content>
                 <ngx-datatable
                 class="material"

@@ -14,7 +14,7 @@
     </ion-row>
     <ion-row class="custom-row">
       <!-- Scan QR Code -->
-      <ion-col class="overview-tab ion-text-center" size="4">
+      <ion-col (click)="reportSales()" class="overview-tab ion-text-center" size="4">
         <div class="loyalty-card">
           <ion-card-header><h1>SALES REPORT</h1></ion-card-header>
           <ion-card-content><ion-icon name="cash"></ion-icon></ion-card-content>
@@ -26,10 +26,10 @@
           <ion-card-content><ion-icon name="shirt"></ion-icon></ion-card-content>
         </div>
       </ion-col>
-      <ion-col (click)="reportTrends()" class="overview-tab ion-text-center" size="4">
+      <ion-col (click)="reportPoints()" class="overview-tab ion-text-center" size="4">
         <div class="loyalty-card">
-          <ion-card-header><h1>TRENDS INFOGRAPHIC</h1></ion-card-header>
-          <ion-card-content><ion-icon name="bar-chart"></ion-icon></ion-card-content>
+          <ion-card-header><h1>POINTS REPORT</h1></ion-card-header>
+          <ion-card-content><ion-icon name="trophy"></ion-icon></ion-card-content>
         </div>
       </ion-col>
     </ion-row>
@@ -43,8 +43,8 @@
       </ion-col>
       <ion-col (click)="reportBest()" class="overview-tab ion-text-center" size="4">
         <div class="loyalty-card">
-          <ion-card-header><h1>BEST SELLER INFOGRAPHIC</h1></ion-card-header>
-          <ion-card-content><ion-icon name="trophy"></ion-icon></ion-card-content>
+          <ion-card-header><h1>TRENDS INFOGRAPHIC</h1></ion-card-header>
+          <ion-card-content><ion-icon name="bar-chart"></ion-icon></ion-card-content>
         </div>
       </ion-col>
     </ion-row>

@@ -42,6 +42,7 @@ export class ReceiptPage implements OnInit {
     this.dateService.getCurrentDateTime().subscribe((data) => {
       const dateObj = new Date(data.utc_datetime);
       this.currentDate = dateObj.toISOString().split('T')[0];
+      console.log('Current Date: ', this.currentDate + '');
     });
     const savedTotal = localStorage.getItem('checkoutTotal');
     if (savedTotal) {

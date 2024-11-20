@@ -55,6 +55,18 @@ const routes: Routes = [
     path: 'employee-report',
     loadChildren: () => import('./pages/employee-report/employee-report.module').then( m => m.EmployeeReportPageModule)
   },
+  {
+    path: 'points-report',
+    loadChildren: () => import('./pages/points-report/points-report.module').then( m => m.PointsReportPageModule)
+  },
+  {
+    path: 'sales-report',
+    loadChildren: () => import('./pages/sales-report/sales-report.module').then( m => m.SalesReportPageModule)
+  },
+  {
+    path: 'barista-report',
+    loadChildren: () => import('./pages/barista-report/barista-report.module').then( m => m.BaristaReportPageModule)
+  },
 ];
 
 @NgModule({

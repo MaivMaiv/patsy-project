@@ -14,6 +14,11 @@ export class IdGeneratorService {
     const prefix = 'patsy_employee-';
     return prefix + randomString;
   }
+  generateReportID(): string {
+    const randomString = Math.random().toString(36).substr(2, 8);
+    const prefix = 'patsy_receipt-';
+    return prefix + randomString;
+  }
   generateLoyaltyProfile(profile: any) {
     console.log(profile);
     const patsyProfile = {

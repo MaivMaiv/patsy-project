@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BarcodeScanner } from '@capacitor-community/barcode-scanner';
 import { profile } from 'console';
+import { DateService } from 'src/app/services/date.service';
 import { ReportService } from 'src/app/services/report.service';
 @Component({
   selector: 'app-checkout',
@@ -11,6 +12,7 @@ import { ReportService } from 'src/app/services/report.service';
 export class CheckoutPage implements OnInit {
   profileId: any;
   profileArray: any = [];
+  salesReportDetails: any[] = [];
   totalOrders: number = 0;
   patsyProfile = {
     id: '',
@@ -24,6 +26,7 @@ export class CheckoutPage implements OnInit {
   checkoutAmount: any = 0;
   memberHasBeenScanned: boolean = false;
   memberName = '';
+  currentDate: string = '';
   memberPoints = 0;
   memberPointsToBeAdded = 0;
   public checkoutDetails: any = {
@@ -33,7 +36,7 @@ export class CheckoutPage implements OnInit {
     checkoutNumber: '',
     checkoutPaid: '',
   };
-  constructor(private router: Router, private reportService: ReportService) {
+  constructor(private router: Router, private reportService: ReportService, private dateService: DateService) {
   }
   ngOnInit() {
     this.reportService.checkMonth();
@@ -85,6 +88,7 @@ export class CheckoutPage implements OnInit {
       if(currentEmployee) {
         this.reportService.addEmployeeOrderCount(currentEmployee, this.totalOrders, checkoutAmount);
       }
+      this.saveToSalesReport();
     this.router.navigate(['receipt']);
   }
   async scanProfile() {
@@ -110,5 +114,47 @@ export class CheckoutPage implements OnInit {
         console.error('Profile data is null.');
       }
     }
+  }
+
+  saveToSalesReport() {
+    let salesDetails: any = {
+      customerName: '',
+      customerOrders: [],
+      customerNumber: [],
+      customerType: '',
+      customerTransaction: '',
+      customerBalance: '',
+      customerPayment: '',
+      customerDate: ''
+    };
+    if(this.memberName == '') {
+      salesDetails.customerName = this.checkoutDetails.checkoutCustomer
+    } else {
+      salesDetails.customerName = this.memberName;
+    }
+    for(let x = 0 ; x < this.checkoutProducts.length; x++) {
+      salesDetails.customerOrders.push(this.checkoutProducts[x].cartName);
+      salesDetails.customerNumber.push(this.checkoutProducts[x].cartNumber);
+    }
+    salesDetails.customerTransaction = this.checkoutDetails.checkoutNumber;
+    salesDetails.customerType = this.checkoutDetails.customerType;
+    salesDetails.customerBalance = this.checkoutAmount;
+    salesDetails.customerPayment = this.checkoutDetails.checkoutPaid;
+    this.dateService.getCurrentDateTime().subscribe((data) => {
+      const dateObj = new Date(data.utc_datetime);
+      this.currentDate = dateObj.toISOString().split('T')[0];
+      console.log('Current Date: ', this.currentDate);
+      salesDetails.customerDate = this.currentDate.toString();
+  
+      console.log('Sales Details in Checkout: ', salesDetails);
+  
+      const getSalesRecord = localStorage.getItem('salesRecord');
+      if (getSalesRecord) {
+        this.salesReportDetails = JSON.parse(getSalesRecord);
+        console.log(this.salesReportDetails);
+        this.salesReportDetails.push(salesDetails);
+        localStorage.setItem('salesRecord', JSON.stringify(this.salesReportDetails));
+      }
+    });
   }
 }

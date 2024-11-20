@@ -12,7 +12,7 @@ export class ReportService {
 
   initializeReports() {
     const prodReport = localStorage.getItem('espressoCounter');
-    const salesReport = localStorage.getItem('allTimeCounter');
+    const salesReport = localStorage.getItem('salesDetails');
     const trendReport = localStorage.getItem('mon');
     const monthReport = localStorage.getItem('January');
     const bestReport = localStorage.getItem('BestSellers');
@@ -24,7 +24,7 @@ export class ReportService {
     if(salesReport !== null) {
       console.log("Item exists: ", salesReport);
     } else {
-      this.initializeSaleReports();
+      this.initializeSalesReport();
     }
     if(trendReport !== null){
       console.log("Item exists: ", trendReport);
@@ -52,13 +52,6 @@ export class ReportService {
     localStorage.setItem('noncoffeeCounter', JSON.stringify(0));
     localStorage.setItem('specialsCounter', JSON.stringify(0));
     sessionStorage.setItem('isRefreshed', 'true');
-  }
-
-  initializeSaleReports() {
-    localStorage.setItem('allTimeCounter', JSON.stringify(0));
-    localStorage.setItem('monthTimeCounter', JSON.stringify(0));
-    localStorage.setItem('weekTimeCounter', JSON.stringify(0));
-    localStorage.setItem('dayTimeCounter', JSON.stringify(0));
   }
 
   initializeTrendReports() {
@@ -106,6 +99,27 @@ export class ReportService {
       this.employeeManifest = [];
       localStorage.setItem(employee, JSON.stringify(this.employeeManifest));
     }
+  }
+
+  initializeSalesReport() {
+    localStorage.setItem('allTimeCounter', JSON.stringify(0));
+    localStorage.setItem('monthTimeCounter', JSON.stringify(0));
+    localStorage.setItem('weekTimeCounter', JSON.stringify(0));
+    localStorage.setItem('dayTimeCounter', JSON.stringify(0));
+    const emptyArrayOfProduct: any[][] = [];
+    const emptyArrayOfProductToLocalStorage = JSON.stringify(emptyArrayOfProduct);
+    localStorage.setItem('salesRecord', emptyArrayOfProductToLocalStorage);
+    // let salesDetails: any = {
+    //   customerName: '',
+    //   customerOrders: [],
+    //   customerNumber: [],
+    //   customerType: '',
+    //   customerTransaction: '',
+    //   customerBalance: '',
+    //   customerPayment: '',
+    //   customerDate: ''
+    // };
+    // localStorage.setItem('salesRecord', JSON.stringify(salesDetails));
   }
 
   async addEmployeeRecord(employee: any) {

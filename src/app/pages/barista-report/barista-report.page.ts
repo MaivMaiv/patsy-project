@@ -1,21 +1,21 @@
-// employee-report.page.ts
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { PatsyDataService } from 'src/app/services/patsy-data.service';
 
 @Component({
-  selector: 'app-employee-report',
-  templateUrl: './employee-report.page.html',
-  styleUrls: ['./employee-report.page.scss'],
+  selector: 'app-barista-report',
+  templateUrl: './barista-report.page.html',
+  styleUrls: ['./barista-report.page.scss'],
 })
-
-export class EmployeeReportPage implements OnInit {
+export class BaristaReportPage implements OnInit {
+  baristaRows: any[] = [];
   allRows: any[] = [];
-  adminManifestList: any[] = [];
+  baristaName = '';
+  baristaRecordList: any[] = [];
   allTotalSales = 0;
   allTotalServes = 0;
   allTotalHours = 0;
   allColumns = [
-    { prop: 'name' },
     { prop: 'day' },
     { prop: 'clockIn' },
     { prop: 'serves' },
@@ -23,19 +23,33 @@ export class EmployeeReportPage implements OnInit {
     { prop: 'sales' },
   ];
 
-  constructor(private router: Router) {
-    const storedList = localStorage.getItem('MasterList');
+
+  constructor(private route: ActivatedRoute, private patsyData: PatsyDataService, private router: Router) {
+  }
+
+  ionViewDidEnter() {
+    this.route.queryParams.subscribe(params => {
+      this.baristaName = params['barista'];;
+  });
+  console.log(this.baristaName);
+    const storedList = localStorage.getItem(this.baristaName);
     if(storedList) {
-      const parsedList = JSON.parse(storedList);
-      this.adminManifestList = parsedList;
+      this.baristaRecordList = JSON.parse(storedList);
+      console.log(this.baristaRecordList);
+      for(let y = 0 ; y < this.baristaRecordList.length ; y++) {
+        let day = this.baristaRecordList[y].day;
+        let clockIn = this.baristaRecordList[y].clockIn;
+        let serves = this.baristaRecordList[y].serves;
+        let clockOut = this.baristaRecordList[y].clockOut;
+        let sales = '₱ ' + this.baristaRecordList[y].sales +'.00';
+        this.convertEmployeeData(day, clockIn, serves, clockOut, sales)
+      }
     }
+    this.getAllTotalData();
+    this.sortAllRowsByDay();
   }
 
   ngOnInit() {
-    this.getAllEmployeeData();
-    this.getAllTotalData();
-    this.sortAllRowsByDay();
-    console.log(this.allRows);
   }
 
   sortAllRowsByDay() {
@@ -45,26 +59,6 @@ export class EmployeeReportPage implements OnInit {
       return dateB.getTime() - dateA.getTime();
     });
   }
-
-  getAllEmployeeData() {
-    for (let x = 0 ; x < this.adminManifestList.length ; x++) {
-      const currentBarista = this.adminManifestList[x];
-      const storedData = localStorage.getItem(currentBarista);
-      if (storedData) {
-        const parsedData = JSON.parse(storedData);
-        console.log(parsedData);
-        for(let y = 0 ; y < parsedData.length ; y++) {
-          let day = parsedData[y].day;
-          let clockIn = parsedData[y].clockIn;
-          let serves = parsedData[y].serves;
-          let clockOut = parsedData[y].clockOut;
-          let sales = '₱ ' + parsedData[y].sales +'.00';
-          this.convertEmployeeData(currentBarista, day, clockIn, serves, clockOut, sales)
-        }
-      }
-    }
-  }
-
 
   getAllTotalData() {
     for (let x = 0 ; x < this.allRows.length ; x++) {
@@ -83,11 +77,12 @@ export class EmployeeReportPage implements OnInit {
         }
         const totalCount = timeDiffSeconds / 3600;
         this.allTotalHours += totalCount;
-        console.log("Total hours worked:", this.allTotalHours);
       } else {
         console.log("Invalid time format");
+        this.patsyData.toastMessageError("Error: Invalid Time Format");
       }
     }
+    this.allTotalHours = parseFloat(this.allTotalHours.toFixed(2));
   }
 
 private parseTime(timeStr: string): number | null {
@@ -109,27 +104,22 @@ private parseTime(timeStr: string): number | null {
   return null;
 }
 
-
-  convertEmployeeData(name: any, day: any, cIn: any, served: any, cOut: any, sale: any) {
+  convertEmployeeData( day: any, cIn: any, served: any, cOut: any, sale: any) {
+    console.log(sale)
     let employeeBarista = {
-      name: name,
       day: day,
       clockIn: cIn,
       serves: served,
       clockOut: cOut,
       sales: sale
     }
+    console.log(employeeBarista.sales);
     this.allRows.push(employeeBarista);
+    console.log('BRows:', this.baristaRecordList);
+    console.log('Rows:',this.allRows);
   }
-
-  handleChange(e: any) {
-    let data = {
-      barista: e.target.value
-  };
-  this.router.navigate(['/barista-report'], { queryParams: data });
-  }
-
+  
   back() {
-    this.router.navigate(['report']);
+    this.router.navigate(['employee-report']);
   }
 }

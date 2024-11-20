@@ -1,5 +1,11 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import { ModalController } from '@ionic/angular';
 import Chart from 'chart.js/auto';
+import { Directory, Filesystem } from '@capacitor/filesystem';
+import html2canvas from 'html2canvas';
+import { App } from '@capacitor/app';
+import { PatsyDataService } from 'src/app/services/patsy-data.service';
+import { IdGeneratorService } from 'src/app/services/id-generator.service';
 @Component({
   selector: 'app-report-best',
   templateUrl: './report-best.component.html',
@@ -7,6 +13,8 @@ import Chart from 'chart.js/auto';
 })
 export class ReportBestComponent  implements OnInit {
   toBeSortBestSeller: any [][] = [];
+  @ViewChild('cardContent', { read: ElementRef })
+  cardContent!: ElementRef;
   sortedBestSellerProduct: { prod1: string, prod2: string, prod3: string, prod4: string, prod5: string, prod6: string, prod7: string, prod8: string, prod9: string, prod10: string} = {
     prod1: '',
     prod2: '',
@@ -31,12 +39,123 @@ export class ReportBestComponent  implements OnInit {
     num9: 0,
     num10: 0
   }
-  constructor() { }
+  @Input() reportTrendSeller: any;
+  constructor(private modalController: ModalController, private patsyData: PatsyDataService, private idGeneratorService: IdGeneratorService) { }
 
   ionViewDidEnter() {
     this.sortBestSeller();
+    this.createChart();
   }
   ngOnInit() {
+
+  }
+
+  createChart() {
+    const ctx2 = document.getElementById('typeChart1') as HTMLCanvasElement;
+    const productChart2 = new Chart(ctx2, {
+      type: 'bar',
+      data: {
+        labels: [this.sortedBestSellerProduct.prod1, this.sortedBestSellerProduct.prod2, this.sortedBestSellerProduct.prod3, this.sortedBestSellerProduct.prod4, this.sortedBestSellerProduct.prod5, this.sortedBestSellerProduct.prod6, this.sortedBestSellerProduct.prod7, this.sortedBestSellerProduct.prod8, this.sortedBestSellerProduct.prod9, this.sortedBestSellerProduct.prod10],
+        datasets: [
+          {
+            label: "Orders",
+            backgroundColor: ["#ffffff"],
+            data: [this.sortedBestSellerAmount.num1, this.sortedBestSellerAmount.num2, this.sortedBestSellerAmount.num3, this.sortedBestSellerAmount.num4, this.sortedBestSellerAmount.num5, this.sortedBestSellerAmount.num6, this.sortedBestSellerAmount.num7, this.sortedBestSellerAmount.num8, this.sortedBestSellerAmount.num9, this.sortedBestSellerAmount.num10],
+          }
+        ] 
+      }, 
+      options: {
+        plugins: {
+          legend: {
+              labels: {
+                  font: {
+                      size: 25
+                  },
+                  color: '#ffffff'
+              }
+          }
+      },
+        scales: {
+        y: {
+            beginAtZero: true,
+            grid: {
+              color: '#FF733A'
+            },
+            ticks: {
+              font: {
+                size: 20,
+              },               
+              color: '#FF733A'
+            }
+        },
+        x: {
+          beginAtZero: true,
+          grid: {
+            color: '#FF733A'
+          },
+          ticks: {
+            font: {
+              size: 17,
+            },               
+            color: '#FF733A'
+          }
+        },
+      },
+    }
+  });
+  ctx2.style.backgroundColor = "#352A28";
+  const ctx1 = document.getElementById('typeChart2') as HTMLCanvasElement;
+  const productChart1 = new Chart(ctx1, {
+    type: 'bar',
+    data: {
+      labels: ["Brewed", "Espresso", "Dine-In", "Non-Coffee", "Mocktails", "Toasties", "Specials"],
+      datasets: [
+        {
+          label: "Orders",
+          backgroundColor: ["#ffffff"],
+          data: [this.reportTrendSeller.prod1, this.reportTrendSeller.prod2, this.reportTrendSeller.prod3, this.reportTrendSeller.prod4, this.reportTrendSeller.prod5, this.reportTrendSeller.prod6, this.reportTrendSeller.prod7 ]
+        }
+      ] 
+    },
+    options: {
+      plugins: {
+        legend: {
+            labels: {
+                font: {
+                    size: 25
+                },
+                color: '#ffffff'
+            }
+        }
+    },
+      scales: {
+      y: {
+          beginAtZero: true,
+          grid: {
+            color: '#FF733A'
+          },
+          ticks: {
+            font: {
+              size: 20,
+            },               
+            color: '#FF733A'
+          }
+      },
+      x: {
+        beginAtZero: true,
+        grid: {
+          color: '#FF733A'
+        },
+        ticks: {
+          font: {
+            size: 17,
+          },               
+          color: '#FF733A'
+        }
+      },
+    },
+  }
+});
   }
 
   sortBestSeller(){
@@ -71,10 +190,37 @@ export class ReportBestComponent  implements OnInit {
   }
 
   back() {
-    console.log('Back');
+    this.modalController.dismiss({
+
+    })
   }
 
-  print() {
-    console.log('Print');
+  async print() {
+    await this.captureScreenshot();
+  }
+
+  async saveCanvasImage(canvas: any) {
+    const dataUrl = canvas.toDataURL('image/png');
+    const report = this.idGeneratorService.generateReportID();
+    const fileName = report + '.png';
+    const path = `${Directory.Documents}/${fileName}`;
+
+    try {
+      await Filesystem.writeFile({
+        path,
+        data: dataUrl,
+        directory: Directory.Documents,
+        recursive: true
+      });
+      this.patsyData.toastMessageSuccess('Image Saved Successfully! Check your gallery.', 1500);
+    } catch (error) {
+      this.patsyData.toastMessageError('ERROR!' + error);
+    }
+  }
+  async captureScreenshot() {
+    const element = this.cardContent.nativeElement;
+    html2canvas(element).then(async (canvas) => {
+      await this.saveCanvasImage(canvas);
+    });
   }
 }
