@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Route, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { BarcodeScanner } from '@capacitor-community/barcode-scanner';
-import { DateService } from 'src/app/services/date.service';
 import { PatsyDataService } from 'src/app/services/patsy-data.service';
 import { ReportService } from 'src/app/services/report.service';
 @Component({
@@ -23,7 +22,7 @@ export class LandingPage implements OnInit {
     password: ''
   }
   timer: any;
-  constructor(private dateService: DateService, private patsyData: PatsyDataService, private router: Router, private reportService: ReportService) {
+  constructor(private patsyData: PatsyDataService, private router: Router, private reportService: ReportService) {
 
   }
 
@@ -109,7 +108,7 @@ export class LandingPage implements OnInit {
       if(parsedData.username == this.adminUser && parsedData.password == this.adminPass) {
         this.patsyData.alertMessage('Welcome!','Ate Patsy! ', 'Have a scrumptious day' , '~Splendid~');
         sessionStorage.setItem('sessionToken', 'admin');
-        this.router.navigate(['home']);
+        this.router.navigate(['inventory']);
       } else {
         this.patsyData.toastMessageError('Username or Password is incorrect.');
       }

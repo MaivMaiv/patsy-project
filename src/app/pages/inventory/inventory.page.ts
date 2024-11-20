@@ -19,6 +19,7 @@ import { PatsyDataService } from 'src/app/services/patsy-data.service';
 })
 export class InventoryPage implements OnInit {
   products: any[] = [];
+  userToken: any;
   // editAction: boolean = false;
   // isUploaded: boolean = false;
   // isUpdated: boolean = false;
@@ -58,9 +59,14 @@ export class InventoryPage implements OnInit {
   ngOnInit() {
     this.screenOrientationService.lockLandscape();
     const savedProducts = localStorage.getItem('SavedProducts');
+    console.log('Products: ', savedProducts);
     if (savedProducts) {
       this.products = JSON.parse(savedProducts);
+    } else {
+      this.products.length = 0;
     }
+    const sessionToken = sessionStorage.getItem('sessionToken');
+    this.userToken = sessionToken;
   }
   addButton() {
     this.products.push(this.product);

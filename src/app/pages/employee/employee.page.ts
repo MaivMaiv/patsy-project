@@ -18,6 +18,7 @@ export class EmployeePage implements OnInit {
   seconds: number = 0;
   status: boolean = false;
   employeeName: string = '';
+  userToken: any;
   constructor(private router: Router, private modalController: ModalController, private idGenerator: IdGeneratorService, private patsyData: PatsyDataService, private dateService: DateService, private alertController: AlertController) {
 
    }
@@ -29,6 +30,8 @@ export class EmployeePage implements OnInit {
         this.employeeName = barista;
       }
     }
+    const sessionToken = sessionStorage.getItem('sessionToken');
+    this.userToken = sessionToken;
    }
 
   ngOnInit() { }

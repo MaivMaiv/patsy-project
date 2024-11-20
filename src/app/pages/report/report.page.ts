@@ -21,8 +21,11 @@ export class ReportPage implements OnInit  {
   sellerReport = {};
   dayReport =  {};
   monthReport = {};
+  userToken: any;
   constructor(private router: Router, private reportService: ReportService, private modalController: ModalController, private patsyData: PatsyDataService, private idGeneratorService: IdGeneratorService) {}
   ngOnInit() {
+    const sessionToken = sessionStorage.getItem('sessionToken');
+    this.userToken = sessionToken;
     const allTime = localStorage.getItem('allTimeCounter');
     const monthTime = localStorage.getItem('monthTimeCounter');
     const weekTime = localStorage.getItem('weekTimeCounter');

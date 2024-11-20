@@ -2,21 +2,26 @@
   <ion-grid>
     <ion-row>
       <ion-col>
-        <div class="ion-text-center menu-buttons">
-          <p (click)="home()" class="menu-button">Home</p>
-          <p (click)="points()" class="menu-button">Points</p>
-          <p (click)="inventory()" class="menu-button text-pop">Inventory</p>
+        <div  *ngIf="userToken === 'admin'" class="ion-text-center menu-buttons">
+          <p (click)="inventory()" class="menu-button">Inventory</p>
           <p (click)="report()" class="menu-button">Report</p>
           <p (click)="employee()" class="menu-button">Employee</p>
           <p (click)="exit()" class="menu-button">Exit</p>
         </div>
+        <div *ngIf="userToken === 'barista'" class="ion-text-center menu-buttons">
+          <p class="menu-button">Home</p>
+          <p (click)="points()" class="menu-button">Points</p>
+          <p (click)="exit()" class="menu-button">Clockout</p>
+        </div>
       </ion-col>
     </ion-row>
     <ion-row>
-      <ion-col *ngFor="let prod of products; let i = index" size="2">
-        <h1 *ngIf="products.length === 0">
-          No products has been added yet.
+      <ion-col *ngIf="products.length === 0">
+        <h1 class="ion-text-center">
+          No products has been added yet. <br> Click the plus button to add some products <br> :>
         </h1>
+      </ion-col>
+      <ion-col *ngFor="let prod of products; let i = index" size="2">
           <div (click)="openEditProductModal(i, prod)" id="card-products">
             <img [src]="prod.productImage" class="image-prod" />
             <div class="ion-text-center">

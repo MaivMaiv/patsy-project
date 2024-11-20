@@ -24,7 +24,7 @@
                         </ion-segment>
                       </ion-card-header>
                       <ion-card-content>
-                        <div *ngIf="loginType == 'admin'">
+                        <div *ngIf="loginType === 'admin'">
                           <div class="adminInput">
                             <div class="ion-text-center">
                               <h3><span>USERNAME</span></h3>
@@ -37,9 +37,9 @@
                             </div>
                               <ion-input [(ngModel)]="adminPass" type="password" fill="outline" placeholder="********"></ion-input>
                           </div>
-                          <ion-button  [disabled]="adminUser == '' || adminPass == ''"  (click)="login()" expand="block">LOGIN</ion-button>
+                          <ion-button  [disabled]="adminUser === '' || adminPass === ''"  (click)="login()" expand="block">LOGIN</ion-button>
                         </div>
-                        <div *ngIf="loginType == 'employee'">
+                        <div *ngIf="loginType === 'employee'">
                           <div class="employeeInput">
                             <div class="ion-text-center">
                               <h3><span>SCAN ID TO CLOCK-IN</span></h3>
