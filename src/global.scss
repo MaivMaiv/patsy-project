@@ -23,6 +23,15 @@
 @import "@ionic/angular/css/text-alignment.css";
 @import "@ionic/angular/css/text-transformation.css";
 @import "@ionic/angular/css/flex-utils.css";
+
+ion-segment {
+  --background: #ffffff;
+}
+
+ion-segment-button {
+  --color-checked: red !important;
+  --indicator-color: red !important;
+}
 .report-modal {
   --width: 95%;
   --height: 95%;
@@ -71,7 +80,7 @@ ion-modal {
 }
 
 .alertMessage .alert-wrapper {
-  background-color: #352A28;
+  background-color: #000000;
   border-radius: 10px;
   width: 600px;
 }
@@ -83,7 +92,7 @@ ion-modal {
   text-align: center;
   display: flex;
   justify-content: center;
-  color: #FF733A;
+  color: #BEB7A4;
   font-size: 23px;
 }
 
@@ -93,7 +102,7 @@ ion-modal {
 }
 
   :root {
-    --ion-background-color:#FF733A;
+    --ion-background-color:#BEB7A4;
   }
   
 /* Import Rubik-Regular font */

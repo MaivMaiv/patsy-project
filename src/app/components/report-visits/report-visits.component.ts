@@ -53,31 +53,31 @@ export class ReportVisitsComponent  implements OnInit {
         y: {
             beginAtZero: true,
             grid: {
-              color: '#FF733A'
+              color: '#BEB7A4'
             },
             ticks: {
               font: {
                 size: 20,
               },               
-              color: '#FF733A'
+              color: '#BEB7A4'
             }
         },
         x: {
           beginAtZero: true,
           grid: {
-            color: '#FF733A'
+            color: '#BEB7A4'
           },
           ticks: {
             font: {
               size: 17,
             },               
-            color: '#FF733A'
+            color: '#BEB7A4'
           }
         },
       },
     }
   });
-    dailyVisits.style.backgroundColor = "#352A28";
+    dailyVisits.style.backgroundColor = "#000000";
 
   const monthlyVisits = document.getElementById('monthlyChart') as HTMLCanvasElement;
   const customer2Chart = new Chart(monthlyVisits, {
@@ -109,31 +109,31 @@ export class ReportVisitsComponent  implements OnInit {
       y: {
           beginAtZero: true,
           grid: {
-            color: '#FF733A'
+            color: '#BEB7A4'
           },
           ticks: {
             font: {
               size: 20,
             },               
-            color: '#FF733A'
+            color: '#BEB7A4'
           }
       },
       x: {
         beginAtZero: true,
         grid: {
-          color: '#FF733A'
+          color: '#BEB7A4'
         },
         ticks: {
           font: {
             size: 17,
           },               
-          color: '#FF733A'
+          color: '#BEB7A4'
         }
       },
     },
   }
 });
-  monthlyVisits.style.backgroundColor = "#352A28";
+  monthlyVisits.style.backgroundColor = "#000000";
   }
 
   back() {

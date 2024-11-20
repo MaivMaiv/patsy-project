@@ -135,7 +135,17 @@ export class ReportPage implements OnInit  {
   }
 
   reportSales(){
-    this.router.navigate(['sales-report']);
+    const salesData = localStorage.getItem('salesRecord');
+    console.log('Sales Data: ', salesData);
+    if(salesData) {
+      const parsedSalesData = JSON.parse(salesData)
+      console.log(parsedSalesData?.length, parsedSalesData);
+      if (parsedSalesData?.length == 0) {
+          this.patsyData.alertMessage('Invalid', 'No Sales Found', 'Make a sale first before you can view the report', 'OK');
+          } else {
+          this.router.navigate(['sales-report']);
+          }
+    }
   }
 
   reportPoints(){

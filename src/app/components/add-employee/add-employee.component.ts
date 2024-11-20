@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ModalController } from '@ionic/angular';
 import { IdGeneratorService } from 'src/app/services/id-generator.service';
+import { PatsyDataService } from 'src/app/services/patsy-data.service';
 
 @Component({
   selector: 'app-add-employee',
@@ -18,6 +19,7 @@ export class AddEmployeeComponent  implements OnInit {
     e_img: [],
     e_id :'',
   }
+  isUnique: boolean = true;
   public pickerColumns = [
     {
       name: 'month',
@@ -179,7 +181,7 @@ export class AddEmployeeComponent  implements OnInit {
       },
     },
   ];
-  constructor(private modalController: ModalController, private idGeneratorService: IdGeneratorService) { }
+  constructor(private modalController: ModalController, private idGeneratorService: IdGeneratorService, private patsyData: PatsyDataService) { }
 
   ngOnInit() {
   }
@@ -215,12 +217,24 @@ export class AddEmployeeComponent  implements OnInit {
 
   add() {
     sessionStorage.setItem('loyalty', 'true');
+    const baristaList = localStorage.getItem('MasterList');
+    if(baristaList) {
+      const parsedBaristaList = JSON.parse(baristaList);
+      for (let x = 0 ; x < parsedBaristaList.length ; x++) {
+        console.log(parsedBaristaList[x], this.patsy_employee.e_name)
+        if (parsedBaristaList[x] == this.patsy_employee.e_name) {
+          this.isUnique = false;
+          break;
+        }
+      }
+    }
     const id = this.idGeneratorService.generateEmployeeID();
     console.log(id);
     this.patsy_employee.e_id = id;
     this.isUploaded = false;
     this.modalController.dismiss({
-      addEmployee: this.patsy_employee
+      addEmployee: this.patsy_employee,
+      isUnique: this.isUnique
     })
   }
   

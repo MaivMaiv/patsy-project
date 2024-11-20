@@ -47,7 +47,6 @@
                       <h3><span>Customer Type</span></h3>
                     </div>
                     <ion-segment
-                      color="warning"
                       [(ngModel)]="checkoutDetails.customerType"
                     >
                       <ion-segment-button value="Member">
@@ -59,7 +58,7 @@
                     </ion-segment>
                     <br />
                     <div
-                      *ngIf="checkoutDetails.customerType == 'Guest'"
+                      *ngIf="checkoutDetails.customerType === 'Guest'"
                       classs="payment-details"
                     >
                     <div class="ion-text-center">
@@ -75,7 +74,7 @@
                       ></ion-input>
                     </div>
                     <div
-                      *ngIf="checkoutDetails.customerType == 'Member'"
+                      *ngIf="checkoutDetails.customerType === 'Member'"
                       classs="payment-details"
                     >
                     <div class="ion-text-center">
@@ -118,7 +117,6 @@
                       <h3><span>Payment Mode</span></h3>
                     </div>
                     <ion-segment
-                      color="warning"
                       [(ngModel)]="checkoutDetails.transactionType"
                     >
                       <ion-segment-button value="Cash">
@@ -130,7 +128,7 @@
                     </ion-segment>
                   </div>
                   <div
-                    *ngIf="checkoutDetails.transactionType == 'Gcash'"
+                    *ngIf="checkoutDetails.transactionType === 'Gcash'"
                     classs="payment-details"
                   >
                   <div class="ion-text-center">
@@ -155,7 +153,7 @@
                   ></ion-input>
                 </div>
                 <div
-                *ngIf="checkoutDetails.transactionType == 'Cash'"
+                *ngIf="checkoutDetails.transactionType === 'Cash'"
                 classs="payment-details"
               >
               <div class="ion-text-center">

@@ -2,7 +2,7 @@
     margin: 70px 20px 10px 20px;
     ion-card {
       height: 100%;
-      background: #352A28;
+      background: #000000;
       box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
     }
   }
@@ -28,12 +28,8 @@
   }
 
   ion-button {
-    --background: #FF733A;
-    --color: #ECECE0;
-  }
-
-  ion-segment {
-    --color: #ECECE0;
+    --background: #ECECE0;
+    --color: #000000;
   }
 
   ion-icon {

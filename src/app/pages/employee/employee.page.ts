@@ -85,11 +85,12 @@ export class EmployeePage implements OnInit {
     });
 
     modal.onDidDismiss().then((data) => {
-      if(sessionStorage.getItem('loyalty') == 'true') {
+      console.log('Data:', data)
+      if(sessionStorage.getItem('loyalty') == 'true' && data.data.isUnique == true) {
           this.createEmployeeProfile(data.data?.addEmployee.e_id, data.data?.addEmployee.e_name, data.data?.addEmployee.e_address, data.data?.addEmployee.e_date, data.data?.addEmployee.e_num, data.data?.addEmployee.e_img)
           console.log(data.data?.addEmployee);
-      }  else {
-        console.log('Cancelled');
+      }  else if(sessionStorage.getItem('loyalty') == 'true' && data.data.isUnique == false) {
+        this.patsyData.warningMessage('This Barista Already Exists', 'OK');
       }
     });
     return await modal.present();

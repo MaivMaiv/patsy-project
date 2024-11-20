@@ -3,7 +3,9 @@
     <ion-row>
       <ion-col>
         <div  *ngIf="userToken === 'admin'" class="ion-text-center menu-buttons">
-          <p (click)="inventory()" class="menu-button">Inventory</p>
+          <p (click)="home()" class="menu-button">Home</p>
+          <p (click)="points()" class="menu-button">Points</p>
+          <p class="menu-button">Inventory</p>
           <p (click)="report()" class="menu-button">Report</p>
           <p (click)="employee()" class="menu-button">Employee</p>
           <p (click)="exit()" class="menu-button">Exit</p>
@@ -27,7 +29,7 @@
             <div class="ion-text-center">
               <ion-label>
                 <h2>{{ prod.productName }}</h2>
-                <h3>Cost: {{ prod.productCost }}</h3>
+                <h3>{{ prod.productCost | currency: 'PHP':'symbol':'1.2-2' }}</h3>
               </ion-label>
             </div>
         </div>

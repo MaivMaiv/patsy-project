@@ -14,7 +14,7 @@
                     <ion-card>
                       <ion-card-header>
                         <img class="logo" src="assets/patsy_logo_transparent.png">
-                        <ion-segment color="primary" [(ngModel)]="loginType" value="employee">
+                        <ion-segment [(ngModel)]="loginType" value="employee">
                           <ion-segment-button value="admin">
                             <ion-label>Admin</ion-label>
                           </ion-segment-button>
@@ -37,7 +37,7 @@
                             </div>
                               <ion-input [(ngModel)]="adminPass" type="password" fill="outline" placeholder="********"></ion-input>
                           </div>
-                          <ion-button  [disabled]="adminUser === '' || adminPass === ''"  (click)="login()" expand="block">LOGIN</ion-button>
+                          <ion-button [disabled]="adminUser === '' || adminPass === ''"  (click)="login()" expand="block">LOGIN</ion-button>
                         </div>
                         <div *ngIf="loginType === 'employee'">
                           <div class="employeeInput">

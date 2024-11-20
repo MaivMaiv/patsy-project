@@ -108,7 +108,7 @@ export class LandingPage implements OnInit {
       if(parsedData.username == this.adminUser && parsedData.password == this.adminPass) {
         this.patsyData.alertMessage('Welcome!','Ate Patsy! ', 'Have a scrumptious day' , '~Splendid~');
         sessionStorage.setItem('sessionToken', 'admin');
-        this.router.navigate(['inventory']);
+        this.router.navigate(['home']);
       } else {
         this.patsyData.toastMessageError('Username or Password is incorrect.');
       }

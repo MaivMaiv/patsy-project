@@ -26,6 +26,16 @@ export class PatsyDataService {
     await alert.present();
   }
 
+  async warningMessage(header: any, button: any) {
+    const alert = await this.alertController.create({
+      header: header,
+      buttons: [button],
+      cssClass: 'alertMessage'
+    });
+
+    await alert.present();
+  }
+
   async toastMessageSuccess(message: any, duration: any) {
     const toast = await this.toastController.create({
       message: message,
